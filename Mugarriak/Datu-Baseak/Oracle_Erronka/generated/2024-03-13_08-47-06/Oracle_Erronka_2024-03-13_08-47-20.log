@@ -1,0 +1,1010 @@
+SQL> SET VERIFY ON
+SQL> SET FEEDBACK OFF
+SQL> SET DEFINE ON
+SQL> CLEAR SCREEN
+SQL> set serveroutput on
+SQL> 
+SQL> COLUMN date_time NEW_VAL filename noprint;
+SQL> SELECT to_char(systimestamp,'yyyy-mm-dd_hh24-mi-ssxff') date_time FROM DUAL;
+
+
+
+SQL> spool "Oracle_Erronka_&filename..log"
+SQL> 
+SQL> -- Password file execution
+SQL> -- @passworddefinition.sql
+SQL> 
+SQL> PROMPT Dropping Role ROLE_Oracle_Erronka ...
+Dropping Role ROLE_Oracle_Erronka ...
+SQL> DROP ROLE ROLE_Oracle_Erronka ;
+
+Error starting at line : 16 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+DROP ROLE ROLE_Oracle_Erronka
+Error report -
+ORA-01919: role 'ROLE_ORACLE_ERRONKA' does not exist
+01919. 00000 -  "role '%s' does not exist"
+*Cause:    Role by that name does not exist.
+*Action:   Verify you are using the correct role name.
+SQL> PROMPT Creating Role ROLE_Oracle_Erronka ...
+Creating Role ROLE_Oracle_Erronka ...
+SQL> CREATE ROLE ROLE_Oracle_Erronka ;
+
+Error starting at line : 18 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+CREATE ROLE ROLE_Oracle_Erronka
+Error report -
+ORA-65096: invalid common user or role name
+65096. 00000 -  "invalid common user or role name"
+*Cause:    An attempt was made to create a common user or role with a name
+           that was not valid for common users or roles. In addition to the
+           usual rules for user and role names, common user and role names
+           must consist only of ASCII characters, and must contain the prefix
+           specified in common_user_prefix parameter.
+*Action:   Specify a valid common user or role name.
+SQL> 
+SQL> -- PROMPT Drop erleak user
+SQL> -- drop user erleak cascade;
+SQL> 
+SQL> PROMPT Create user erleak
+Create user erleak
+SQL> CREATE USER erleak IDENTIFIED BY &&erleak_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */;
+old:CREATE USER erleak IDENTIFIED BY &&erleak_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+new:CREATE USER erleak IDENTIFIED BY "YRSa6UTSGt$nco0u" PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+
+Error starting at line : 24 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+CREATE USER erleak IDENTIFIED BY &&erleak_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+Error report -
+ORA-65096: invalid common user or role name
+65096. 00000 -  "invalid common user or role name"
+*Cause:    An attempt was made to create a common user or role with a name
+           that was not valid for common users or roles. In addition to the
+           usual rules for user and role names, common user and role names
+           must consist only of ASCII characters, and must contain the prefix
+           specified in common_user_prefix parameter.
+*Action:   Specify a valid common user or role name.
+SQL> GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO erleak;
+
+Error starting at line : 25 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO erleak
+Error report -
+ORA-01917: user or role 'ERLEAK' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> 
+SQL> -- PROMPT Drop Emulation user
+SQL> -- drop user Emulation cascade;
+SQL> 
+SQL> PROMPT Create user Emulation
+Create user Emulation
+SQL> CREATE USER Emulation IDENTIFIED BY &&Emulation_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */;
+old:CREATE USER Emulation IDENTIFIED BY &&Emulation_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+new:CREATE USER Emulation IDENTIFIED BY "HQ1K5h#q$J23xz2w" PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+
+Error starting at line : 31 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+CREATE USER Emulation IDENTIFIED BY &&Emulation_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+Error report -
+ORA-65096: invalid common user or role name
+65096. 00000 -  "invalid common user or role name"
+*Cause:    An attempt was made to create a common user or role with a name
+           that was not valid for common users or roles. In addition to the
+           usual rules for user and role names, common user and role names
+           must consist only of ASCII characters, and must contain the prefix
+           specified in common_user_prefix parameter.
+*Action:   Specify a valid common user or role name.
+SQL> GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO Emulation;
+
+Error starting at line : 32 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO Emulation
+Error report -
+ORA-01917: user or role 'EMULATION' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> 
+SQL> set define on
+SQL> prompt connecting to Emulation
+connecting to Emulation
+SQL> alter session set current_schema=Emulation;
+
+Error starting at line : 36 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+alter session set current_schema=Emulation
+Error report -
+ORA-01435: user does not exist
+01435. 00000 -  "user does not exist"
+*Cause:    
+*Action:
+SQL> set define off
+SQL> set define on
+SQL> prompt connecting to erleak
+connecting to erleak
+SQL> alter session set current_schema=erleak;
+
+Error starting at line : 40 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+alter session set current_schema=erleak
+Error report -
+ORA-01435: user does not exist
+01435. 00000 -  "user does not exist"
+*Cause:    
+*Action:
+SQL> set define off
+SQL> -- DROP TABLE asoziazio_parte CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table asoziazio_parte ...
+Creating Table asoziazio_parte ...
+SQL> CREATE TABLE asoziazio_parte (
+  2    id_asoziazioa NUMBER(10,0) NOT NULL,
+  3    id_sozioa NUMBER(10,0) NOT NULL
+  4  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY on table asoziazio_parte ... 
+Creating Primary Key Constraint PRIMARY on table asoziazio_parte ...
+SQL> ALTER TABLE asoziazio_parte
+  2  ADD CONSTRAINT PRIMARY PRIMARY KEY
+  3  (
+  4    id_asoziazioa,
+  5    id_sozioa
+  6  )
+  7  ENABLE
+  8  ;
+SQL> 
+SQL> GRANT ALL ON asoziazio_parte TO ROLE_Oracle_Erronka;
+
+Error starting at line : 62 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON asoziazio_parte TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE asoziazioak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table asoziazioak ...
+Creating Table asoziazioak ...
+SQL> CREATE TABLE asoziazioak (
+  2    asoziazio_izena CHAR(40 CHAR) NOT NULL,
+  3    herrialdea CHAR(25 CHAR) NOT NULL,
+  4    id_asoziazioa NUMBER(10,0) NOT NULL
+  5  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_15 on table asoziazioak ... 
+Creating Primary Key Constraint PRIMARY_15 on table asoziazioak ...
+SQL> ALTER TABLE asoziazioak
+  2  ADD CONSTRAINT PRIMARY_15 PRIMARY KEY
+  3  (
+  4    id_asoziazioa
+  5  )
+  6  ENABLE
+  7  ;
+SQL> PROMPT Creating Unique Constraint asoziazio_izena on table asoziazioak
+Creating Unique Constraint asoziazio_izena on table asoziazioak
+SQL> ALTER TABLE asoziazioak
+  2  ADD CONSTRAINT asoziazio_izena UNIQUE (
+  3    asoziazio_izena
+  4  )
+  5  ENABLE
+  6  ;
+SQL> 
+SQL> GRANT ALL ON asoziazioak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 90 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON asoziazioak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE besteak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table besteak ...
+Creating Table besteak ...
+SQL> CREATE TABLE besteak (
+  2    id_produktua NUMBER(10,0) NOT NULL
+  3  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_2 on table besteak ... 
+Creating Primary Key Constraint PRIMARY_2 on table besteak ...
+SQL> ALTER TABLE besteak
+  2  ADD CONSTRAINT PRIMARY_2 PRIMARY KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON besteak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 109 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON besteak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE bulegoak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table bulegoak ...
+Creating Table bulegoak ...
+SQL> CREATE TABLE bulegoak (
+  2    herria CHAR(25 CHAR) NOT NULL,
+  3    id_asoziazioa NUMBER(10,0),
+  4    id_bulegoa NUMBER(10,0) NOT NULL
+  5  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_3 on table bulegoak ... 
+Creating Primary Key Constraint PRIMARY_3 on table bulegoak ...
+SQL> ALTER TABLE bulegoak
+  2  ADD CONSTRAINT PRIMARY_3 PRIMARY KEY
+  3  (
+  4    id_bulegoa
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON bulegoak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 130 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON bulegoak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE etsailak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table etsailak ...
+Creating Table etsailak ...
+SQL> CREATE TABLE etsailak (
+  2    deskribapena CHAR(100 CHAR),
+  3    hildako_kan NUMBER(10,0),
+  4    id_etsaia NUMBER(10,0) NOT NULL,
+  5    izena CHAR(25 CHAR) NOT NULL,
+  6    kanpotarra NUMBER(3,0)
+  7  );
+SQL> 
+SQL> 
+SQL> ALTER TABLE etsailak MODIFY (hildako_kan DEFAULT '0');
+SQL> ALTER TABLE etsailak MODIFY (kanpotarra DEFAULT '0');
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_4 on table etsailak ... 
+Creating Primary Key Constraint PRIMARY_4 on table etsailak ...
+SQL> ALTER TABLE etsailak
+  2  ADD CONSTRAINT PRIMARY_4 PRIMARY KEY
+  3  (
+  4    id_etsaia
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON etsailak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 155 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON etsailak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE eztia CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table eztia ...
+Creating Table eztia ...
+SQL> CREATE TABLE eztia (
+  2    eztia_mota CHAR(50 CHAR) NOT NULL,
+  3    id_lorea NUMBER(10,0),
+  4    id_produktua NUMBER(10,0) NOT NULL
+  5  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_5 on table eztia ... 
+Creating Primary Key Constraint PRIMARY_5 on table eztia ...
+SQL> ALTER TABLE eztia
+  2  ADD CONSTRAINT PRIMARY_5 PRIMARY KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON eztia TO ROLE_Oracle_Erronka;
+
+Error starting at line : 176 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON eztia TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE fabrikatzailea CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table fabrikatzailea ...
+Creating Table fabrikatzailea ...
+SQL> CREATE TABLE fabrikatzailea (
+  2    helbidea CHAR(100 CHAR),
+  3    hiria CHAR(70 CHAR) NOT NULL,
+  4    id_fabrikatzailea NUMBER(10,0) NOT NULL,
+  5    izena CHAR(50 CHAR) NOT NULL,
+  6    korreoa CHAR(50 CHAR),
+  7    telefonoa NUMBER(24,0)
+  8  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_6 on table fabrikatzailea ... 
+Creating Primary Key Constraint PRIMARY_6 on table fabrikatzailea ...
+SQL> ALTER TABLE fabrikatzailea
+  2  ADD CONSTRAINT PRIMARY_6 PRIMARY KEY
+  3  (
+  4    id_fabrikatzailea
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON fabrikatzailea TO ROLE_Oracle_Erronka;
+
+Error starting at line : 200 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON fabrikatzailea TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE hymenoptera_europan CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table hymenoptera_europan ...
+Creating Table hymenoptera_europan ...
+SQL> CREATE TABLE hymenoptera_europan (
+  2    europearrak_edo_ez NUMBER(3,0),
+  3    id_hymenoptera NUMBER(10,0) NOT NULL,
+  4    id_produktua NUMBER(10,0),
+  5    izena CHAR(25 CHAR) NOT NULL,
+  6    kantitatea NUMBER(10,0),
+  7    kokapena CHAR(50 CHAR)
+  8  );
+SQL> 
+SQL> 
+SQL> ALTER TABLE hymenoptera_europan MODIFY (europearrak_edo_ez DEFAULT '1');
+SQL> ALTER TABLE hymenoptera_europan MODIFY (kantitatea DEFAULT '0');
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_7 on table hymenoptera_europan ... 
+Creating Primary Key Constraint PRIMARY_7 on table hymenoptera_europan ...
+SQL> ALTER TABLE hymenoptera_europan
+  2  ADD CONSTRAINT PRIMARY_7 PRIMARY KEY
+  3  (
+  4    id_hymenoptera
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON hymenoptera_europan TO ROLE_Oracle_Erronka;
+
+Error starting at line : 226 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON hymenoptera_europan TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE loreak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table loreak ...
+Creating Table loreak ...
+SQL> CREATE TABLE loreak (
+  2    id_erlea NUMBER(10,0),
+  3    id_lorea NUMBER(10,0) NOT NULL,
+  4    izena CHAR(25 CHAR) NOT NULL,
+  5    kantitatea NUMBER(10,0),
+  6    kokapena CHAR(50 CHAR)
+  7  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_8 on table loreak ... 
+Creating Primary Key Constraint PRIMARY_8 on table loreak ...
+SQL> ALTER TABLE loreak
+  2  ADD CONSTRAINT PRIMARY_8 PRIMARY KEY
+  3  (
+  4    id_lorea
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON loreak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 249 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON loreak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE materiala CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table materiala ...
+Creating Table materiala ...
+SQL> CREATE TABLE materiala (
+  2    deskribapena CHAR(200 CHAR),
+  3    id_fabrikatzailea NUMBER(10,0) NOT NULL,
+  4    id_materiala NUMBER(10,0) NOT NULL,
+  5    kantitatea NUMBER(10,0),
+  6    materiala_izena CHAR(50 CHAR) NOT NULL,
+  7    prezioa NUMBER(10,0)
+  8  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_9 on table materiala ... 
+Creating Primary Key Constraint PRIMARY_9 on table materiala ...
+SQL> ALTER TABLE materiala
+  2  ADD CONSTRAINT PRIMARY_9 PRIMARY KEY
+  3  (
+  4    id_materiala,
+  5    id_fabrikatzailea
+  6  )
+  7  ENABLE
+  8  ;
+SQL> 
+SQL> GRANT ALL ON materiala TO ROLE_Oracle_Erronka;
+
+Error starting at line : 274 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON materiala TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE produktuak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table produktuak ...
+Creating Table produktuak ...
+SQL> CREATE TABLE produktuak (
+  2    deskribapena CHAR(200 CHAR),
+  3    id_produktua NUMBER(10,0) NOT NULL,
+  4    kantitatea NUMBER(10,0),
+  5    prezioa NUMBER(10,0),
+  6    produktu_mota CHAR(50 CHAR) NOT NULL
+  7  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_10 on table produktuak ... 
+Creating Primary Key Constraint PRIMARY_10 on table produktuak ...
+SQL> ALTER TABLE produktuak
+  2  ADD CONSTRAINT PRIMARY_10 PRIMARY KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  ENABLE
+  7  ;
+SQL> 
+SQL> GRANT ALL ON produktuak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 297 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON produktuak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE sozioak CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table sozioak ...
+Creating Table sozioak ...
+SQL> CREATE TABLE sozioak (
+  2    email CHAR(50 CHAR),
+  3    erle_kantitatea NUMBER(10,0),
+  4    id_sozioa NUMBER(10,0) NOT NULL,
+  5    id_zuzendaria NUMBER(10,0),
+  6    jaiote_eguna DATE,
+  7    kolmena_kantitatea NUMBER(10,0),
+  8    NAN CHAR(25 CHAR),
+  9    sozio_abizena CHAR(25 CHAR) NOT NULL,
+ 10    sozio_izena CHAR(25 CHAR) NOT NULL,
+ 11    telefonoa NUMBER(24,0)
+ 12  );
+SQL> 
+SQL> 
+SQL> ALTER TABLE sozioak MODIFY (erle_kantitatea DEFAULT '0');
+SQL> ALTER TABLE sozioak MODIFY (kolmena_kantitatea DEFAULT '0');
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_11 on table sozioak ... 
+Creating Primary Key Constraint PRIMARY_11 on table sozioak ...
+SQL> ALTER TABLE sozioak
+  2  ADD CONSTRAINT PRIMARY_11 PRIMARY KEY
+  3  (
+  4    id_sozioa
+  5  )
+  6  ENABLE
+  7  ;
+SQL> PROMPT Creating Unique Constraint NAN on table sozioak
+Creating Unique Constraint NAN on table sozioak
+SQL> ALTER TABLE sozioak
+  2  ADD CONSTRAINT NAN UNIQUE (
+  3    NAN
+  4  )
+  5  ENABLE
+  6  ;
+SQL> 
+SQL> GRANT ALL ON sozioak TO ROLE_Oracle_Erronka;
+
+Error starting at line : 334 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON sozioak TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE ze_ezti CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table ze_ezti ...
+Creating Table ze_ezti ...
+SQL> CREATE TABLE ze_ezti (
+  2    id_produktua NUMBER(10,0) NOT NULL,
+  3    id_sozioa NUMBER(10,0) NOT NULL
+  4  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_12 on table ze_ezti ... 
+Creating Primary Key Constraint PRIMARY_12 on table ze_ezti ...
+SQL> ALTER TABLE ze_ezti
+  2  ADD CONSTRAINT PRIMARY_12 PRIMARY KEY
+  3  (
+  4    id_sozioa,
+  5    id_produktua
+  6  )
+  7  ENABLE
+  8  ;
+SQL> 
+SQL> GRANT ALL ON ze_ezti TO ROLE_Oracle_Erronka;
+
+Error starting at line : 355 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON ze_ezti TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE zein_etsai CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table zein_etsai ...
+Creating Table zein_etsai ...
+SQL> CREATE TABLE zein_etsai (
+  2    id_etsaia NUMBER(10,0) NOT NULL,
+  3    id_hymenoptera NUMBER(10,0) NOT NULL
+  4  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_13 on table zein_etsai ... 
+Creating Primary Key Constraint PRIMARY_13 on table zein_etsai ...
+SQL> ALTER TABLE zein_etsai
+  2  ADD CONSTRAINT PRIMARY_13 PRIMARY KEY
+  3  (
+  4    id_etsaia,
+  5    id_hymenoptera
+  6  )
+  7  ENABLE
+  8  ;
+SQL> 
+SQL> GRANT ALL ON zein_etsai TO ROLE_Oracle_Erronka;
+
+Error starting at line : 376 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON zein_etsai TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE zein_produktu CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table zein_produktu ...
+Creating Table zein_produktu ...
+SQL> CREATE TABLE zein_produktu (
+  2    id_asoziazioa NUMBER(10,0) NOT NULL,
+  3    id_produktua NUMBER(10,0) NOT NULL
+  4  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_14 on table zein_produktu ... 
+Creating Primary Key Constraint PRIMARY_14 on table zein_produktu ...
+SQL> ALTER TABLE zein_produktu
+  2  ADD CONSTRAINT PRIMARY_14 PRIMARY KEY
+  3  (
+  4    id_produktua,
+  5    id_asoziazioa
+  6  )
+  7  ENABLE
+  8  ;
+SQL> 
+SQL> GRANT ALL ON zein_produktu TO ROLE_Oracle_Erronka;
+
+Error starting at line : 397 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON zein_produktu TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> -- DROP TABLE zenbat_material CASCADE CONSTRAINTS;
+SQL> 
+SQL> 
+SQL> PROMPT Creating Table zenbat_material ...
+Creating Table zenbat_material ...
+SQL> CREATE TABLE zenbat_material (
+  2    id_asoziazioa NUMBER(10,0) NOT NULL,
+  3    id_materiala NUMBER(10,0) NOT NULL
+  4  );
+SQL> 
+SQL> 
+SQL> PROMPT Creating Primary Key Constraint PRIMARY_1 on table zenbat_material ... 
+Creating Primary Key Constraint PRIMARY_1 on table zenbat_material ...
+SQL> ALTER TABLE zenbat_material
+  2  ADD CONSTRAINT PRIMARY_1 PRIMARY KEY
+  3  (
+  4    id_materiala,
+  5    id_asoziazioa
+  6  )
+  7  ENABLE
+  8  ;
+SQL> 
+SQL> GRANT ALL ON zenbat_material TO ROLE_Oracle_Erronka;
+
+Error starting at line : 418 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+GRANT ALL ON zenbat_material TO ROLE_Oracle_Erronka
+Error report -
+ORA-01917: user or role 'ROLE_ORACLE_ERRONKA' does not exist
+01917. 00000 -  "user or role '%s' does not exist"
+*Cause:    There is not a user or role by that name.
+*Action:   Re-specify the name.
+SQL> PROMPT Creating Index id_sozioa on asoziazio_parte ...
+Creating Index id_sozioa on asoziazio_parte ...
+SQL> CREATE INDEX id_sozioa ON asoziazio_parte
+  2  (
+  3    id_sozioa
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_asoziazioa_1 on bulegoak ...
+Creating Index id_asoziazioa_1 on bulegoak ...
+SQL> CREATE INDEX id_asoziazioa_1 ON bulegoak
+  2  (
+  3    id_asoziazioa
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_lorea on eztia ...
+Creating Index id_lorea on eztia ...
+SQL> CREATE INDEX id_lorea ON eztia
+  2  (
+  3    id_lorea
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_produktua_1 on hymenoptera_europan ...
+Creating Index id_produktua_1 on hymenoptera_europan ...
+SQL> CREATE INDEX id_produktua_1 ON hymenoptera_europan
+  2  (
+  3    id_produktua
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_fabrikatzailea on materiala ...
+Creating Index id_fabrikatzailea on materiala ...
+SQL> CREATE INDEX id_fabrikatzailea ON materiala
+  2  (
+  3    id_fabrikatzailea
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_zuzendaria on sozioak ...
+Creating Index id_zuzendaria on sozioak ...
+SQL> CREATE INDEX id_zuzendaria ON sozioak
+  2  (
+  3    id_zuzendaria
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_produktua on ze_ezti ...
+Creating Index id_produktua on ze_ezti ...
+SQL> CREATE INDEX id_produktua ON ze_ezti
+  2  (
+  3    id_produktua
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_hymenoptera on zein_etsai ...
+Creating Index id_hymenoptera on zein_etsai ...
+SQL> CREATE INDEX id_hymenoptera ON zein_etsai
+  2  (
+  3    id_hymenoptera
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_asoziazioa on zein_produktu ...
+Creating Index id_asoziazioa on zein_produktu ...
+SQL> CREATE INDEX id_asoziazioa ON zein_produktu
+  2  (
+  3    id_asoziazioa
+  4  ) 
+  5  ;
+SQL> PROMPT Creating Index id_asoziazioa_2 on zenbat_material ...
+Creating Index id_asoziazioa_2 on zenbat_material ...
+SQL> CREATE INDEX id_asoziazioa_2 ON zenbat_material
+  2  (
+  3    id_asoziazioa
+  4  ) 
+  5  ;
+SQL> set define on
+SQL> prompt connecting to erleak
+connecting to erleak
+SQL> alter session set current_schema=erleak;
+
+Error starting at line : 481 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+alter session set current_schema=erleak
+Error report -
+ORA-01435: user does not exist
+01435. 00000 -  "user does not exist"
+*Cause:    
+*Action:
+SQL> set define off
+SQL> PROMPT Creating Foreign Key Constraint asoziazio_parte_ibfk_2 on table sozioak...
+Creating Foreign Key Constraint asoziazio_parte_ibfk_2 on table sozioak...
+SQL> ALTER TABLE asoziazio_parte
+  2  ADD CONSTRAINT asoziazio_parte_ibfk_2 FOREIGN KEY
+  3  (
+  4    id_sozioa
+  5  )
+  6  REFERENCES sozioak
+  7  (
+  8    id_sozioa
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint zenbat_material_ibfk_1 on table materiala...
+Creating Foreign Key Constraint zenbat_material_ibfk_1 on table materiala...
+SQL> ALTER TABLE zenbat_material
+  2  ADD CONSTRAINT zenbat_material_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_materiala
+  5  )
+  6  REFERENCES materiala
+  7  (
+  8    id_materiala
+  9  )
+ 10  ENABLE
+ 11  ;
+
+Error starting at line : 497 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+In command -
+ALTER TABLE zenbat_material
+ADD CONSTRAINT zenbat_material_ibfk_1 FOREIGN KEY
+(
+  id_materiala
+)
+REFERENCES materiala
+(
+  id_materiala
+)
+ENABLE
+Error report -
+ORA-02270: no matching unique or primary key for this column-list
+02270. 00000 -  "no matching unique or primary key for this column-list"
+*Cause:    A REFERENCES clause in a CREATE/ALTER TABLE statement
+           gives a column-list for which there is no matching unique or primary
+           key constraint in the referenced table.
+*Action:   Find the correct column names using the ALL_CONS_COLUMNS
+           catalog view
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint besteak_ibfk_1 on table produktuak...
+Creating Foreign Key Constraint besteak_ibfk_1 on table produktuak...
+SQL> ALTER TABLE besteak
+  2  ADD CONSTRAINT besteak_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  REFERENCES produktuak
+  7  (
+  8    id_produktua
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint eztia_ibfk_1 on table produktuak...
+Creating Foreign Key Constraint eztia_ibfk_1 on table produktuak...
+SQL> ALTER TABLE eztia
+  2  ADD CONSTRAINT eztia_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  REFERENCES produktuak
+  7  (
+  8    id_produktua
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint eztia_ibfk_2 on table loreak...
+Creating Foreign Key Constraint eztia_ibfk_2 on table loreak...
+SQL> ALTER TABLE eztia
+  2  ADD CONSTRAINT eztia_ibfk_2 FOREIGN KEY
+  3  (
+  4    id_lorea
+  5  )
+  6  REFERENCES loreak
+  7  (
+  8    id_lorea
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint hymenoptera_europan_ibfk_1 on table besteak...
+Creating Foreign Key Constraint hymenoptera_europan_ibfk_1 on table besteak...
+SQL> ALTER TABLE hymenoptera_europan
+  2  ADD CONSTRAINT hymenoptera_europan_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  REFERENCES besteak
+  7  (
+  8    id_produktua
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint hymenoptera_europan_ibfk_2 on table eztia...
+Creating Foreign Key Constraint hymenoptera_europan_ibfk_2 on table eztia...
+SQL> ALTER TABLE hymenoptera_europan
+  2  ADD CONSTRAINT hymenoptera_europan_ibfk_2 FOREIGN KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  REFERENCES eztia
+  7  (
+  8    id_produktua
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint materiala_ibfk_1 on table fabrikatzailea...
+Creating Foreign Key Constraint materiala_ibfk_1 on table fabrikatzailea...
+SQL> ALTER TABLE materiala
+  2  ADD CONSTRAINT materiala_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_fabrikatzailea
+  5  )
+  6  REFERENCES fabrikatzailea
+  7  (
+  8    id_fabrikatzailea
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint sozioak_ibfk_1 on table sozioak...
+Creating Foreign Key Constraint sozioak_ibfk_1 on table sozioak...
+SQL> ALTER TABLE sozioak
+  2  ADD CONSTRAINT sozioak_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_zuzendaria
+  5  )
+  6  REFERENCES sozioak
+  7  (
+  8    id_sozioa
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint ze_ezti_ibfk_1 on table sozioak...
+Creating Foreign Key Constraint ze_ezti_ibfk_1 on table sozioak...
+SQL> ALTER TABLE ze_ezti
+  2  ADD CONSTRAINT ze_ezti_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_sozioa
+  5  )
+  6  REFERENCES sozioak
+  7  (
+  8    id_sozioa
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint ze_ezti_ibfk_2 on table produktuak...
+Creating Foreign Key Constraint ze_ezti_ibfk_2 on table produktuak...
+SQL> ALTER TABLE ze_ezti
+  2  ADD CONSTRAINT ze_ezti_ibfk_2 FOREIGN KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  REFERENCES produktuak
+  7  (
+  8    id_produktua
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint zein_etsai_ibfk_1 on table etsailak...
+Creating Foreign Key Constraint zein_etsai_ibfk_1 on table etsailak...
+SQL> ALTER TABLE zein_etsai
+  2  ADD CONSTRAINT zein_etsai_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_etsaia
+  5  )
+  6  REFERENCES etsailak
+  7  (
+  8    id_etsaia
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint zein_etsai_ibfk_2 on table hymenoptera_europan...
+Creating Foreign Key Constraint zein_etsai_ibfk_2 on table hymenoptera_europan...
+SQL> ALTER TABLE zein_etsai
+  2  ADD CONSTRAINT zein_etsai_ibfk_2 FOREIGN KEY
+  3  (
+  4    id_hymenoptera
+  5  )
+  6  REFERENCES hymenoptera_europan
+  7  (
+  8    id_hymenoptera
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint zein_produktu_ibfk_1 on table produktuak...
+Creating Foreign Key Constraint zein_produktu_ibfk_1 on table produktuak...
+SQL> ALTER TABLE zein_produktu
+  2  ADD CONSTRAINT zein_produktu_ibfk_1 FOREIGN KEY
+  3  (
+  4    id_produktua
+  5  )
+  6  REFERENCES produktuak
+  7  (
+  8    id_produktua
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> PROMPT Creating Foreign Key Constraint zein_produktu_ibfk_2 on table asoziazioak...
+Creating Foreign Key Constraint zein_produktu_ibfk_2 on table asoziazioak...
+SQL> ALTER TABLE zein_produktu
+  2  ADD CONSTRAINT zein_produktu_ibfk_2 FOREIGN KEY
+  3  (
+  4    id_asoziazioa
+  5  )
+  6  REFERENCES asoziazioak
+  7  (
+  8    id_asoziazioa
+  9  )
+ 10  ENABLE
+ 11  ;
+SQL> 
+SQL> spool off;
+SQL> 
+SQL> COMMIT;
