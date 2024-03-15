@@ -1,0 +1,655 @@
+--------------------------------------------------------
+--  File created - Thursday-March-14-2024   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table ASOZIAZIO_PARTE
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ASOZIAZIO_PARTE" 
+   (	"ID_ASOZIAZIOA" NUMBER(10,0), 
+	"ID_SOZIOA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table HYMENOPTERA_EUROPAN
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."HYMENOPTERA_EUROPAN" 
+   (	"EUROPEARRAK_EDO_EZ" NUMBER(3,0) DEFAULT '1', 
+	"ID_HYMENOPTERA" NUMBER(10,0), 
+	"ID_PRODUKTUA" NUMBER(10,0), 
+	"IZENA" CHAR(25 CHAR), 
+	"KANTITATEA" NUMBER(10,0) DEFAULT '0', 
+	"KOKAPENA" CHAR(50 CHAR)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table EZTIA
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."EZTIA" 
+   (	"EZTIA_MOTA" CHAR(50 CHAR), 
+	"ID_LOREA" NUMBER(10,0), 
+	"ID_PRODUKTUA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ZE_EZTI
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ZE_EZTI" 
+   (	"ID_PRODUKTUA" NUMBER(10,0), 
+	"ID_SOZIOA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table PRODUKTUAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."PRODUKTUAK" 
+   (	"DESKRIBAPENA" CHAR(200 CHAR), 
+	"ID_PRODUKTUA" NUMBER(10,0), 
+	"KANTITATEA" NUMBER(10,0), 
+	"PREZIOA" NUMBER(10,0), 
+	"PRODUKTU_MOTA" CHAR(50 CHAR)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table BESTEAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."BESTEAK" 
+   (	"ID_PRODUKTUA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table MATERIALA
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."MATERIALA" 
+   (	"DESKRIBAPENA" CHAR(200 CHAR), 
+	"ID_FABRIKATZAILEA" NUMBER(10,0), 
+	"ID_MATERIALA" NUMBER(10,0), 
+	"KANTITATEA" NUMBER(10,0), 
+	"MATERIALA_IZENA" CHAR(50 CHAR), 
+	"PREZIOA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table BULEGOAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."BULEGOAK" 
+   (	"HERRIA" CHAR(25 CHAR), 
+	"ID_ASOZIAZIOA" NUMBER(10,0), 
+	"ID_BULEGOA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ASOZIAZIOAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ASOZIAZIOAK" 
+   (	"ASOZIAZIO_IZENA" CHAR(40 CHAR), 
+	"HERRIALDEA" CHAR(25 CHAR), 
+	"ID_ASOZIAZIOA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table LOREAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."LOREAK" 
+   (	"ID_ERLEA" NUMBER(10,0), 
+	"ID_LOREA" NUMBER(10,0), 
+	"IZENA" CHAR(25 CHAR), 
+	"KANTITATEA" NUMBER(10,0), 
+	"KOKAPENA" CHAR(50 CHAR)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table SOZIOAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."SOZIOAK" 
+   (	"EMAIL" CHAR(50 CHAR), 
+	"ERLE_KANTITATEA" NUMBER(10,0) DEFAULT '0', 
+	"ID_SOZIOA" NUMBER(10,0), 
+	"ID_ZUZENDARIA" NUMBER(10,0), 
+	"JAIOTE_EGUNA" DATE, 
+	"KOLMENA_KANTITATEA" NUMBER(10,0) DEFAULT '0', 
+	"NAN" CHAR(25 CHAR), 
+	"SOZIO_ABIZENA" CHAR(25 CHAR), 
+	"SOZIO_IZENA" CHAR(25 CHAR), 
+	"TELEFONOA" NUMBER(24,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ETSAILAK
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ETSAILAK" 
+   (	"DESKRIBAPENA" CHAR(100 CHAR), 
+	"HILDAKO_KAN" NUMBER(10,0) DEFAULT '0', 
+	"ID_ETSAIA" NUMBER(10,0), 
+	"IZENA" CHAR(25 CHAR), 
+	"KANPOTARRA" NUMBER(3,0) DEFAULT '0'
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table FABRIKATZAILEA
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."FABRIKATZAILEA" 
+   (	"HELBIDEA" CHAR(100 CHAR), 
+	"HIRIA" CHAR(70 CHAR), 
+	"ID_FABRIKATZAILEA" NUMBER(10,0), 
+	"IZENA" CHAR(50 CHAR), 
+	"KORREOA" CHAR(50 CHAR), 
+	"TELEFONOA" NUMBER(24,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ZEIN_PRODUKTU
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ZEIN_PRODUKTU" 
+   (	"ID_ASOZIAZIOA" NUMBER(10,0), 
+	"ID_PRODUKTUA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ZEIN_ETSAI
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ZEIN_ETSAI" 
+   (	"ID_ETSAIA" NUMBER(10,0), 
+	"ID_HYMENOPTERA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ZENBAT_MATERIAL
+--------------------------------------------------------
+
+  CREATE TABLE "TALDEA_5"."ZENBAT_MATERIAL" 
+   (	"ID_ASOZIAZIOA" NUMBER(10,0), 
+	"ID_MATERIALA" NUMBER(10,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+REM INSERTING into TALDEA_5.ASOZIAZIO_PARTE
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.HYMENOPTERA_EUROPAN
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.EZTIA
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.ZE_EZTI
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.PRODUKTUAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.BESTEAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.MATERIALA
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.BULEGOAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.ASOZIAZIOAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.LOREAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.SOZIOAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.ETSAILAK
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.FABRIKATZAILEA
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.ZEIN_PRODUKTU
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.ZEIN_ETSAI
+SET DEFINE OFF;
+REM INSERTING into TALDEA_5.ZENBAT_MATERIAL
+SET DEFINE OFF;
+--------------------------------------------------------
+--  DDL for Index PRIMARY
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY" ON "TALDEA_5"."ASOZIAZIO_PARTE" ("ID_ASOZIAZIOA", "ID_SOZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_SOZIOA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_SOZIOA" ON "TALDEA_5"."ASOZIAZIO_PARTE" ("ID_SOZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_7
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_7" ON "TALDEA_5"."HYMENOPTERA_EUROPAN" ("ID_HYMENOPTERA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_PRODUKTUA_1
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_PRODUKTUA_1" ON "TALDEA_5"."HYMENOPTERA_EUROPAN" ("ID_PRODUKTUA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_5
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_5" ON "TALDEA_5"."EZTIA" ("ID_PRODUKTUA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_LOREA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_LOREA" ON "TALDEA_5"."EZTIA" ("ID_LOREA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_12
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_12" ON "TALDEA_5"."ZE_EZTI" ("ID_SOZIOA", "ID_PRODUKTUA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_PRODUKTUA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_PRODUKTUA" ON "TALDEA_5"."ZE_EZTI" ("ID_PRODUKTUA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_10
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_10" ON "TALDEA_5"."PRODUKTUAK" ("ID_PRODUKTUA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_2
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_2" ON "TALDEA_5"."BESTEAK" ("ID_PRODUKTUA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_9
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_9" ON "TALDEA_5"."MATERIALA" ("ID_MATERIALA", "ID_FABRIKATZAILEA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_FABRIKATZAILEA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_FABRIKATZAILEA" ON "TALDEA_5"."MATERIALA" ("ID_FABRIKATZAILEA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_3
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_3" ON "TALDEA_5"."BULEGOAK" ("ID_BULEGOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_ASOZIAZIOA_1
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_ASOZIAZIOA_1" ON "TALDEA_5"."BULEGOAK" ("ID_ASOZIAZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_15
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_15" ON "TALDEA_5"."ASOZIAZIOAK" ("ID_ASOZIAZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ASOZIAZIO_IZENA
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."ASOZIAZIO_IZENA" ON "TALDEA_5"."ASOZIAZIOAK" ("ASOZIAZIO_IZENA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_8
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_8" ON "TALDEA_5"."LOREAK" ("ID_LOREA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_11
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_11" ON "TALDEA_5"."SOZIOAK" ("ID_SOZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index NAN
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."NAN" ON "TALDEA_5"."SOZIOAK" ("NAN") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_ZUZENDARIA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_ZUZENDARIA" ON "TALDEA_5"."SOZIOAK" ("ID_ZUZENDARIA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_4
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_4" ON "TALDEA_5"."ETSAILAK" ("ID_ETSAIA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_6
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_6" ON "TALDEA_5"."FABRIKATZAILEA" ("ID_FABRIKATZAILEA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_14
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_14" ON "TALDEA_5"."ZEIN_PRODUKTU" ("ID_PRODUKTUA", "ID_ASOZIAZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_ASOZIAZIOA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_ASOZIAZIOA" ON "TALDEA_5"."ZEIN_PRODUKTU" ("ID_ASOZIAZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_13
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_13" ON "TALDEA_5"."ZEIN_ETSAI" ("ID_ETSAIA", "ID_HYMENOPTERA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_HYMENOPTERA
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_HYMENOPTERA" ON "TALDEA_5"."ZEIN_ETSAI" ("ID_HYMENOPTERA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIMARY_1
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TALDEA_5"."PRIMARY_1" ON "TALDEA_5"."ZENBAT_MATERIAL" ("ID_MATERIALA", "ID_ASOZIAZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ID_ASOZIAZIOA_2
+--------------------------------------------------------
+
+  CREATE INDEX "TALDEA_5"."ID_ASOZIAZIOA_2" ON "TALDEA_5"."ZENBAT_MATERIAL" ("ID_ASOZIAZIOA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  Constraints for Table ASOZIAZIO_PARTE
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ASOZIAZIO_PARTE" MODIFY ("ID_ASOZIAZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ASOZIAZIO_PARTE" MODIFY ("ID_SOZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ASOZIAZIO_PARTE" ADD CONSTRAINT "PRIMARY" PRIMARY KEY ("ID_ASOZIAZIOA", "ID_SOZIOA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table HYMENOPTERA_EUROPAN
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."HYMENOPTERA_EUROPAN" MODIFY ("ID_HYMENOPTERA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."HYMENOPTERA_EUROPAN" MODIFY ("IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."HYMENOPTERA_EUROPAN" ADD CONSTRAINT "PRIMARY_7" PRIMARY KEY ("ID_HYMENOPTERA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table EZTIA
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."EZTIA" MODIFY ("EZTIA_MOTA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."EZTIA" MODIFY ("ID_PRODUKTUA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."EZTIA" ADD CONSTRAINT "PRIMARY_5" PRIMARY KEY ("ID_PRODUKTUA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ZE_EZTI
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZE_EZTI" MODIFY ("ID_PRODUKTUA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZE_EZTI" MODIFY ("ID_SOZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZE_EZTI" ADD CONSTRAINT "PRIMARY_12" PRIMARY KEY ("ID_SOZIOA", "ID_PRODUKTUA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table PRODUKTUAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."PRODUKTUAK" MODIFY ("ID_PRODUKTUA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."PRODUKTUAK" MODIFY ("PRODUKTU_MOTA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."PRODUKTUAK" ADD CONSTRAINT "PRIMARY_10" PRIMARY KEY ("ID_PRODUKTUA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table BESTEAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."BESTEAK" MODIFY ("ID_PRODUKTUA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."BESTEAK" ADD CONSTRAINT "PRIMARY_2" PRIMARY KEY ("ID_PRODUKTUA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MATERIALA
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."MATERIALA" MODIFY ("ID_FABRIKATZAILEA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."MATERIALA" MODIFY ("ID_MATERIALA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."MATERIALA" MODIFY ("MATERIALA_IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."MATERIALA" ADD CONSTRAINT "PRIMARY_9" PRIMARY KEY ("ID_MATERIALA", "ID_FABRIKATZAILEA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table BULEGOAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."BULEGOAK" MODIFY ("HERRIA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."BULEGOAK" MODIFY ("ID_BULEGOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."BULEGOAK" ADD CONSTRAINT "PRIMARY_3" PRIMARY KEY ("ID_BULEGOA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ASOZIAZIOAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ASOZIAZIOAK" MODIFY ("ASOZIAZIO_IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ASOZIAZIOAK" MODIFY ("HERRIALDEA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ASOZIAZIOAK" MODIFY ("ID_ASOZIAZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ASOZIAZIOAK" ADD CONSTRAINT "PRIMARY_15" PRIMARY KEY ("ID_ASOZIAZIOA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "TALDEA_5"."ASOZIAZIOAK" ADD CONSTRAINT "ASOZIAZIO_IZENA" UNIQUE ("ASOZIAZIO_IZENA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table LOREAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."LOREAK" MODIFY ("ID_LOREA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."LOREAK" MODIFY ("IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."LOREAK" ADD CONSTRAINT "PRIMARY_8" PRIMARY KEY ("ID_LOREA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table SOZIOAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."SOZIOAK" MODIFY ("ID_SOZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."SOZIOAK" MODIFY ("SOZIO_ABIZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."SOZIOAK" MODIFY ("SOZIO_IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."SOZIOAK" ADD CONSTRAINT "PRIMARY_11" PRIMARY KEY ("ID_SOZIOA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "TALDEA_5"."SOZIOAK" ADD CONSTRAINT "NAN" UNIQUE ("NAN")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ETSAILAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ETSAILAK" MODIFY ("ID_ETSAIA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ETSAILAK" MODIFY ("IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ETSAILAK" ADD CONSTRAINT "PRIMARY_4" PRIMARY KEY ("ID_ETSAIA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table FABRIKATZAILEA
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."FABRIKATZAILEA" MODIFY ("HIRIA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."FABRIKATZAILEA" MODIFY ("ID_FABRIKATZAILEA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."FABRIKATZAILEA" MODIFY ("IZENA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."FABRIKATZAILEA" ADD CONSTRAINT "PRIMARY_6" PRIMARY KEY ("ID_FABRIKATZAILEA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ZEIN_PRODUKTU
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZEIN_PRODUKTU" MODIFY ("ID_ASOZIAZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZEIN_PRODUKTU" MODIFY ("ID_PRODUKTUA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZEIN_PRODUKTU" ADD CONSTRAINT "PRIMARY_14" PRIMARY KEY ("ID_PRODUKTUA", "ID_ASOZIAZIOA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ZEIN_ETSAI
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZEIN_ETSAI" MODIFY ("ID_ETSAIA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZEIN_ETSAI" MODIFY ("ID_HYMENOPTERA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZEIN_ETSAI" ADD CONSTRAINT "PRIMARY_13" PRIMARY KEY ("ID_ETSAIA", "ID_HYMENOPTERA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ZENBAT_MATERIAL
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZENBAT_MATERIAL" MODIFY ("ID_ASOZIAZIOA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZENBAT_MATERIAL" MODIFY ("ID_MATERIALA" NOT NULL ENABLE);
+  ALTER TABLE "TALDEA_5"."ZENBAT_MATERIAL" ADD CONSTRAINT "PRIMARY_1" PRIMARY KEY ("ID_MATERIALA", "ID_ASOZIAZIOA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ASOZIAZIO_PARTE
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ASOZIAZIO_PARTE" ADD CONSTRAINT "ASOZIAZIO_PARTE_IBFK_2" FOREIGN KEY ("ID_SOZIOA")
+	  REFERENCES "TALDEA_5"."SOZIOAK" ("ID_SOZIOA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table HYMENOPTERA_EUROPAN
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."HYMENOPTERA_EUROPAN" ADD CONSTRAINT "HYMENOPTERA_EUROPAN_IBFK_1" FOREIGN KEY ("ID_PRODUKTUA")
+	  REFERENCES "TALDEA_5"."BESTEAK" ("ID_PRODUKTUA") ENABLE;
+  ALTER TABLE "TALDEA_5"."HYMENOPTERA_EUROPAN" ADD CONSTRAINT "HYMENOPTERA_EUROPAN_IBFK_2" FOREIGN KEY ("ID_PRODUKTUA")
+	  REFERENCES "TALDEA_5"."EZTIA" ("ID_PRODUKTUA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table EZTIA
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."EZTIA" ADD CONSTRAINT "EZTIA_IBFK_1" FOREIGN KEY ("ID_PRODUKTUA")
+	  REFERENCES "TALDEA_5"."PRODUKTUAK" ("ID_PRODUKTUA") ENABLE;
+  ALTER TABLE "TALDEA_5"."EZTIA" ADD CONSTRAINT "EZTIA_IBFK_2" FOREIGN KEY ("ID_LOREA")
+	  REFERENCES "TALDEA_5"."LOREAK" ("ID_LOREA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ZE_EZTI
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZE_EZTI" ADD CONSTRAINT "ZE_EZTI_IBFK_1" FOREIGN KEY ("ID_SOZIOA")
+	  REFERENCES "TALDEA_5"."SOZIOAK" ("ID_SOZIOA") ENABLE;
+  ALTER TABLE "TALDEA_5"."ZE_EZTI" ADD CONSTRAINT "ZE_EZTI_IBFK_2" FOREIGN KEY ("ID_PRODUKTUA")
+	  REFERENCES "TALDEA_5"."PRODUKTUAK" ("ID_PRODUKTUA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table BESTEAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."BESTEAK" ADD CONSTRAINT "BESTEAK_IBFK_1" FOREIGN KEY ("ID_PRODUKTUA")
+	  REFERENCES "TALDEA_5"."PRODUKTUAK" ("ID_PRODUKTUA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table MATERIALA
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."MATERIALA" ADD CONSTRAINT "MATERIALA_IBFK_1" FOREIGN KEY ("ID_FABRIKATZAILEA")
+	  REFERENCES "TALDEA_5"."FABRIKATZAILEA" ("ID_FABRIKATZAILEA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table SOZIOAK
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."SOZIOAK" ADD CONSTRAINT "SOZIOAK_IBFK_1" FOREIGN KEY ("ID_ZUZENDARIA")
+	  REFERENCES "TALDEA_5"."SOZIOAK" ("ID_SOZIOA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ZEIN_PRODUKTU
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZEIN_PRODUKTU" ADD CONSTRAINT "ZEIN_PRODUKTU_IBFK_1" FOREIGN KEY ("ID_PRODUKTUA")
+	  REFERENCES "TALDEA_5"."PRODUKTUAK" ("ID_PRODUKTUA") ENABLE;
+  ALTER TABLE "TALDEA_5"."ZEIN_PRODUKTU" ADD CONSTRAINT "ZEIN_PRODUKTU_IBFK_2" FOREIGN KEY ("ID_ASOZIAZIOA")
+	  REFERENCES "TALDEA_5"."ASOZIAZIOAK" ("ID_ASOZIAZIOA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ZEIN_ETSAI
+--------------------------------------------------------
+
+  ALTER TABLE "TALDEA_5"."ZEIN_ETSAI" ADD CONSTRAINT "ZEIN_ETSAI_IBFK_1" FOREIGN KEY ("ID_ETSAIA")
+	  REFERENCES "TALDEA_5"."ETSAILAK" ("ID_ETSAIA") ENABLE;
+  ALTER TABLE "TALDEA_5"."ZEIN_ETSAI" ADD CONSTRAINT "ZEIN_ETSAI_IBFK_2" FOREIGN KEY ("ID_HYMENOPTERA")
+	  REFERENCES "TALDEA_5"."HYMENOPTERA_EUROPAN" ("ID_HYMENOPTERA") ENABLE;

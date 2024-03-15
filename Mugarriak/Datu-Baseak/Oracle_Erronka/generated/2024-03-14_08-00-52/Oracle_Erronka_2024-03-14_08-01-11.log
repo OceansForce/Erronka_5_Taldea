@@ -18,7 +18,7 @@ SQL> PROMPT Dropping Role ROLE_Oracle_Erronka ...
 Dropping Role ROLE_Oracle_Erronka ...
 SQL> DROP ROLE ROLE_Oracle_Erronka ;
 
-Error starting at line : 16 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 16 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 DROP ROLE ROLE_Oracle_Erronka
 Error report -
@@ -30,7 +30,7 @@ SQL> PROMPT Creating Role ROLE_Oracle_Erronka ...
 Creating Role ROLE_Oracle_Erronka ...
 SQL> CREATE ROLE ROLE_Oracle_Erronka ;
 
-Error starting at line : 18 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 18 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 CREATE ROLE ROLE_Oracle_Erronka
 Error report -
@@ -50,9 +50,9 @@ SQL> PROMPT Create user erleak
 Create user erleak
 SQL> CREATE USER erleak IDENTIFIED BY &&erleak_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */;
 old:CREATE USER erleak IDENTIFIED BY &&erleak_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
-new:CREATE USER erleak IDENTIFIED BY "YRSa6UTSGt$nco0u" PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+new:CREATE USER erleak IDENTIFIED BY "DzmCRFcF$WDWyc3q" PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
 
-Error starting at line : 24 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 24 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 CREATE USER erleak IDENTIFIED BY &&erleak_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
 Error report -
@@ -66,7 +66,7 @@ ORA-65096: invalid common user or role name
 *Action:   Specify a valid common user or role name.
 SQL> GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO erleak;
 
-Error starting at line : 25 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 25 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO erleak
 Error report -
@@ -82,9 +82,9 @@ SQL> PROMPT Create user Emulation
 Create user Emulation
 SQL> CREATE USER Emulation IDENTIFIED BY &&Emulation_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */;
 old:CREATE USER Emulation IDENTIFIED BY &&Emulation_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
-new:CREATE USER Emulation IDENTIFIED BY "HQ1K5h#q$J23xz2w" PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
+new:CREATE USER Emulation IDENTIFIED BY "2gJn$epsfl#Dw69e" PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
 
-Error starting at line : 31 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 31 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 CREATE USER Emulation IDENTIFIED BY &&Emulation_password PASSWORD EXPIRE ACCOUNT LOCK /* DEFAULT TABLESPACE USERS  TEMPORARY TABLESPACE TEMP */
 Error report -
@@ -98,7 +98,7 @@ ORA-65096: invalid common user or role name
 *Action:   Specify a valid common user or role name.
 SQL> GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO Emulation;
 
-Error starting at line : 32 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 32 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT CREATE SESSION, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE SYNONYM, UNLIMITED TABLESPACE TO Emulation
 Error report -
@@ -112,7 +112,7 @@ SQL> prompt connecting to Emulation
 connecting to Emulation
 SQL> alter session set current_schema=Emulation;
 
-Error starting at line : 36 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 36 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 alter session set current_schema=Emulation
 Error report -
@@ -126,7 +126,7 @@ SQL> prompt connecting to erleak
 connecting to erleak
 SQL> alter session set current_schema=erleak;
 
-Error starting at line : 40 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 40 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 alter session set current_schema=erleak
 Error report -
@@ -159,7 +159,7 @@ SQL> ALTER TABLE asoziazio_parte
 SQL> 
 SQL> GRANT ALL ON asoziazio_parte TO ROLE_Oracle_Erronka;
 
-Error starting at line : 62 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 62 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON asoziazio_parte TO ROLE_Oracle_Erronka
 Error report -
@@ -199,7 +199,7 @@ SQL> ALTER TABLE asoziazioak
 SQL> 
 SQL> GRANT ALL ON asoziazioak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 90 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 90 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON asoziazioak TO ROLE_Oracle_Erronka
 Error report -
@@ -229,7 +229,7 @@ SQL> ALTER TABLE besteak
 SQL> 
 SQL> GRANT ALL ON besteak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 109 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 109 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON besteak TO ROLE_Oracle_Erronka
 Error report -
@@ -261,7 +261,7 @@ SQL> ALTER TABLE bulegoak
 SQL> 
 SQL> GRANT ALL ON bulegoak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 130 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 130 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON bulegoak TO ROLE_Oracle_Erronka
 Error report -
@@ -297,7 +297,7 @@ SQL> ALTER TABLE etsailak
 SQL> 
 SQL> GRANT ALL ON etsailak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 155 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 155 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON etsailak TO ROLE_Oracle_Erronka
 Error report -
@@ -329,7 +329,7 @@ SQL> ALTER TABLE eztia
 SQL> 
 SQL> GRANT ALL ON eztia TO ROLE_Oracle_Erronka;
 
-Error starting at line : 176 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 176 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON eztia TO ROLE_Oracle_Erronka
 Error report -
@@ -364,7 +364,7 @@ SQL> ALTER TABLE fabrikatzailea
 SQL> 
 SQL> GRANT ALL ON fabrikatzailea TO ROLE_Oracle_Erronka;
 
-Error starting at line : 200 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 200 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON fabrikatzailea TO ROLE_Oracle_Erronka
 Error report -
@@ -401,7 +401,7 @@ SQL> ALTER TABLE hymenoptera_europan
 SQL> 
 SQL> GRANT ALL ON hymenoptera_europan TO ROLE_Oracle_Erronka;
 
-Error starting at line : 226 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 226 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON hymenoptera_europan TO ROLE_Oracle_Erronka
 Error report -
@@ -435,7 +435,7 @@ SQL> ALTER TABLE loreak
 SQL> 
 SQL> GRANT ALL ON loreak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 249 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 249 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON loreak TO ROLE_Oracle_Erronka
 Error report -
@@ -471,7 +471,7 @@ SQL> ALTER TABLE materiala
 SQL> 
 SQL> GRANT ALL ON materiala TO ROLE_Oracle_Erronka;
 
-Error starting at line : 274 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 274 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON materiala TO ROLE_Oracle_Erronka
 Error report -
@@ -505,7 +505,7 @@ SQL> ALTER TABLE produktuak
 SQL> 
 SQL> GRANT ALL ON produktuak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 297 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 297 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON produktuak TO ROLE_Oracle_Erronka
 Error report -
@@ -554,7 +554,7 @@ SQL> ALTER TABLE sozioak
 SQL> 
 SQL> GRANT ALL ON sozioak TO ROLE_Oracle_Erronka;
 
-Error starting at line : 334 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 334 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON sozioak TO ROLE_Oracle_Erronka
 Error report -
@@ -586,7 +586,7 @@ SQL> ALTER TABLE ze_ezti
 SQL> 
 SQL> GRANT ALL ON ze_ezti TO ROLE_Oracle_Erronka;
 
-Error starting at line : 355 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 355 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON ze_ezti TO ROLE_Oracle_Erronka
 Error report -
@@ -618,7 +618,7 @@ SQL> ALTER TABLE zein_etsai
 SQL> 
 SQL> GRANT ALL ON zein_etsai TO ROLE_Oracle_Erronka;
 
-Error starting at line : 376 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 376 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON zein_etsai TO ROLE_Oracle_Erronka
 Error report -
@@ -650,7 +650,7 @@ SQL> ALTER TABLE zein_produktu
 SQL> 
 SQL> GRANT ALL ON zein_produktu TO ROLE_Oracle_Erronka;
 
-Error starting at line : 397 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 397 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON zein_produktu TO ROLE_Oracle_Erronka
 Error report -
@@ -682,7 +682,7 @@ SQL> ALTER TABLE zenbat_material
 SQL> 
 SQL> GRANT ALL ON zenbat_material TO ROLE_Oracle_Erronka;
 
-Error starting at line : 418 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 418 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 GRANT ALL ON zenbat_material TO ROLE_Oracle_Erronka
 Error report -
@@ -765,7 +765,7 @@ SQL> prompt connecting to erleak
 connecting to erleak
 SQL> alter session set current_schema=erleak;
 
-Error starting at line : 481 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 481 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 alter session set current_schema=erleak
 Error report -
@@ -802,7 +802,7 @@ SQL> ALTER TABLE zenbat_material
  10  ENABLE
  11  ;
 
-Error starting at line : 497 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-13_08-47-06\master.sql
+Error starting at line : 497 File @ D:\Erronka_5_taldea\Erronka_Taldea_5\Erronka_5_Taldea\Mugarriak\Datu-Baseak\Oracle_Erronka\generated\2024-03-14_08-00-52\master.sql
 In command -
 ALTER TABLE zenbat_material
 ADD CONSTRAINT zenbat_material_ibfk_1 FOREIGN KEY
