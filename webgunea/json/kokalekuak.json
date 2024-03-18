@@ -1,0 +1,33 @@
+{
+    "ubicaciones_colmenas": [
+      {
+        "id": 1,
+        "izena": "Finca La Colmena Feliz",
+        "helbidea": "Calle de la Miel, 123",
+        "herria": "Ciudad de la Miel",
+        "probintzia": "Euskadi",
+        "posta_kodea": "12345",
+        "koordenadak": {
+          "latitud": 43.123456,
+          "longitud": -2.345678
+        },
+        "ezaugarriak": "Amplia finca con áreas de floración variada. Colmenas protegidas de la intemperie en apiarios especialmente diseñados.",
+        "irudia": "colmena_feliz.jpg"
+      },
+      {
+        "id": 2,
+        "izena": "Granja Apícola El Paraíso",
+        "helbidea": "Carretera de la Miel, Km 10",
+        "herria": "Pueblo Apícola",
+        "probintzia": "Euskadi",
+        "posta_kodea": "54321",
+        "koordenadak": {
+          "latitud": 42.987654,
+          "longitud": -2.210987
+        },
+        "uzaugarriak": "Granja apícola con colmenas distribuidas en diferentes áreas de cultivo orgánico. Visitas guiadas disponibles.",
+        "irudia": "granja_paraiso.jpg"
+      }
+    ]
+  }
+  
