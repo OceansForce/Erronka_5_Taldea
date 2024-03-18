@@ -1,0 +1,394 @@
+CREATE TABLE fabrikatzailea(
+	id_fabrikatzailea NUMBER(10) PRIMARY KEY,
+	izena VARCHAR2(50) NOT NULL,
+	hiria VARCHAR2(70) NOT NULL,
+	helbidea VARCHAR2(100),
+	telefonoa NUMBER(15),
+	korreoa VARCHAR2(50)
+);
+
+CREATE TABLE materiala(
+	id_materiala NUMBER(10),
+	id_fabrikatzailea NUMBER(10),
+	materiala_izena VARCHAR2(50) NOT NULL,
+	prezioa NUMBER(10),
+	deskribapena VARCHAR2(200),
+	kantitatea NUMBER(10),
+	PRIMARY KEY(id_materiala, id_fabrikatzailea)
+);
+
+CREATE TABLE bulegoak(
+	id_bulegoa NUMBER(10) PRIMARY KEY,
+	id_asoziazioa NUMBER(10),
+	herria VARCHAR2(25) NOT NULL
+);
+
+CREATE TABLE zenbat_material(
+	id_materiala NUMBER(10),
+	id_asoziazioa NUMBER(10),
+	PRIMARY KEY(id_materiala, id_asoziazioa)
+);
+
+CREATE TABLE asoziazioak(
+	id_asoziazioa NUMBER(10) PRIMARY KEY,
+	asoziazio_izena VARCHAR2(40) NOT NULL UNIQUE,
+	herrialdea VARCHAR2(25) NOT NULL
+);
+
+CREATE TABLE asoziazio_parte(
+	id_asoziazioa NUMBER(10),
+	id_sozioa NUMBER(10),
+	PRIMARY KEY(id_asoziazioa, id_sozioa)
+);
+
+CREATE TABLE zein_produktu(
+	id_produktua NUMBER(10),
+	id_asoziazioa NUMBER(10),
+	PRIMARY KEY(id_produktua, id_asoziazioa)
+);
+
+CREATE TABLE sozioak(
+	id_sozioa NUMBER(10) PRIMARY KEY,
+	id_zuzendaria NUMBER(10),
+	erle_kantitatea NUMBER(10) DEFAULT 0,
+	kolmena_kantitatea NUMBER(10) DEFAULT 0,
+	sozio_izena VARCHAR2(25) NOT NULL,
+	sozio_abizena VARCHAR2(25) NOT NULL,
+	NAN VARCHAR2(25) UNIQUE,
+	telefonoa NUMBER(15),
+	jaiote_eguna DATE,
+	email VARCHAR2(50),
+	CONSTRAINT chk_NAN_length CHECK (LENGTH(NAN) BETWEEN 9 AND 10)
+);
+
+CREATE TABLE ze_ezti(
+	id_sozioa NUMBER(10),
+	id_produktua NUMBER(10),
+	PRIMARY KEY(id_sozioa, id_produktua)
+);
+
+CREATE TABLE produktuak(
+	id_produktua NUMBER(10) PRIMARY KEY,
+	kantitatea NUMBER(10),
+	produktu_mota VARCHAR2(50) NOT NULL,
+	prezioa NUMBER(10),
+	deskribapena VARCHAR2(200)
+);
+
+CREATE TABLE besteak(
+	id_produktua NUMBER(10) PRIMARY KEY
+);
+
+CREATE TABLE eztia(
+	id_produktua NUMBER(10) PRIMARY KEY,
+	id_lorea NUMBER(10),
+	eztia_mota VARCHAR2(50) NOT NULL
+);
+
+CREATE TABLE loreak(
+	id_lorea NUMBER(10) PRIMARY KEY,
+	id_erlea NUMBER(10),
+	izena VARCHAR2(25) NOT NULL,
+	kokapena VARCHAR2(50),
+	kantitatea NUMBER(10)
+);
+
+CREATE TABLE hymenoptera_europan(
+	id_hymenoptera NUMBER(10) PRIMARY KEY,
+	id_produktua NUMBER(10),
+	kantitatea NUMBER(10) DEFAULT 0,
+	europearrak_edo_ez VARCHAR2(5) DEFAULT 'true',
+	kokapena VARCHAR2(50),
+	izena VARCHAR2(25) NOT NULL
+);
+
+CREATE TABLE zein_etsai(
+	id_etsaia NUMBER(10),
+	id_hymenoptera NUMBER(10),
+	PRIMARY KEY(id_etsaia, id_hymenoptera)
+);
+
+CREATE TABLE etsailak(
+	id_etsaia NUMBER(10) PRIMARY KEY,
+	izena VARCHAR2(25) NOT NULL,
+	kanpotarra VARCHAR2(5) DEFAULT 'False',
+	deskribapena VARCHAR2(100),
+	hildako_kan NUMBER(10) DEFAULT 0
+);
+
+-- Insert
+-- Asoziazioak
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (1, 'Oberbrunner, Beier and Roob', 'Russia');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (2, 'Kilback, Donnelly and Stiedemann', 'Zermatt');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (3, 'Haag and Sons', 'Sintra');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (4, 'Kuhn and Sons', 'Rotorua');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (5, 'Zboncak-Schmitt', 'Novi Sad');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (6, 'Ernser-Raynor', 'Nafplio');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (7, 'Kemmer-Shanahan', 'Bath');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (8, 'Lynch-Bins', 'Mostar');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (9, 'Denesik-Kuhn', 'Kyoto');
+INSERT INTO Asoziazioak (id_asoziazioa, Asoziazio_izena, herrialdea) VALUES (10, 'Legros and Sons', 'Lviv');
+
+-- Bulegoa
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (1, 'Switzerland', 2);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (2, 'Ukraine', 10);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (3, 'United Kingdom', 7);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (4, 'Sweden', 1);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (5, 'Japan', 9);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (6, 'Portugal', 3);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (7, 'Greece', 6);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (8, 'Serbia', 5);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (9, 'New Zelanda', 4);
+INSERT INTO Bulegoak (id_bulegoa, herria, id_asoziazioa) VALUES (10, 'Bosnia and Herzegovina', 8);
+
+-- Etsaia
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (1, 'Vespa velutina', 'true', 'Europako asian ontzi arrunta. Europa eratorria.', 95);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (2, 'Apis mellifera scutellata', 'false', 'Afrikako mendian bizi den belar arrunta. Europa kanpotik.', 78);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (3, 'Vespula germanica', 'true', 'Europako alemaniar ontzi arrunta. Europako hegoaldetik.', 359);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (4, 'Bombus terrestris', 'false', 'Lurrean bizi den europar belar arrunta. Europa kanpotik.', 416);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (5, 'Vespa crabro', 'true', 'Europako ontzi arrunta. Europako iparaldetik.', 267);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (6, 'Apis cerana', 'false', 'Asiako mendian bizi den belar arrunta. Europa kanpotik.', 503);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (7, 'Polistes dominula', 'true', 'Europako ontzi arrunta. Europako iparaldetik.', 42);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (8, 'Apis dorsata', 'false', 'Asiako mendian bizi den belar arrunta. Europa kanpotik.', 138);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (9, 'Xylocopa violacea', 'true', 'Europako ontzi arrunta. Europako hegoaldetik.', 513);
+INSERT INTO Etsailak (id_etsaia, izena, kanpotarra, deskribapena, hildako_kan) VALUES (10, 'Vespa mandarinia', 'false', 'Asiako ontzi arrunta. Europa kanpotik.', 885);
+
+-- Eztia 
+INSERT INTO Eztia (eztia_mota, id_produktua, id_lorea) VALUES ('manuka', 1, 1);
+INSERT INTO Eztia (eztia_mota, id_produktua, id_lorea) VALUES ('akaziko', 3, 3);
+INSERT INTO Eztia (eztia_mota, id_produktua, id_lorea) VALUES ('eukalipto', 7, 9);
+INSERT INTO Eztia (eztia_mota, id_produktua, id_lorea) VALUES ('erromero', 2, 8);
+INSERT INTO Eztia (eztia_mota, id_produktua, id_lorea) VALUES ('lavanda', 9, 4);
+
+-- Fabrikatzailea 
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (1, 'Wintheiser Inc', 'Switzerland', '1437 Valdia, District du Jura-Nord vaudois', 278408650849, 'info@wintheiser.com');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (2, 'Donnelly and Sons', 'Czech Republic', '364 01, Northwest, Karlovarský kraj, okres Karlovy Vary, Toužim', 628498979028, 'contact@donnellyandsons.cz');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (3, 'Cassin, Reilly and Bayer', 'Lithuania', 'Šiauliai, Pašvitinio seniūnija, Janelioniai', 3705641410559, 'info@cassinreillybayer.lt');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (4, 'Brekke-Blanda', 'Ireland', 'Tipperary, Street 45626', 2163477598132, 'sales@brekkeblanda.ie');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (5, 'Robel-Fritsch', 'Belarus', 'Street 61, Klichaw District', 2639397582676, 'support@robelfritsch.by');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (6, 'Moore-Langosh', 'Serbia', '523 Wiegand Drives', 3811384615528, 'hello@moorelangosh.rs');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (7, 'Little-Schmidt', 'Iceland', '9923 Stiedemann Stravenue', 869589705248, 'contact@littleschmidt.is');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (8, 'Wyman Inc', 'Finland', 'Street84, Kakkurintie', 666374555379, 'info@wymaninc.fi');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (9, 'Koss, Waelchi and Bode', 'France', 'Street 65, Aisne, Vervins', 334991747492, 'info@kossbode.fr');
+INSERT INTO Fabrikatzailea (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa) VALUES (10, 'Herzog, Purdy and Sporer', 'Italy', '10828 Hegmann Mountain', 635201760315, 'hello@herzogsporer.it');
+
+-- Hymenoptera_Europan 
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (1, 308, 'true', 'Spain', 'Vespula germanica', 7);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (2, 975, 'false', 'China', 'Apis cerana', 2);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (3, 340, 'false', 'Indonesia', 'Vespula flavopilosa', 3);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (4, 974, 'true', 'Germany', 'Apis mellifera', 9);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (5, 285, 'true', 'England', 'Formica rufa', 3);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (6, 69, 'false', 'Indonesia', 'Vespula affinis', 1);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (7, 108, 'true', 'Poland', 'Vespula vulgaris', 1);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (8, 732, 'true', 'Macedonia', 'Lasius niger', 2);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (9, 119, 'true', 'turkey', 'Apis mellifera syriaca', 1);
+INSERT INTO Hymenoptera_Europan (id_hymenoptera, kantitatea, europearrak_edo_ez, kokapena, izena, id_produktua) VALUES (10, 902, 'true', 'Greece', 'Lasius flavus', 7);
+
+-- Loreak
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (1, 'daisy', 'Northern', 284, 1);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (2, 'Chrysanthemum', 'Southern', 535, 2);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (3, 'rose', 'Eastern', 501, 3);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (4, 'sunflower', 'Northern', 188, 4);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (5, 'Amaranth', 'Northern', 627, 5);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (6, 'lily', 'Western', 15, 6);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (7, 'Amorphophallus', 'Northern', 21, 7);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (8, 'Wolffia', 'Southern', 645, 8);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (9, 'Pasionaria', 'Southern', 950, 9);
+INSERT INTO Loreak (id_lorea, izena, kokapena, kantitatea, id_erlea) VALUES (10, 'edelweiss', 'Central', 301, 10);
+
+-- Materiala
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (1, 1, 'goma elatua', 233.32, 'Polen kasetak gordetzeko eta banatzeko erabiliko den materiala.', 562);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (2, 1, 'inoxidablezko metala', 935.65, 'Ekoizleak lurrina eta euria erabiliz garatutako polen saskiak gordeko dituen materiala.', 969);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (3, 1, 'galbanizatutako metala', 490.78, 'Polen kasetak gordetzeko eta banatzeko erabiliko den materiala.', 10);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (4, 4, 'larru artifiziala', 121.89, 'Harrizko egitura duen polen kasetak ekoizteko materiala.', 578);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (5, 4, 'egur moldatua', 180.82, 'Ekoizleak egurrez egindako polen kasetak gordetzeko eta banatzeko erabiliko du.', 996);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (12, 6, 'goma elastikoa', 960.29, 'Ekoizleak plastiko elastikoaz egindako polen kasetak gordeko dituen materiala.', 512);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (7, 4, 'larru artifiziala', 465.38, 'Polen kasetak gordetzeko eta banatzeko erabiliko den materiala.', 636);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (8, 8, 'galbanizatutako metala', 233.75, 'Ekoizleak lurrina eta euria erabiliz garatutako polen saskiak gordeko dituen materiala.', 607);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (9, 7, 'inoxidablezko metala', 70.72, 'Ekoizleak lurrina eta euria erabiliz garatutako polen saskiak gordeko dituen materiala.', 618);
+INSERT INTO Materiala (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea) VALUES (10, 6, 'poliester erreplikatua', 307.35, 'Polen kasetak gordetzeko eta banatzeko erabiliko den materiala.', 909);
+
+-- Produktuak
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (1, 818018, 'eztia', 29.55, 'Eztiaren egitura eta jatorriari buruzko ikerketak egiteko erabiliko den produktua');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (2, 842124, 'eztia', 897.82, 'Erleek sortutako berezko proteina');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (3, 916240, 'eztia', 108.10, 'Erleen larben garapena sustatzeko erabiliko den produktua');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (4, 980029, 'apitoksin', 126.36, 'Erleen kontrako defentsa sisteman erabiliko den toxina');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (5, 290047, 'meliocó', 22.15, 'Erleen jostorratza');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (6, 415391, 'propolis', 701.28, 'Erleen poizona');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (7, 678261, 'eztia', 89.49, 'Erleek sortzen dutn janaria');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (8, 471218, 'trombuzya', 503.33, 'Erleen larben garapena sustatzeko erabiliko den produktua');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (9, 847826, 'eztia', 919.9, 'Erlek sortutako janaria');
+INSERT INTO Produktuak (id_produktua, kantitatea, produktu_mota, prezioa, deskribapena) VALUES (10, 666563, 'apitoksin', 982.90, 'Erleen kontrako defentsa sisteman erabiliko den toksina');
+
+-- sozioak
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (1, 628988, 955, 'Veriee', 'Janodet', '76390986Y', 'veriee.janodet@gmail.com', 17147601757, TO_DATE('1986-09-11', 'YYYY-MM-DD'), 4);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (2, 508595, 590, 'Erna', 'St. Aubyn', '36254604Q', 'erna.st.aubyn@hotmail.com', 556105125272, TO_DATE('1991-10-31', 'YYYY-MM-DD'), 7);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (3, 540617, 876, 'Lion', 'Grimes', '85844584D', 'lion.grimes@yahoo.com', 472458625861, TO_DATE('1984-03-17', 'YYYY-MM-DD'), 3);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (4, 772010, 592, 'Trace', 'McCloud', '67655397P', 'trace.mccloud@protonmail.com', 861293417120, TO_DATE('2005-04-04', 'YYYY-MM-DD'), 4);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (5, 362761, 130, 'Ludwig', 'Lanphere', '16880065H', 'ludwig.lanphere@icloud.com', 816729879443, TO_DATE('1995-03-22', 'YYYY-MM-DD'), 5);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (6, 295054, 392, 'Judd', 'Beneteau', '60338544E', 'judd.beneteau@gmail.com', 79309943838, TO_DATE('1991-12-31', 'YYYY-MM-DD'), 3);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (7, 316385, 464, 'Annamarie', 'Farrer', '12619117T', 'annamarie.farrer@hotmail.com', 335888714961, TO_DATE('1992-07-27', 'YYYY-MM-DD'), 7);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (8, 592441, 187, 'Selene', 'Kroger', '58339691R', 'selene.kroger@yahoo.com', 868238294154, TO_DATE('1988-01-28', 'YYYY-MM-DD'), 8);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (9, 185569, 695, 'Justinn', 'Covell', '99671162P', 'justinn.covell@protonmail.com', 2655361559519, TO_DATE('1984-07-29', 'YYYY-MM-DD'), 9);
+INSERT INTO sozioak (id_sozioa, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, NAN, Email, telefonoa, jaiote_eguna, id_zuzendaria) VALUES (10, 66724, 503, 'Ali', 'Aicken', '62259722J', 'ali.aicken@gmail.com', 344017459679, TO_DATE('1989-08-21', 'YYYY-MM-DD'), 4);
+
+-- asoziazio_parte
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (1, 5);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (3, 3);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (3, 8);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (1, 7);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (5, 9);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (2, 2);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (8, 6);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (5, 4);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (7, 10);
+INSERT INTO asoziazio_parte (id_asoziazioa, id_sozioa) VALUES (9, 1);
+
+-- zenbat_material
+INSERT INTO zenbat_material (id_materiala, id_asoziazioa) VALUES (1, 3);
+INSERT INTO zenbat_material (id_materiala, id_asoziazioa) VALUES (2, 7);
+INSERT INTO zenbat_material (id_materiala, id_asoziazioa) VALUES (3, 5);
+INSERT INTO zenbat_material (id_materiala, id_asoziazioa) VALUES (4, 9);
+INSERT INTO zenbat_material (id_materiala, id_asoziazioa) VALUES (5, 2);
+INSERT INTO zenbat_material (id_materiala, id_asoziazioa) VALUES (7, 8);
+
+-- ze_ezti
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (3, 6);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (5, 1);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (7, 9);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (2, 4);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (8, 10);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (4, 3);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (1, 7);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (9, 2);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (6, 8);
+INSERT INTO ze_ezti (id_sozioa, id_produktua) VALUES (10, 5);
+
+-- zein_etsai
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (3, 6);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (5, 1);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (7, 9);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (2, 4);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (8, 10);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (4, 3);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (1, 7);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (9, 2);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (6, 8);
+INSERT INTO zein_etsai (id_etsaia, id_hymenoptera) VALUES (10, 5);
+
+-- besteak
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (7);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (3);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (9);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (2);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (6);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (8);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (5);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (1);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (4);
+INSERT INTO besteak (ID_PRODUKTUA) VALUES (10);
+
+
+-- Materiala tabla
+ALTER TABLE materiala
+ADD CONSTRAINT fk_materiala_fabrikatzailea
+FOREIGN KEY (id_fabrikatzailea)
+REFERENCES fabrikatzailea(id_fabrikatzailea);
+
+-- Bulego tabla
+ALTER TABLE bulegoak
+ADD CONSTRAINT fk_bulegoak_asoziazioak
+FOREIGN KEY (id_asoziazioa)
+REFERENCES asoziazioak(id_asoziazioa);
+
+-- Zenbat_material tabla
+ALTER TABLE zenbat_material
+ADD CONSTRAINT fk_zenbat_material_materiala
+FOREIGN KEY (id_materiala)
+REFERENCES materiala(id_materiala);
+
+
+ALTER TABLE zenbat_material
+ADD CONSTRAINT fk_zenbat_material_asoziazioak
+FOREIGN KEY (id_asoziazioa)
+REFERENCES asoziazioak(id_asoziazioa);
+
+
+-- Asoziazio_parte tabla
+ALTER TABLE asoziazio_parte
+ADD CONSTRAINT fk_asoziazio_parte_asoziazioak
+FOREIGN KEY (id_asoziazioa)
+REFERENCES asoziazioak(id_asoziazioa);
+
+ALTER TABLE asoziazio_parte
+ADD CONSTRAINT fk_asoziazio_parte_sozioak
+FOREIGN KEY (id_sozioa)
+REFERENCES sozioak(id_sozioa);
+
+-- Zein_produktu tabla
+ALTER TABLE zein_produktu
+ADD CONSTRAINT fk_zein_produktu_produktuak
+FOREIGN KEY (id_produktua)
+REFERENCES produktuak(id_produktua);
+
+ALTER TABLE zein_produktu
+ADD CONSTRAINT fk_zein_produktu_asoziazioak
+FOREIGN KEY (id_asoziazioa)
+REFERENCES asoziazioak(id_asoziazioa);
+
+-- Sozioak tabla
+ALTER TABLE sozioak
+ADD CONSTRAINT fk_sozioak_sozioak
+FOREIGN KEY (id_zuzendaria)
+REFERENCES sozioak(id_sozioa);
+
+-- Ze_ezti tabla
+ALTER TABLE ze_ezti
+ADD CONSTRAINT fk_ze_ezti_sozioak
+FOREIGN KEY (id_sozioa)
+REFERENCES sozioak(id_sozioa);
+
+ALTER TABLE ze_ezti
+ADD CONSTRAINT fk_ze_ezti_produktuak
+FOREIGN KEY (id_produktua)
+REFERENCES produktuak(id_produktua);
+
+-- Eztia tabla
+ALTER TABLE eztia
+ADD CONSTRAINT fk_eztia_produktuak
+FOREIGN KEY (id_produktua)
+REFERENCES produktuak(id_produktua);
+
+ALTER TABLE eztia
+ADD CONSTRAINT fk_eztia_loreak
+FOREIGN KEY (id_lorea)
+REFERENCES loreak(id_lorea);
+
+-- Besteak tabla
+ALTER TABLE besteak
+ADD CONSTRAINT fk_besteak_produktuak
+FOREIGN KEY (id_produktua)
+REFERENCES produktuak(id_produktua);
+
+ALTER TABLE hymenoptera_europan
+ADD CONSTRAINT fk_hymenoptera_europan_produktuak
+FOREIGN KEY (id_produktua)
+REFERENCES eztia(id_produktua);
+
+-- Hymenoptera_Europan tabla
+ALTER TABLE hymenoptera_europan
+ADD CONSTRAINT fk_hymenoptera_europan_eztia
+FOREIGN KEY (id_produktua)
+REFERENCES eztia(id_produktua);
+
+-- Zein_etsai tabla
+ALTER TABLE zein_etsai
+ADD CONSTRAINT fk_zein_etsai_etsailak
+FOREIGN KEY (id_etsaia)
+REFERENCES etsailak(id_etsaia);
+
+ALTER TABLE zein_etsai
+ADD CONSTRAINT fk_zein_etsai_hymenoptera_europan
+FOREIGN KEY (id_hymenoptera)
+REFERENCES hymenoptera_europan(id_hymenoptera);
+
