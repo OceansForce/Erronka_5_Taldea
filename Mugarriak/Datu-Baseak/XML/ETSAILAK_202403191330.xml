@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ETSAILAK>
+  <DATA_RECORD>
+    <ID_ETSAIA>1</ID_ETSAIA>
+    <IZENA>Vespa velutina</IZENA>
+    <KANPOTARRA>true</KANPOTARRA>
+    <DESKRIBAPENA>Europako asian ontzi arrunta. Europa eratorria.</DESKRIBAPENA>
+    <HILDAKO_KAN>95</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>2</ID_ETSAIA>
+    <IZENA>Apis mellifera scutellata</IZENA>
+    <KANPOTARRA>false</KANPOTARRA>
+    <DESKRIBAPENA>Afrikako mendian bizi den belar arrunta. Europa kanpotik.</DESKRIBAPENA>
+    <HILDAKO_KAN>78</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>3</ID_ETSAIA>
+    <IZENA>Vespula germanica</IZENA>
+    <KANPOTARRA>true</KANPOTARRA>
+    <DESKRIBAPENA>Europako alemaniar ontzi arrunta. Europako hegoaldetik.</DESKRIBAPENA>
+    <HILDAKO_KAN>359</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>4</ID_ETSAIA>
+    <IZENA>Bombus terrestris</IZENA>
+    <KANPOTARRA>false</KANPOTARRA>
+    <DESKRIBAPENA>Lurrean bizi den europar belar arrunta. Europa kanpotik.</DESKRIBAPENA>
+    <HILDAKO_KAN>416</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>5</ID_ETSAIA>
+    <IZENA>Vespa crabro</IZENA>
+    <KANPOTARRA>true</KANPOTARRA>
+    <DESKRIBAPENA>Europako ontzi arrunta. Europako iparaldetik.</DESKRIBAPENA>
+    <HILDAKO_KAN>267</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>6</ID_ETSAIA>
+    <IZENA>Apis cerana</IZENA>
+    <KANPOTARRA>false</KANPOTARRA>
+    <DESKRIBAPENA>Asiako mendian bizi den belar arrunta. Europa kanpotik.</DESKRIBAPENA>
+    <HILDAKO_KAN>503</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>7</ID_ETSAIA>
+    <IZENA>Polistes dominula</IZENA>
+    <KANPOTARRA>true</KANPOTARRA>
+    <DESKRIBAPENA>Europako ontzi arrunta. Europako iparaldetik.</DESKRIBAPENA>
+    <HILDAKO_KAN>42</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>8</ID_ETSAIA>
+    <IZENA>Apis dorsata</IZENA>
+    <KANPOTARRA>false</KANPOTARRA>
+    <DESKRIBAPENA>Asiako mendian bizi den belar arrunta. Europa kanpotik.</DESKRIBAPENA>
+    <HILDAKO_KAN>138</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>9</ID_ETSAIA>
+    <IZENA>Xylocopa violacea</IZENA>
+    <KANPOTARRA>true</KANPOTARRA>
+    <DESKRIBAPENA>Europako ontzi arrunta. Europako hegoaldetik.</DESKRIBAPENA>
+    <HILDAKO_KAN>513</HILDAKO_KAN>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_ETSAIA>10</ID_ETSAIA>
+    <IZENA>Vespa mandarinia</IZENA>
+    <KANPOTARRA>false</KANPOTARRA>
+    <DESKRIBAPENA>Asiako ontzi arrunta. Europa kanpotik.</DESKRIBAPENA>
+    <HILDAKO_KAN>885</HILDAKO_KAN>
+  </DATA_RECORD>
+</ETSAILAK>
