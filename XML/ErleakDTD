@@ -1,7 +1,0 @@
-﻿
-<!ELEMENT Sozioa (Email, Pasahitza, Izena, Abizena,)>
-<!ELEMENT Email (#PCDATA)>
-<!ELEMENT Pasahitza (#PCDATA)>
-<!ELEMENT Izena (#PCDATA)>
-<!ELEMENT Abizena (#PCDATA)>
-<!ATTLIST Sozioa sozioID CDATA #REQUIRED >
