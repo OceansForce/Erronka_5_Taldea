@@ -31,7 +31,7 @@ public class Login extends JFrame {
         panel.add(pasahitza);
         panel.add(txertatupass);
 
-        //ondorengoa rellenoa gehitzeko da, hau gehituko ez bagenu
+        //ondorengoa betegarria gehitzeko da, hau gehituko ez bagenu
         //login botoia adibidez ezkerraldera desplazatuko zen
         panel.add(new JLabel());
         panel.add(login);

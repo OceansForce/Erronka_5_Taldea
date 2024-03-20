@@ -5,16 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Index extends JFrame implements ActionListener {
-    private JMenuBar mb;
+    private JPanel panel;
     private JMenu menu1, menu2;
     private JMenuItem mi1, mj1, mj2;
     private JButton loginButton;
+    private JTextField bilatzaile;
     public Index(){
         super("Erleak");
-        mb = new JMenuBar();
-        setJMenuBar(mb);
+        panel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Usamos un FlowLayout para colocar los elementos en línea
+        setContentPane(panel);
 
-        //lehengo menua
+        // Lehengo menua
+        JMenuBar mb = new JMenuBar(); // Creamos un JMenuBar para los elementos del menú
         menu1 = new JMenu("Zerbitzuak");
         mb.add(menu1);
         mi1 = new JMenuItem("Kolmenen instalazioak");
@@ -31,6 +33,9 @@ public class Index extends JFrame implements ActionListener {
         menu2.add(mj1);
         menu2.add(mj2);
 
+        // Añadimos el JMenuBar al panel
+        panel.add(mb);
+
         //login botoia
         loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener() {
@@ -41,9 +46,13 @@ public class Index extends JFrame implements ActionListener {
                 loginWindow.setVisible(true);
             }
         });
-        mb.add(Box.createHorizontalGlue()); //botoia eskuinaldean jarriko du
-        mb.add(loginButton);
+        //mb.add(Box.createHorizontalGlue()); //botoia eskuinaldean jarriko du
+        panel.add(loginButton);
 
+        //bilatzailea gehitzeko
+        bilatzaile = new JTextField(5);
+        bilatzaile.addActionListener(this);
+        panel.add(bilatzaile);
 
     }
 
