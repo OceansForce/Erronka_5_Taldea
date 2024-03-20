@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Produktuak">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Data_record" />
+          <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID_produktua" type="xs:string" />
+            <xs:element name="Kantitatea" type="xs:string" />
+            <xs:element name="Produktu_mota" type="xs:string" />
+            <xs:element name="Prezioa" type="xs:string" />
+            <xs:element name="Deskribapena" type="xs:string" />
+          </xs:sequence>
+          </xs:complexType>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
