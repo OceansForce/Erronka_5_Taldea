@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FABRIKATZAILEA>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>1</ID_FABRIKATZAILEA>
+    <IZENA>Wintheiser Inc</IZENA>
+    <HIRIA>Switzerland</HIRIA>
+    <HELBIDEA>1437 Valdia, District du Jura-Nord vaudois</HELBIDEA>
+    <TELEFONOA>278.408.650.849</TELEFONOA>
+    <KORREOA>info@wintheiser.com</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>2</ID_FABRIKATZAILEA>
+    <IZENA>Donnelly and Sons</IZENA>
+    <HIRIA>Czech Republic</HIRIA>
+    <HELBIDEA>364 01, Northwest, Karlovarský kraj, okres Karlovy Vary, Toužim</HELBIDEA>
+    <TELEFONOA>628.498.979.028</TELEFONOA>
+    <KORREOA>contact@donnellyandsons.cz</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>3</ID_FABRIKATZAILEA>
+    <IZENA>Cassin, Reilly and Bayer</IZENA>
+    <HIRIA>Lithuania</HIRIA>
+    <HELBIDEA>Šiauliai, Pašvitinio seniūnija, Janelioniai</HELBIDEA>
+    <TELEFONOA>3.705.641.410.559</TELEFONOA>
+    <KORREOA>info@cassinreillybayer.lt</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>4</ID_FABRIKATZAILEA>
+    <IZENA>Brekke-Blanda</IZENA>
+    <HIRIA>Ireland</HIRIA>
+    <HELBIDEA>Tipperary, Street 45626</HELBIDEA>
+    <TELEFONOA>2.163.477.598.132</TELEFONOA>
+    <KORREOA>sales@brekkeblanda.ie</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>5</ID_FABRIKATZAILEA>
+    <IZENA>Robel-Fritsch</IZENA>
+    <HIRIA>Belarus</HIRIA>
+    <HELBIDEA>Street 61, Klichaw District</HELBIDEA>
+    <TELEFONOA>2.639.397.582.676</TELEFONOA>
+    <KORREOA>support@robelfritsch.by</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>6</ID_FABRIKATZAILEA>
+    <IZENA>Moore-Langosh</IZENA>
+    <HIRIA>Serbia</HIRIA>
+    <HELBIDEA>523 Wiegand Drives</HELBIDEA>
+    <TELEFONOA>3.811.384.615.528</TELEFONOA>
+    <KORREOA>hello@moorelangosh.rs</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>7</ID_FABRIKATZAILEA>
+    <IZENA>Little-Schmidt</IZENA>
+    <HIRIA>Iceland</HIRIA>
+    <HELBIDEA>9923 Stiedemann Stravenue</HELBIDEA>
+    <TELEFONOA>869.589.705.248</TELEFONOA>
+    <KORREOA>contact@littleschmidt.is</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>8</ID_FABRIKATZAILEA>
+    <IZENA>Wyman Inc</IZENA>
+    <HIRIA>Finland</HIRIA>
+    <HELBIDEA>Street84, Kakkurintie</HELBIDEA>
+    <TELEFONOA>666.374.555.379</TELEFONOA>
+    <KORREOA>info@wymaninc.fi</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>9</ID_FABRIKATZAILEA>
+    <IZENA>Koss, Waelchi and Bode</IZENA>
+    <HIRIA>France</HIRIA>
+    <HELBIDEA>Street 65, Aisne, Vervins</HELBIDEA>
+    <TELEFONOA>334.991.747.492</TELEFONOA>
+    <KORREOA>info@kossbode.fr</KORREOA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_FABRIKATZAILEA>10</ID_FABRIKATZAILEA>
+    <IZENA>Herzog, Purdy and Sporer</IZENA>
+    <HIRIA>Italy</HIRIA>
+    <HELBIDEA>10828 Hegmann Mountain</HELBIDEA>
+    <TELEFONOA>635.201.760.315</TELEFONOA>
+    <KORREOA>hello@herzogsporer.it</KORREOA>
+  </DATA_RECORD>
+</FABRIKATZAILEA>
