@@ -1,5 +1,5 @@
 {
-    "productos": [
+    "produktuak": [
       {
         "id": 1,
         "izena": "Miel de flores silvestres",
@@ -7,7 +7,7 @@
         "prezioa": 10.99,
         "eskuragarritasuna": true,
         "pixua": "500g",
-        "irudia": "miel_flores_silvestres.jpg"
+        "irudia": "media/products/miel_flores_silvestres.jpg"
       },
       {
         "id": 2,
