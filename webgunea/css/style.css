@@ -12,6 +12,11 @@ header {
     align-items: center;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 nav {
     
     width: 80%;
@@ -42,4 +47,20 @@ li {
     display: flex;
 }
 
+#insta, #linkedin {
+    height: 35px;
+    width: 35px;
+}
+
+#columnas_footer {
+    clear: both;
+    display: flex;
+}
+
+footer div {
+    margin-left: 30px;
+    margin-top: 20px;
+}
   
+
+
