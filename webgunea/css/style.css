@@ -2,24 +2,28 @@
     box-sizing: border-box;
 }
 
-body {
-    /* choose font */
-}
 
 header {
-    padding: 30px;
-    text-align: center;
-    font-size: 35px;
+    width: 100%;
+    height: 7vh;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
-    float: left;
-    width: 30%;
-    padding: 20px;
-    color: aqua;
+    
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
 }
-
-nav ul {
+ul {
     list-style-type: none;
     padding: 0;
 }
@@ -31,6 +35,32 @@ article {
     background-color: #f1f1f1;
 }
 
+p {
+ 
+}
+li {
+    display: inline;
+    margin-right: 10px; /* optional, adds some spacing between list items */
+  }
 
+.menua {
+    display: flex;
+}
 
+#insta, #linkedin {
+    height: 35px;
+    width: 35px;
+}
+
+#columnas_footer {
+    clear: both;
+    display: flex;
+}
+
+footer div {
+    margin-left: 30px;
+    margin-top: 20px;
+}
   
+
+
