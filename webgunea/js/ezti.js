@@ -9,7 +9,7 @@ async function print_eztiak(){
 
     for(i=0; i<eztiak.length; i++){
 
-        let produktuak = "<tr><td>"+eztiak[i].izena+"</td></tr>";
+        let produktuak = "<tr><td>"+eztiak[i].izena+"</td><td>"+eztiak[i].irudia+"</td></tr>";
         taula = taula + produktuak;
     }
 
