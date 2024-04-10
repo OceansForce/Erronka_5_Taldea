@@ -6,8 +6,8 @@
         "deskripzioa": "Deliciosa miel producida a partir del néctar de una variedad de flores silvestres. Rica en sabor y aroma.",
         "prezioa": 10.99,
         "eskuragarritasuna": true,
-        "pixua": "500g",
-        "irudia": "media/products/miel_flores_silvestres.jpg"
+        "pisua": "500g",
+        "irudia": "media/products/1.jpg"
       },
       {
         "id": 2,
@@ -15,8 +15,8 @@
         "deskripzioa": "Miel suave y delicada, producida a partir del néctar de las flores del naranjo. Perfecta para endulzar bebidas y postres.",
         "prezioa": 12.99,
         "eskuragarritasuna": true,
-        "pixua": "500g",
-        "irudia": "miel_azahar.jpg"
+        "pisua": "500g",
+        "irudia": "media/products/2.jpg"
       },
       {
         "id": 3,
@@ -24,8 +24,8 @@
         "deskripzioa": "Cera de abejas pura y natural, ideal para la fabricación de velas, cosméticos y productos de cuidado de la piel.",
         "prezioa": 8.99,
         "eskuragarritasuna": true,
-        "pixua": "100g",
-        "irudia": "cera_abejas.jpg"
+        "pisua": "100g",
+        "irudia": "media/products/3.jpg"
       },
       {
         "id": 4,
@@ -33,8 +33,8 @@
         "deskripzioa": "Polen recolectado por nuestras abejas de una variedad de flores silvestres. Rico en nutrientes y beneficioso para la salud.",
         "prezioa": 15.99,
         "eskuragarritasuna": false,
-        "pixua": "250g",
-        "irudia": "polen_flores.jpg"
+        "pisua": "250g",
+        "irudia": "media/products/4.jpg"
       }
     ]
 }
