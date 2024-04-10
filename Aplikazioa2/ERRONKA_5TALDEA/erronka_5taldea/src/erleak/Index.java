@@ -64,7 +64,7 @@ public class Index extends JFrame implements ActionListener {
         /*bilatzaile = new JTextField();
         panel1.add(bilatzaile);
 
-        ImageIcon lupaIrudia = new ImageIcon(".\\lupa.png");
+        ImageIcon lupaIrudia = new ImageIcon(".\\Irudiak\\lupa.png");
         ImageIcon lupa_TamainaAldatuta= new ImageIcon(lupaIrudia.getImage().getScaledInstance(25, 20, java.awt.Image.SCALE_SMOOTH));
         JButton lupa = new JButton(lupa_TamainaAldatuta);
         panel1.add(lupa);
@@ -72,7 +72,7 @@ public class Index extends JFrame implements ActionListener {
 
 
         //login botoia
-        ImageIcon pertsonaIrudia = new ImageIcon("./pertsona_icon.png");
+        ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");
         ImageIcon pertsona_TamainaAldatuta= new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
         loginButton = new JButton("Login", pertsona_TamainaAldatuta);
         loginButton.addActionListener(new ActionListener() {
@@ -85,7 +85,7 @@ public class Index extends JFrame implements ActionListener {
         //mb.add(Box.createHorizontalGlue()); //botoia eskuinaldean jarriko du
         panel1.add(loginButton);
 
-        ImageIcon pertsonaIrudia2 = new ImageIcon("./Erregistratu.png");
+        ImageIcon pertsonaIrudia2 = new ImageIcon(".\\Irudiak\\Erregistratu.png");
         ImageIcon pertsona2_TamainaAldatuta= new ImageIcon(pertsonaIrudia2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
         erregistratzeko_Button = new JButton("Erregistratu", pertsona2_TamainaAldatuta);
 
@@ -97,7 +97,7 @@ public class Index extends JFrame implements ActionListener {
 
     public void center(){
         JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        ImageIcon portada_irudia= new ImageIcon(".\\abejas.jpg");
+        ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg");
         JLabel portada= new JLabel(portada_irudia);
         panel2.add(portada);
         f_Index.add(panel2, BorderLayout.CENTER);
