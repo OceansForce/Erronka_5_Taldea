@@ -7,7 +7,7 @@
         "prezioa": 10.99,
         "eskuragarritasuna": true,
         "pisua": "500g",
-        "irudia": "media/products/1.jpg"
+        "irudia": "1.jpg"º
       },
       {
         "id": 2,
@@ -16,7 +16,7 @@
         "prezioa": 12.99,
         "eskuragarritasuna": true,
         "pisua": "500g",
-        "irudia": "media/products/2.jpg"
+        "irudia": "2.jpg"
       },
       {
         "id": 3,
@@ -25,7 +25,7 @@
         "prezioa": 8.99,
         "eskuragarritasuna": true,
         "pisua": "100g",
-        "irudia": "media/products/3.jpg"
+        "irudia": "3.jpg"
       },
       {
         "id": 4,
@@ -34,7 +34,7 @@
         "prezioa": 15.99,
         "eskuragarritasuna": false,
         "pisua": "250g",
-        "irudia": "media/products/4.jpg"
+        "irudia": "4.jpg"
       }
     ]
 }
