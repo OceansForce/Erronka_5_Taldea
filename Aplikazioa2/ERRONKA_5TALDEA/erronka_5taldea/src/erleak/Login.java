@@ -15,7 +15,11 @@ public class Login extends JFrame {
     private JPanel panel1, panel2, panel3, panel4, panel5, panel_1_4, panel_3_5;
     private CardLayout card1, card2;
     private JButton erregistratu, login ,urrengoa, itzuli1,itzuli2;
+    private  JTextField txertatu_izen;
+    private JPasswordField txertatupass;
 
+
+    private String identifikatzaile;
 
     public void sortu_login(){
 
@@ -52,7 +56,7 @@ public class Login extends JFrame {
 
         panel1 = new JPanel();
 
-        JTextField txertatu_izen = new JTextField();
+        txertatu_izen = new JTextField(17);
         txertatu_izen.setEnabled(false);
         txertatu_izen.addMouseListener(new MouseListener() {
             @Override
@@ -80,8 +84,6 @@ public class Login extends JFrame {
 
             }
         });
-
-        txertatu_izen.setSize(new Dimension(18,10));
 
         txertatu_izen.setForeground(Color.GRAY);
         txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");
@@ -119,12 +121,7 @@ public class Login extends JFrame {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                SwingUtilities.invokeLater(() -> {
-                    if (txertatu_izen.getText().isEmpty()) {
-                        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");
-                        txertatu_izen.setForeground(Color.GRAY);
-                    }
-                });
+
             }
 
             @Override
@@ -138,8 +135,88 @@ public class Login extends JFrame {
 
         panel4 = new JPanel();
 
-        JPasswordField txertatupass = new JPasswordField();
-        jtextfield_Textu_Grixa("Pasahitza", txertatupass);
+        txertatupass = new JPasswordField(18);
+        txertatupass.setEnabled(false);
+        txertatupass.setEchoChar((char) 0);
+        txertatupass.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                txertatupass.setEnabled(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+
+        txertatupass.setForeground(Color.GRAY);
+        txertatupass.setText("Pasahitza");
+
+        txertatupass.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    String pasahitza= new String(txertatupass.getPassword());
+                    if (pasahitza.equals("Pasahitza")) {
+                        txertatupass.setText("");
+                        txertatupass.setForeground(Color.BLACK);
+                        txertatupass.setEchoChar('*');
+                    }
+                });
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    String pasahitza= new String(txertatupass.getPassword());
+                    if (pasahitza.equals("")) {
+                        txertatupass.setText("Pasahitza");
+                        txertatupass.setForeground(Color.GRAY);
+                        txertatupass.setEchoChar((char) 0);
+                    }
+                });
+            }
+        });
+
+        txertatupass.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    String pasahitza= new String(txertatupass.getPassword());
+                    if (pasahitza.isEmpty()) {
+                        txertatupass.setText("Pasahitza");
+                        txertatupass.setForeground(Color.GRAY);
+                        txertatupass.setEchoChar((char) 0);
+                    }
+                });
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
 
         panel4.add(txertatupass);
 
@@ -186,7 +263,7 @@ public class Login extends JFrame {
         panel5 = new JPanel();
         panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));
 
-        JLabel tartea2= new JLabel("                    ");
+        JLabel tartea2= new JLabel("                          ");
         login = new JButton("Login");
         erregistratu = new JButton("Erregistratu");
         itzuli2 = new JButton("Atzera");
@@ -199,8 +276,10 @@ public class Login extends JFrame {
         itzuli2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Pasahitzatik atzera bueltatzeko
                 card2.show(panel_3_5, "panel3");
                 card1.show(panel_1_4, "panel1");
+                txertatu_izen.setText(identifikatzaile);
             }
         });
 
@@ -211,8 +290,10 @@ public class Login extends JFrame {
             }
         });
         urrengoa.addActionListener(new ActionListener() {
+            // Pasahitza jarri al izateko, aldatzen du.
             @Override
             public void actionPerformed(ActionEvent e) {
+                identifikatzaile= txertatu_izen.getText();
                 card2.show(panel_3_5, "panel5");
                 card1.show(panel_1_4, "panel4");
             }
