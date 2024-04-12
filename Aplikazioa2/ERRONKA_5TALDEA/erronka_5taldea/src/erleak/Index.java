@@ -4,13 +4,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class Index extends JFrame implements ActionListener {
-    private JPanel panel1, panel2;
+    private JPanel panel1, panel2, panel3, panel4;
+    private JPanel panel_2_3_4;
     private JMenu menu1, menu2;
     private JMenuItem mi1, mj1, mj2;
     private JButton loginButton, erregistratzeko_Button;
-    private JTextField bilatzaile;
+    private CardLayout card1;
     private JFrame f_Index = new JFrame();
 
     public static void main(String[] args){
@@ -37,6 +40,38 @@ public class Index extends JFrame implements ActionListener {
         panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));
 
 
+        //Logoa
+        ImageIcon logoa= new ImageIcon(".\\Irudiak\\logo.png");
+        ImageIcon logoa_aldatuta= new ImageIcon(logoa.getImage().getScaledInstance(50, 35, java.awt.Image.SCALE_SMOOTH));
+        JLabel logo_Irudia= new JLabel(logoa_aldatuta);
+        logo_Irudia.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                card1.show(panel_2_3_4, "panel2");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        panel1.add(logo_Irudia);
         // Lehengo menua
         JMenuBar mb = new JMenuBar();
         menu1 = new JMenu("Zerbitzuak");
@@ -50,26 +85,27 @@ public class Index extends JFrame implements ActionListener {
         menu2 = new JMenu("Produktuak");
         mb.add(menu2);
 
-        mj1 = new JMenuItem("Ezti naturala");
-        mj2 = new JMenuItem("Erlauntzak");
+        mj1 = new JMenuItem("Eztia");
+        mj1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                card1.show(panel_2_3_4, "panel3");
+            }
+        });
+        mj2 = new JMenuItem("Beste batzuk");
+        mj2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                card1.show(panel_2_3_4, "panel4");
+            }
+        });
         menu2.add(mj1);
         menu2.add(mj2);
         mj1.addActionListener(this);
         mj2.addActionListener(this);
 
-        mb.setBorder(new EmptyBorder(0,0,0,500));
+        mb.setBorder(new EmptyBorder(0,0,0,465));
         panel1.add(mb);
-
-        //bilatzailea gehitzeko
-        /*bilatzaile = new JTextField();
-        panel1.add(bilatzaile);
-
-        ImageIcon lupaIrudia = new ImageIcon(".\\Irudiak\\lupa.png");
-        ImageIcon lupa_TamainaAldatuta= new ImageIcon(lupaIrudia.getImage().getScaledInstance(25, 20, java.awt.Image.SCALE_SMOOTH));
-        JButton lupa = new JButton(lupa_TamainaAldatuta);
-        panel1.add(lupa);
-        lupa.addActionListener(this);*/
-
 
         //login botoia
         ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");
@@ -88,6 +124,12 @@ public class Index extends JFrame implements ActionListener {
         ImageIcon pertsonaIrudia2 = new ImageIcon(".\\Irudiak\\Erregistratu.png");
         ImageIcon pertsona2_TamainaAldatuta= new ImageIcon(pertsonaIrudia2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
         erregistratzeko_Button = new JButton("Erregistratu", pertsona2_TamainaAldatuta);
+        erregistratzeko_Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Erregistratu().sortu_Erregistratu();
+            }
+        });
 
         panel1.add(erregistratzeko_Button);
 
@@ -96,11 +138,50 @@ public class Index extends JFrame implements ActionListener {
     }
 
     public void center(){
-        JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        card1= new CardLayout();
+        panel_2_3_4= new JPanel();
+        panel_2_3_4.setLayout(card1);
+
+        panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg");
         JLabel portada= new JLabel(portada_irudia);
         panel2.add(portada);
-        f_Index.add(panel2, BorderLayout.CENTER);
+
+        panel3 = new JPanel(new BorderLayout());
+
+        ImageIcon eztia_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");
+        ImageIcon eztia_irudia_aldatuta= new ImageIcon(eztia_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
+        JLabel eztia_Lirudi= new JLabel(eztia_irudia_aldatuta);
+        panel3.add(eztia_Lirudi, BorderLayout.NORTH);
+
+        String[][] ezti_datuak= {{"Julen","32","5435","Pertsona da."}};
+        String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
+        final JTable ezti_tabla= new JTable(ezti_datuak,kolumna_Izenak_eztia);
+        ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
+        JScrollPane ezti_sp= new JScrollPane(ezti_tabla);
+
+        panel3.add(ezti_sp, BorderLayout.CENTER);
+
+        panel4= new JPanel(new BorderLayout());
+
+        ImageIcon besteak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");
+        ImageIcon besteak_irudia_aldatuta= new ImageIcon(besteak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
+        JLabel besteak_Lirudi= new JLabel(besteak_irudia_aldatuta);
+        panel4.add(besteak_Lirudi, BorderLayout.NORTH);
+
+        String[][] besteak_datuak= {{"Julen","32","5435","Pertsona da."}};
+        String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
+        final JTable besteak_tabla= new JTable(besteak_datuak,kolumna_Izenak_besteak);
+        besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
+        JScrollPane bestak_sp= new JScrollPane(besteak_tabla);
+
+        panel4.add(bestak_sp);
+
+        panel_2_3_4.add(panel2,"panel2");
+        panel_2_3_4.add(panel3,"panel3");
+        panel_2_3_4.add(panel4, "panel4");
+
+        f_Index.add(panel_2_3_4,BorderLayout.CENTER);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

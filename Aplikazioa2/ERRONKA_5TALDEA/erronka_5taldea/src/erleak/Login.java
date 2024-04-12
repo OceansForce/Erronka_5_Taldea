@@ -17,8 +17,7 @@ public class Login extends JFrame {
     private JButton erregistratu, login ,urrengoa, itzuli1,itzuli2;
     private  JTextField txertatu_izen;
     private JPasswordField txertatupass;
-
-
+    private JLabel mezua;
     private String identifikatzaile;
 
     public void sortu_login(){
@@ -54,7 +53,7 @@ public class Login extends JFrame {
         panel_1_4 = new JPanel();
         panel_1_4.setLayout(card1);
 
-        panel1 = new JPanel();
+        panel1 = new JPanel(null);
 
         txertatu_izen = new JTextField(17);
         txertatu_izen.setEnabled(false);
@@ -130,8 +129,13 @@ public class Login extends JFrame {
             }
         });
 
+        mezua = new JLabel("");
+
+        txertatu_izen.setBounds(95,10,200, 25);
+        mezua.setBounds(105, 30, 200, 50);
 
         panel1.add(txertatu_izen);
+        panel1.add(mezua);
 
         panel4 = new JPanel();
 
@@ -256,9 +260,26 @@ public class Login extends JFrame {
         erregistratu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Erregistroko funtzioa sortu gabe");
+                new Erregistratu().sortu_Erregistratu();
             }
         });
+        urrengoa.addActionListener(new ActionListener() {
+            // Pasahitza jarri al izateko, aldatzen du.
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!txertatu_izen.getText().isEmpty() && !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila")) {
+                    identifikatzaile = txertatu_izen.getText();
+                    card2.show(panel_3_5, "panel5");
+                    card1.show(panel_1_4, "panel4");
+                    mezua.setText("");
+                }else {
+                    mezua.setForeground(Color.red);
+                    mezua.setText("Identifikatzailea sartu behar da");
+                }
+            }
+        });
+
+
 
         panel5 = new JPanel();
         panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));
@@ -289,15 +310,15 @@ public class Login extends JFrame {
                 JOptionPane.showMessageDialog(null, "Erregistroko funtzioa sortu gabe");
             }
         });
-        urrengoa.addActionListener(new ActionListener() {
-            // Pasahitza jarri al izateko, aldatzen du.
+        login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                identifikatzaile= txertatu_izen.getText();
-                card2.show(panel_3_5, "panel5");
-                card1.show(panel_1_4, "panel4");
+                if (true){
+
+                }
             }
         });
+
 
         panel_3_5.add(panel3, "panel3");
         panel_3_5.add(panel5, "panel5");
@@ -309,9 +330,5 @@ public class Login extends JFrame {
         new Login().sortu_login();
     }
 
-    public void jtextfield_Textu_Grixa(String textua, JTextField textField){
-
-
-    }
 
 }
