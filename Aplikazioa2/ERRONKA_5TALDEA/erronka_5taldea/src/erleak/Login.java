@@ -240,7 +240,7 @@ public class Login extends JFrame {
         panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));
 
         JLabel tartea1= new JLabel("                    ");
-        urrengoa = new JButton("Urrengoa");
+        urrengoa = new JButton("Hurrengoa");
         erregistratu = new JButton("Erregistratu");
         itzuli1 = new JButton("Atzera");
 
