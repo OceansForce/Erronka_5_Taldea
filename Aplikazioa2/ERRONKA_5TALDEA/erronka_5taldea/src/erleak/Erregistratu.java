@@ -5,13 +5,18 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.ParseException;
+
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
     private JPanel panel1, panel2;
-    private JTextField email, nan, telefonoa, izena, abizena, jaio_eguna;
+    private JTextField email, izena, abizena;
+    private JFormattedTextField nan, telefonoa,jaio_eguna;
+    private JLabel nan_textua;
 
     public static void main(String[] args){
         new Erregistratu().sortu_Erregistratu();
@@ -41,15 +46,55 @@ public class Erregistratu {
     }
 
     public void center(){
-        panel2= new JPanel();
-        email= new JTextField(17);
+        panel2= new JPanel(null);
+
+        email= new JTextField();
         textuGrixa(email, "Emaila");
+        String emailT= email.getText();
 
-        nan= new JTextField(17);
-        textuGrixa(nan,"NAN");
+        if (!emailT.matches("-+@.+..+")){
+            System.out.println("MAL");
+        }
 
-        telefonoa
+        izena = new JTextField();
+        textuGrixa(izena, "Izena");
+
+        abizena = new JTextField();
+        textuGrixa(abizena, "Abizena");
+
+        try {
+            nan_textua= new JLabel("NAN:");
+            MaskFormatter nan_formatua= new MaskFormatter("########?");
+            nan = new JFormattedTextField(nan_formatua);
+            nan.setEnabled(false);
+
+            MaskFormatter telefono_formatua = new MaskFormatter("+34-###-###-###");
+            telefonoa = new JFormattedTextField(telefono_formatua);
+            telefonoa.setEnabled(false);
+
+            MaskFormatter jaio_eguna_Formatua = new MaskFormatter("####/##/##");
+            jaio_eguna = new JFormattedTextField(jaio_eguna_Formatua);
+            jaio_eguna.setEnabled(false);
+
+        }catch (ParseException e){
+            System.err.println("MaskFormatter-ekin errorea. Erregistratu.cente()");
+        }
+        email.setBounds(90,10,210,20);
+        nan_textua.setBounds(90,38, 100, 10);
+        nan.setBounds(90,50,100,20);
+        telefonoa.setBounds(200, 50, 100, 20);
+        izena.setBounds(90,90,100,20);
+        abizena.setBounds(200,90,100,20);
+        jaio_eguna.setBounds(90, 200, 100, 20);
+
         panel2.add(email);
+        panel2.add(nan_textua);
+        panel2.add(nan);
+        panel2.add(telefonoa);
+        panel2.add(izena);
+        panel2.add(abizena);
+        panel2.add(jaio_eguna);
+
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
 
@@ -89,7 +134,7 @@ public class Erregistratu {
             public void focusGained(FocusEvent e) {
                 SwingUtilities.invokeLater(() -> {
                     if (kuadroa.getText().equals(textua)) {
-                        kuadroa.setText(" ");
+                        kuadroa.setText("");
                         kuadroa.setForeground(Color.BLACK);
                     }
                 });
@@ -97,7 +142,7 @@ public class Erregistratu {
             @Override
             public void focusLost(FocusEvent e) {
                 SwingUtilities.invokeLater(() -> {
-                    if (kuadroa.getText().equals(" ")) {
+                    if (kuadroa.getText().equals("")) {
                         kuadroa.setText(textua);
                         kuadroa.setForeground(Color.GRAY);
                     }

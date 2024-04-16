@@ -260,7 +260,7 @@ public class Login extends JFrame {
         erregistratu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Erregistratu().sortu_Erregistratu();
+                //new Erregistratu().sortu_Erregistratu();
             }
         });
         urrengoa.addActionListener(new ActionListener() {
