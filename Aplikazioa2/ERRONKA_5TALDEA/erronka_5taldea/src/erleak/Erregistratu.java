@@ -11,14 +11,20 @@ import java.io.IOException;
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private JPanel panel1, panel2;
     private JTextField email, nan, telefonoa, izena, abizena, jaio_eguna;
 =======
+=======
+>>>>>>> Stashed changes
     private JPanel panel1, panel2, panel3;
     private JTextField email, izena, abizena;
     private JFormattedTextField nan, telefonoa,jaio_eguna;
     private JLabel nan_textua, jaio_eguna_Textua;
     private JButton login, erregistratu, atzera;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     public static void main(String[] args){
