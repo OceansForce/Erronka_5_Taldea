@@ -5,27 +5,19 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.ParseException;
+
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    private JPanel panel1, panel2;
-    private JTextField email, nan, telefonoa, izena, abizena, jaio_eguna;
-=======
-=======
->>>>>>> Stashed changes
     private JPanel panel1, panel2, panel3;
     private JTextField email, izena, abizena;
     private JFormattedTextField nan, telefonoa,jaio_eguna;
     private JLabel nan_textua, jaio_eguna_Textua;
     private JButton login, erregistratu, atzera;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
     public static void main(String[] args){
         new Erregistratu().sortu_Erregistratu();
@@ -59,11 +51,7 @@ public class Erregistratu {
         panel2= new JPanel();
         email= new JTextField(17);
         textuGrixa(email, "Emaila");
-<<<<<<< Updated upstream
 
-        nan= new JTextField(17);
-        textuGrixa(nan,"NAN");
-=======
         String emailT= email.getText();
 
         if (!emailT.matches("-+@.+..+")){
@@ -111,10 +99,7 @@ public class Erregistratu {
         panel2.add(abizena);
         panel2.add(jaio_eguna_Textua);
         panel2.add(jaio_eguna);
->>>>>>> Stashed changes
 
-        telefonoa
-        panel2.add(email);
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
 
