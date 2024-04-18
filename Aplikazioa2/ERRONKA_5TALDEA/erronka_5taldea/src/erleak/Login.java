@@ -245,9 +245,9 @@ public class Login extends JFrame {
         itzuli1 = new JButton("Atzera");
 
         panel3.add(tartea1);
-        panel3.add(urrengoa);
-        panel3.add(erregistratu);
         panel3.add(itzuli1);
+        panel3.add(erregistratu);
+        panel3.add(urrengoa);
 
         itzuli1.addActionListener(new ActionListener() {
             @Override
@@ -290,9 +290,9 @@ public class Login extends JFrame {
         itzuli2 = new JButton("Atzera");
 
         panel5.add(tartea2);
-        panel5.add(login);
-        panel5.add(erregistratu);
         panel5.add(itzuli2);
+        panel5.add(erregistratu);
+        panel5.add(login);
 
         itzuli2.addActionListener(new ActionListener() {
             @Override
