@@ -6,12 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Index extends JFrame implements ActionListener {
-    private JPanel panel1, panel2, panel3, panel4;
-    private JPanel panel_2_3_4;
-    private JMenu menu1, menu2;
-    private JMenuItem mi1, mj1, mj2;
+    private JPanel panel1, panel2, panel3, panel4, panel5;
+    private JPanel panel_2_3_4_5;
+    private JMenu menu2;
+    private JMenuItem mj1, mj2, mj3;
     private JButton loginButton, erregistratzeko_Button;
     private CardLayout card1;
     private JFrame f_Index = new JFrame();
@@ -19,6 +23,15 @@ public class Index extends JFrame implements ActionListener {
     public static void main(String[] args){
 
         new Index().sortu();
+    }
+
+    public void konexioa(){
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+           Connection con = DriverManager.getConnection("jdbc:oracle:thin:@10.14.4.124:3306:ORCLCDB", "T5_2", "123");
+        }catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void sortu(){
         center();
@@ -47,7 +60,7 @@ public class Index extends JFrame implements ActionListener {
         logo_Irudia.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                card1.show(panel_2_3_4, "panel2");
+                card1.show(panel_2_3_4_5, "panel2");
             }
 
             @Override
@@ -74,12 +87,6 @@ public class Index extends JFrame implements ActionListener {
         panel1.add(logo_Irudia);
         // Lehengo menua
         JMenuBar mb = new JMenuBar();
-        menu1 = new JMenu("Zerbitzuak");
-        mb.add(menu1);
-
-        mi1 = new JMenuItem("Erlauntzen instalazioak");
-        menu1.add(mi1);
-        mi1.addActionListener(this);
 
         //bigarren menua
         menu2 = new JMenu("Produktuak");
@@ -89,22 +96,31 @@ public class Index extends JFrame implements ActionListener {
         mj1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card1.show(panel_2_3_4, "panel3");
+                card1.show(panel_2_3_4_5, "panel3");
             }
         });
         mj2 = new JMenuItem("Beste batzuk");
         mj2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card1.show(panel_2_3_4, "panel4");
+                card1.show(panel_2_3_4_5, "panel4");
+            }
+        });
+
+        mj3= new JMenuItem("Materiala");
+        mj3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                card1.show(panel_2_3_4_5, "panel5");
             }
         });
         menu2.add(mj1);
         menu2.add(mj2);
+        menu2.add(mj3);
         mj1.addActionListener(this);
         mj2.addActionListener(this);
 
-        mb.setBorder(new EmptyBorder(0,0,0,465));
+        mb.setBorder(new EmptyBorder(0,0,0,530));
         panel1.add(mb);
 
         //login botoia
@@ -140,8 +156,8 @@ public class Index extends JFrame implements ActionListener {
 
     public void center(){
         card1= new CardLayout();
-        panel_2_3_4= new JPanel();
-        panel_2_3_4.setLayout(card1);
+        panel_2_3_4_5= new JPanel();
+        panel_2_3_4_5.setLayout(card1);
 
         panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg");
@@ -178,21 +194,30 @@ public class Index extends JFrame implements ActionListener {
 
         panel4.add(bestak_sp);
 
-        panel_2_3_4.add(panel2,"panel2");
-        panel_2_3_4.add(panel3,"panel3");
-        panel_2_3_4.add(panel4, "panel4");
+        panel5= new JPanel(new BorderLayout());
 
-        f_Index.add(panel_2_3_4,BorderLayout.CENTER);
+
+        panel5.add(besteak_Lirudi, BorderLayout.NORTH);
+
+        String[][] material_datuak= {{"Julen","32","5435","Pertsona da."}};
+        String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
+        final JTable material_tabla= new JTable(material_datuak,kolumna_Izenak_material);
+        material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
+        JScrollPane material_sp= new JScrollPane(material_tabla);
+
+        panel5.add(material_sp);
+
+
+        panel_2_3_4_5.add(panel2,"panel2");
+        panel_2_3_4_5.add(panel3,"panel3");
+        panel_2_3_4_5.add(panel4, "panel4");
+        panel_2_3_4_5.add(panel5, "panel5");
+
+        f_Index.add(panel_2_3_4_5,BorderLayout.CENTER);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==mi1){
 
-        } else if (e.getSource()==mj1) {
-
-        } else if (e.getSource()==mj2) {
-
-        }
     }
 
 
