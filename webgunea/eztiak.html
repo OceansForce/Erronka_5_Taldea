@@ -4,33 +4,9 @@
         <script src="js/ezti.js"></script>
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body id="catalog_body" onload="kargatuTaula()">
-        <div id="container">
-            <h1>Katalogoa</h1>
-            
-            <input list="motak" id="mota"/>
-            <datalist id="motak">
-                <option>Miel de flores silvestres</option>
-                <option>Miel de azahar</option>
-                <option>Cera de abejas natural</option>
-                <option>Polen de flores</option>
-            </datalist>
-            <input type="button" value="Moten filtroa" onclick="mota()" />
-    
-            <input list="pisuak" id="pisua"/>
-            <datalist id="pisuak">
-                <option>100g</option>
-                <option>250g</option>
-                <option>500g</option>
-            </datalist>
-            <input type="button" value="Kategoria filtroa" onclick="kategoria()"/>
-            <input type="button" value="Ezabatu filtroak" onclick="kenduFiltroa()"/>
-            <div id="katalogoa">
-                
-            </div>
-            <input type="button" value="Checkout" onclick="checkout()"/>
-            <input type="button" value="Log Out" onclick="logout()" />
-            
-        </div>
+    <body>
+        <table id="products" onload="print_eztiak()">
+
+        </table>
     </body>
 </html>

@@ -4,6 +4,15 @@
 }
 
 
+header {
+    width: 100%;
+    height: 7vh;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -11,77 +20,16 @@ body {
 }
 
 nav {
+    
+    width: 80%;
     display: flex;
-    background-color: rgb(223, 160, 26);
-    min-height: 50px;
-
-}
-
-
-.nav-brand {
-    padding: 10px;
-    font-size: 1.6rem;
-    color: black;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.nav-links {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
-.nav-links ul li {
-    display: inline-block;
-    line-height: 50px;
-    margin: 0px 30px;
-    position: relative;
-}
-
-.nav-links ul li a {
-    text-decoration: none;
-    color: #f1f1f1;
-}
-
-.nav-links ul li ::after {
-    content: '';
-    width: 0%;
-    background-color: rgb(236, 213, 183);
-    height: 3px;
-    position: absolute;
-    bottom: 9px;
-    left: 0%;
-    transition: 0.5s;
-}
-
-.nav-links ul li:hover ::after {
-    width: 100%; 
-}
-
-.login-btn {
-    display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    background-color: #f34b09;
-    border: 1px solid rgb(0, 0, 0);
-    margin-top: 5px;
-    padding: 0 20px;
-    color: white;
-    margin-inline-start: auto;
-    margin-right: 30px;
-    cursor: pointer;
-    margin-bottom: 4px;
-
 }
-
-.login-btn:hover {
-    transform: scale(1.05);
+ul {
+    list-style-type: none;
+    padding: 0;
 }
-
-
-
-
-
 
 article {
     padding: 20px;
@@ -94,8 +42,14 @@ article {
 p {
  align-items: center;
 }
+li {
+    display: inline;
+    margin-right: 10px; /* optional, adds some spacing between list items */
+  }
 
-
+.menua {
+    display: flex;
+}
 
 #insta, #linkedin {
     height: 35px;

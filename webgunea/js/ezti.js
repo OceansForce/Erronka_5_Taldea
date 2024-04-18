@@ -25,33 +25,19 @@ function check_enter(event){
 }
 
 
-async function kargatuTaula(){
-    let datuak = await (await fetch('json/eztia.json')).json();
-    let taula = "<tr><thead><td>Irudia</td><td>Izena</td><td>Pisua</td><td>Prezioa</td></thead></tr>";
+async function print_eztiak(){
 
-    let mota = document.getElementById("mota").value;
-    let pisua = document.getElementById("pisua").value;
+    let eztiak = await(await fetch("json/eztia.json")).json();
 
-    for(i=0; i<datuak.length; i++){
-        let newLine = "<tr><td><img src='images/products/"+datuak[i].irudia+"' width=200px height=200px></td><td>"+datuak[i].mota+"</td><td>"+datuak[i].pisua+"</td><td>"+datuak[i].prezioa+"</td></tr>";
-        taula = taula + newLine;
+    let taula = "<tr><thead><td>Izena</td><td>Deskripzioa</td><td>Prezioa</td><td>Pisua</td><td>Irudia</td></thead></tr>";
+
+    let irudia = document.getElementById("irudia").value;
+
+    for(i=0; i<eztiak.length; i++){
+        let produktuak = "<tr><td>"+eztiak[i].izena+"</td><td>"+eztiak[i].deskripzioa+"</td><td>"+eztiak[i].prezioa+"</td><td><img src='media/products/"+eztiak[i].irudia+"'></td></tr>";
+        taula = taula + produktuak;
     }
 
-    document.querySelector("#katalogoa").innerHTML = taula;
-    localStorage.setItem("datuak", JSON.stringify(datuak));
-}
-
-
-async function mota(){
-    let datuak = await (await fetch('json/eztia.json')).json();
-    let taula = "<tr><thead><td>Irudia</td><td>Izena</td><td>Pisua</td><td>Prezioa</td></thead></tr>";
-    let mota = document.getElementById("mota").value;
-    for(i=0; i<datuak.mota; i++){
-        if(mota == datuak[i].mota){
-            let newLine = "<tr><td><img src='images/products/"+datuak[i].irudia+"' width=200px height=200px></td><td>"+datuak[i].mota+"</td><td>"+datuak[i].pisua+"</td><td>"+datuak[i].prezioa+"</td></tr>";
-            taula = taula + newLine;
-        }
-    }
-    document.querySelector("#katalogoa").innerHTML = taula;
-    localStorage.setItem("datuak", JSON.stringify(datuak));
+    document.querySelector("#products").innerHTML = taula;
+    localStorage.setItem("eztiak", JSON.stringify(eztiak));
 }

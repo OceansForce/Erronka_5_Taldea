@@ -127,7 +127,7 @@ public class Index extends JFrame implements ActionListener {
         erregistratzeko_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // new Erregistratu().sortu_Erregistratu();
+                new Erregistratu().sortu_Erregistratu();
                 f_Index.dispose();
             }
         });
