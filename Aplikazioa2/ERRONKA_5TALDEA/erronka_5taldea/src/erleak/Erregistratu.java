@@ -5,25 +5,32 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.text.ParseException;
+
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
-    private JPanel panel1, panel2;
-    private JTextField email, nan, telefonoa, izena, abizena, jaio_eguna;
+    private JPanel panel1, panel2, panel3;
+    private JTextField email, izena, abizena;
+    private JFormattedTextField nan, telefonoa,jaio_eguna;
+    private JLabel nan_textua, jaio_eguna_Textua;
+    private JButton login, erregistratu, atzera;
 
     public static void main(String[] args){
         new Erregistratu().sortu_Erregistratu();
     }
     public void sortu_Erregistratu() {
         nothr();
+        south();
         center();
         erregistratu_orria();
     }
     public void erregistratu_orria(){
         f_Erregistratu.setTitle("Erregistratu");
-        f_Erregistratu.setSize(400, 600);
+        f_Erregistratu.setSize(400, 400);
         f_Erregistratu.setVisible(true);
         f_Erregistratu.setLocationRelativeTo(null);
         f_Erregistratu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,11 +52,54 @@ public class Erregistratu {
         email= new JTextField(17);
         textuGrixa(email, "Emaila");
 
-        nan= new JTextField(17);
-        textuGrixa(nan,"NAN");
+        String emailT= email.getText();
 
-        telefonoa
+        if (!emailT.matches("-+@.+..+")){
+            System.out.println("MAL");
+        }
+
+        izena = new JTextField();
+        textuGrixa(izena, "Izena");
+
+        abizena = new JTextField();
+        textuGrixa(abizena, "Abizena");
+
+        try {
+            nan_textua= new JLabel("NAN:");
+            MaskFormatter nan_formatua= new MaskFormatter("########?");
+            nan = new JFormattedTextField(nan_formatua);
+            nan.setEnabled(false);
+
+            MaskFormatter telefono_formatua = new MaskFormatter("+34-###-###-###");
+            telefonoa = new JFormattedTextField(telefono_formatua);
+            telefonoa.setEnabled(false);
+
+            jaio_eguna_Textua= new JLabel("Jaio Eguna:");
+            MaskFormatter jaio_eguna_Formatua = new MaskFormatter("####/##/##");
+            jaio_eguna = new JFormattedTextField(jaio_eguna_Formatua);
+            jaio_eguna.setEnabled(false);
+
+        }catch (ParseException e){
+            System.err.println("MaskFormatter-ekin errorea. Erregistratu.cente()");
+        }
+        email.setBounds(90,10,210,20);
+        nan_textua.setBounds(90,38, 100, 10);
+        nan.setBounds(90,50,100,20);
+        telefonoa.setBounds(200, 50, 100, 20);
+        izena.setBounds(90,90,100,20);
+        abizena.setBounds(200,90,100,20);
+        jaio_eguna_Textua.setBounds(140, 116, 100, 15);
+        jaio_eguna.setBounds(140, 130, 100, 20);
+
         panel2.add(email);
+        panel2.add(nan_textua);
+        panel2.add(nan);
+        panel2.add(telefonoa);
+        panel2.add(izena);
+        panel2.add(abizena);
+        panel2.add(jaio_eguna_Textua);
+        panel2.add(jaio_eguna);
+
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
 
@@ -126,6 +176,45 @@ public class Erregistratu {
 
             }
         });
+    }
+    public void south(){
+        panel3 = new JPanel();
+        panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));
+
+        JLabel tartea1= new JLabel("                        ");
+        atzera = new JButton("Atzera");
+        erregistratu = new JButton("Erregistratu");
+        login = new JButton("Login");
+
+        panel3.add(tartea1);
+        panel3.add(atzera);
+        panel3.add(erregistratu);
+        panel3.add(login);
+
+        f_Erregistratu.add(panel3, BorderLayout.SOUTH);
+        atzera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Index().sortu();
+                f_Erregistratu.dispose();
+            }
+        });
+
+        erregistratu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //new Erregistratu().sortu_Erregistratu();
+            }
+        });
+
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Login().sortu_login();
+                f_Erregistratu.dispose();
+            }
+        });
+
     }
 
 }
