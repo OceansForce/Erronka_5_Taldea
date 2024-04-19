@@ -2,5 +2,17 @@
     {
         "erabiltzailea":"admin",
         "pasahitza":"admin"
+    },
+    {
+        "erabiltzailea":"Aritz",
+        "pasahitza":"lekube"
+    },
+    {
+        "erabiltzailea":"Julen",
+        "pasahitza":"mata"
+    },
+    {
+        "erabiltzailea":"Inigo",
+        "pasahitza":"arrizabalo"
     }
 ]
