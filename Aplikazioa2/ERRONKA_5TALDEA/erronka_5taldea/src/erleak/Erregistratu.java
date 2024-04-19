@@ -48,7 +48,7 @@ public class Erregistratu {
     }
 
     public void center(){
-        panel2= new JPanel();
+        panel2= new JPanel(null);
         email= new JTextField(17);
         textuGrixa(email, "Emaila");
 
