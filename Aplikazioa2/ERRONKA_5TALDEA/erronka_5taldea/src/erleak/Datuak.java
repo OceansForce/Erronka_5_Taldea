@@ -1,6 +1,9 @@
 package erleak;
 
+import erleak.*;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Datuak {
     static String ip_eta_portua="10.14.4.124";
@@ -190,5 +193,27 @@ public class Datuak {
             throw new RuntimeException(e);
         }
         return "Error";
+    }
+
+    public static ArrayList<Sozioak> sozio_denak(){
+        konexioa();
+        try {
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza");
+
+            ArrayList<Sozioak> sozio_arraya= new ArrayList<>();
+            ArrayList<Sozioak> proba = new ArrayList<Sozioak>();
+
+            Sozioak s1 = new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza"));
+            sozio_arraya.add(s1);
+            while (rs.next()){
+                sozio_arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
+                return sozio_arraya;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
     }
 }

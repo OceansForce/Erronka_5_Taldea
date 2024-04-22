@@ -35,19 +35,5 @@ public class Sozioak {
         this.pasahitza = pasahitza;
     }
 
-   /* public ArrayList<Sozioak> sozio_denak(){
-        konexioa();
-        try {
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza");
 
-            ArrayList<Sozioak> sozio_Arraya;
-
-            while (rs.next()){
-                //sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 }
