@@ -8,6 +8,10 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
 
 
 public class Login extends JFrame {
@@ -18,7 +22,7 @@ public class Login extends JFrame {
     private  JTextField txertatu_izen;
     private JPasswordField txertatupass;
     private JLabel mezua;
-    private String identifikatzaile;
+    private static String identifikatzaile;
 
     public void sortu_login(){
 
@@ -267,7 +271,8 @@ public class Login extends JFrame {
             // Pasahitza jarri al izateko, aldatzen du.
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!txertatu_izen.getText().isEmpty() && !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila")) {
+                txertatu_izen.getText();
+                if (!txertatu_izen.getText().isEmpty() || !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila") || Datuak.izena_jarri(txertatu_izen.getText())) {
                     identifikatzaile = txertatu_izen.getText();
                     card2.show(panel_3_5, "panel5");
                     card1.show(panel_1_4, "panel4");
@@ -313,9 +318,12 @@ public class Login extends JFrame {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (true){
-
-                }
+                String pasahitza1= new String(txertatupass.getPassword());
+                String pasahitza2= Datuak.pazaitza_jarri();
+                System.out.println(pasahitza2);
+                /*if (Datuak.pazaitza_jarri().equals(txertatupass.getPassword())){
+                    JOptionPane.showMessageDialog(null, "Logeatu egin zara","Ondo", JOptionPane.INFORMATION_MESSAGE);
+                }*/
             }
         });
 

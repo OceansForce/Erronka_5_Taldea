@@ -6,10 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Index extends JFrame implements ActionListener {
     private JPanel panel1, panel2, panel3, panel4, panel5;
@@ -25,14 +22,6 @@ public class Index extends JFrame implements ActionListener {
         new Index().sortu();
     }
 
-    public void konexioa(){
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-           Connection con = DriverManager.getConnection("jdbc:oracle:thin:@10.14.4.124:3306:ORCLCDB", "T5_2", "123");
-        }catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public void sortu(){
         center();
         north();
@@ -171,9 +160,9 @@ public class Index extends JFrame implements ActionListener {
         JLabel eztia_Lirudi= new JLabel(eztia_irudia_aldatuta);
         panel3.add(eztia_Lirudi, BorderLayout.NORTH);
 
-        String[][] ezti_datuak= {{"Julen","32","5435","Pertsona da."}};
+
         String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
-        final JTable ezti_tabla= new JTable(ezti_datuak,kolumna_Izenak_eztia);
+        final JTable ezti_tabla= new JTable(Datuak.center_3_txertatu(),kolumna_Izenak_eztia);
         ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
         JScrollPane ezti_sp= new JScrollPane(ezti_tabla);
 
@@ -186,9 +175,8 @@ public class Index extends JFrame implements ActionListener {
         JLabel besteak_Lirudi= new JLabel(besteak_irudia_aldatuta);
         panel4.add(besteak_Lirudi, BorderLayout.NORTH);
 
-        String[][] besteak_datuak= {{"Julen","32","5435","Pertsona da."}};
         String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
-        final JTable besteak_tabla= new JTable(besteak_datuak,kolumna_Izenak_besteak);
+        final JTable besteak_tabla= new JTable(Datuak.center_4_txertatu(),kolumna_Izenak_besteak);
         besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
         JScrollPane bestak_sp= new JScrollPane(besteak_tabla);
 
@@ -196,12 +184,14 @@ public class Index extends JFrame implements ActionListener {
 
         panel5= new JPanel(new BorderLayout());
 
+        ImageIcon besteak_irudia2 = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");
+        ImageIcon besteak_irudia_aldatuta2= new ImageIcon(besteak_irudia2.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
+        JLabel besteak_Lirudi2= new JLabel(besteak_irudia_aldatuta2);
+        panel5.add(besteak_Lirudi2, BorderLayout.NORTH);
 
-        panel5.add(besteak_Lirudi, BorderLayout.NORTH);
 
-        String[][] material_datuak= {{"Julen","32","5435","Pertsona da."}};
         String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
-        final JTable material_tabla= new JTable(material_datuak,kolumna_Izenak_material);
+        final JTable material_tabla= new JTable(Datuak.center_5_txertatu(),kolumna_Izenak_material);
         material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
         JScrollPane material_sp= new JScrollPane(material_tabla);
 
@@ -215,12 +205,11 @@ public class Index extends JFrame implements ActionListener {
 
         f_Index.add(panel_2_3_4_5,BorderLayout.CENTER);
     }
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
-
-
-
-
 }
