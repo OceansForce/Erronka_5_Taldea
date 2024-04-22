@@ -35,6 +35,7 @@ public class Sozioak {
         this.pasahitza = pasahitza;
     }
 
+<<<<<<< HEAD
    public static ArrayList<Sozioak> sozio_ArrayList(){
 
         try {
@@ -113,4 +114,7 @@ public class Sozioak {
     public String getPasahitza() {
         return pasahitza;
     }
+=======
+
+>>>>>>> 872299c446c65c592248cd8bb5b4951210612efc
 }
