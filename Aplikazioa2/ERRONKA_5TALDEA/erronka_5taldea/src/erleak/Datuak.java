@@ -1,6 +1,9 @@
 package erleak;
 
 import java.sql.*;
+import java.util.ArrayList;
+
+import static erleak.Sozioak.*;
 
 public class Datuak {
     static String ip_eta_portua="10.14.4.124";
@@ -159,36 +162,29 @@ public class Datuak {
         return false;
     }
     public static String pazaitza_jarri(){
-        try {
-            konexioa();
-            Statement stmt= Datuak.con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String pasahitza;
-                if (identifikatzaile_mota==1) {
+        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
 
-                    ResultSet rs1 = stmt.executeQuery("SELECT pasahitza FROM sozioak where sozio_izena='" + izena_login + "' and sozio_abizena='" + abizena_login + "'");
-                    pasahitza = rs1.getString("pasahitza");
-                    con.close();
-                    return pasahitza;
-                } else if (identifikatzaile_mota==2) {
-
-                    ResultSet rs2 = stmt.executeQuery("SELECT pasahitza FROM sozioak where nan='" + nan_login + "'");
-                    pasahitza = rs2.getString("pasahitza");
-                    con.close();
-                    return pasahitza;
-                } else if (identifikatzaile_mota==3) {
-                    ResultSet rs3 = stmt.executeQuery("SELECT pasahitza FROM sozioak where telefonoa=" + telefonoa_login);
-                    pasahitza = rs3.getString("pasahitza");
-                    con.close();
-                    return pasahitza;
-                } else if (identifikatzaile_mota==4) {
-                    ResultSet rs4 = stmt.executeQuery("SELECT pasahitza FROM sozioak where email='" + email_login + "'");
-                    pasahitza = rs4.getString("pasahitza");
-                    con.close();
-                    return pasahitza;
+        if(identifikatzaile_mota==1){
+            for (Sozioak s: sozio_lista) {
+                if (izena_login.equals(s.getSozio_izena()) && abizena_login.equals(s.getSozio_abizena())){
+                    return s.getPasahitza();
                 }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            }
+        } else if (identifikatzaile_mota==2){
+            for (Sozioak s: sozio_lista) {
+                if(s.getTelefonoa().equals()){
+                    
+                }
+            }
+        }else if (identifikatzaile_mota==3){
+            for (Sozioak s: sozio_lista) {
+
+            }
+        }else if (identifikatzaile_mota==4){
+            for (Sozioak s: sozio_lista) {
+
+            }
         }
-        return "Error";
+
     }
 }

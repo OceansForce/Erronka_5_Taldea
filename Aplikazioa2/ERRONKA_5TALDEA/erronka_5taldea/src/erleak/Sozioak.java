@@ -35,19 +35,82 @@ public class Sozioak {
         this.pasahitza = pasahitza;
     }
 
-   /* public ArrayList<Sozioak> sozio_denak(){
-        konexioa();
-        try {
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza");
+   public static ArrayList<Sozioak> sozio_ArrayList(){
 
-            ArrayList<Sozioak> sozio_Arraya;
+        try {
+            konexioa();
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
+
+            ArrayList<Sozioak> sozio_Arraya= new ArrayList<>();
 
             while (rs.next()){
-                //sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
+                sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
             }
+            con.close();
+            return sozio_Arraya;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
+    public static Sozioak[] sozio_Array(){
+
+        try {
+            konexioa();
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
+
+            rs.last();
+            Sozioak[] sozio_Arraya= new Sozioak[rs.getRow()];
+            rs.beforeFirst();
+
+            int x=0;
+            while (rs.next()){
+                sozio_Arraya[x]=(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
+                x++;
+            }
+            con.close();
+            return sozio_Arraya;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public String toString() {
+        return id_sozioa +
+                " || "+ id_zuzendaria +
+                " || "+ erle_kantitatea +
+                " || "+ kolmena_kantitatea +
+                " || "+ sozio_izena + '\'' +
+                " || "+ sozio_abizena + '\'' +
+                " || "+ nan + '\'' +
+                " || " + telefonoa + '\'' +
+                " || "+ jaiote_eguna +
+                " || "+ email + '\'' +
+                " || "+ pasahitza + '\'' + "\n";
+    }
+
+    public String getSozio_izena() {
+        return sozio_izena;
+    }
+
+    public String getSozio_abizena() {
+        return sozio_abizena;
+    }
+
+    public String getNan() {
+        return nan;
+    }
+
+    public String getTelefonoa() {
+        return telefonoa;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPasahitza() {
+        return pasahitza;
+    }
 }
