@@ -2,16 +2,15 @@ package erleak;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.sql.*;
 
+import static erleak.Login.*;
+
 public class Index extends JFrame implements ActionListener {
-    private JPanel panel1, panel2, panel3, panel4, panel5;
-    private JPanel panel_2_3_4_5;
-    private JMenu menu2;
+    private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7;
+    private JPanel centerPanela;
+    private JMenu menu2, menu3;
     private JMenuItem mj1, mj2, mj3;
     private JButton loginButton, erregistratzeko_Button;
     private CardLayout card1;
@@ -38,115 +37,121 @@ public class Index extends JFrame implements ActionListener {
     }
 
     public void north(){
-        panel1 = new JPanel();
-        panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));
 
+            panel1 = new JPanel();
+            panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
 
-        //Logoa
-        ImageIcon logoa= new ImageIcon(".\\Irudiak\\logo.png");
-        ImageIcon logoa_aldatuta= new ImageIcon(logoa.getImage().getScaledInstance(50, 35, java.awt.Image.SCALE_SMOOTH));
-        JLabel logo_Irudia= new JLabel(logoa_aldatuta);
-        logo_Irudia.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                card1.show(panel_2_3_4_5, "panel2");
-            }
+            //Logoa
+            ImageIcon logoa = new ImageIcon(".\\Irudiak\\logo.png");
+            ImageIcon logoa_aldatuta = new ImageIcon(logoa.getImage().getScaledInstance(50, 35, java.awt.Image.SCALE_SMOOTH));
+            JLabel logo_Irudia = new JLabel(logoa_aldatuta);
+            logo_Irudia.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    card1.show(centerPanela, "panel2");
+                }
+            });
 
-            @Override
-            public void mousePressed(MouseEvent e) {
+            panel1.add(logo_Irudia);
+            // Lehengo menua
+            JMenuBar mb = new JMenuBar();
 
-            }
+            //bigarren menua
+            menu2 = new JMenu("Produktuak");
+            mb.add(menu2);
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
+            mj1 = new JMenuItem("Eztia");
+            mj1.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    card1.show(centerPanela, "panel3");
+                }
+            });
+            mj2 = new JMenuItem("Beste batzuk");
+            mj2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    card1.show(centerPanela, "panel4");
+                }
+            });
 
-            }
+            mj3 = new JMenuItem("Materiala");
+            mj3.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    card1.show(centerPanela, "panel5");
+                }
+            });
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
+            menu2.add(mj1);
+            menu2.add(mj2);
+            menu2.add(mj3);
 
-            }
+            panel1.add(mb);
 
-            @Override
-            public void mouseExited(MouseEvent e) {
+        if (logeatua_dago) {
 
-            }
-        });
+            JMenuBar mb2 = new JMenuBar();
+            menu3= new JMenu("Sozioak eta Sozietateak");
+            mb2.add(menu3);
 
-        panel1.add(logo_Irudia);
-        // Lehengo menua
-        JMenuBar mb = new JMenuBar();
+            JMenuItem mj4= new JMenuItem("Sozioak");
+            mj4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    card1.show(centerPanela,"panel6");
+                }
+            });
+            JMenuItem mj5= new JMenuItem("Sozietateak");
+            mj5.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    card1.show(centerPanela,"panel7");
+                }
+            });
+            menu3.add(mj4);
+            menu3.add(mj5);
 
-        //bigarren menua
-        menu2 = new JMenu("Produktuak");
-        mb.add(menu2);
+            mb2.setBorder(new EmptyBorder(0, 0, 0, 380));
 
-        mj1 = new JMenuItem("Eztia");
-        mj1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                card1.show(panel_2_3_4_5, "panel3");
-            }
-        });
-        mj2 = new JMenuItem("Beste batzuk");
-        mj2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                card1.show(panel_2_3_4_5, "panel4");
-            }
-        });
+            panel1.add(mb2);
+        }else {
+            mb.setBorder(new EmptyBorder(0, 0, 0, 530));
+        }
+            //login botoia
+            ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");
+            ImageIcon pertsona_TamainaAldatuta = new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+            loginButton = new JButton("Login", pertsona_TamainaAldatuta);
+            loginButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new Login().sortu_login();
+                    f_Index.dispose();
+                }
+            });
+            //mb.add(Box.createHorizontalGlue()); //botoia eskuinaldean jarriko du
+            panel1.add(loginButton);
 
-        mj3= new JMenuItem("Materiala");
-        mj3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                card1.show(panel_2_3_4_5, "panel5");
-            }
-        });
-        menu2.add(mj1);
-        menu2.add(mj2);
-        menu2.add(mj3);
-        mj1.addActionListener(this);
-        mj2.addActionListener(this);
+            ImageIcon pertsonaIrudia2 = new ImageIcon(".\\Irudiak\\Erregistratu.png");
+            ImageIcon pertsona2_TamainaAldatuta = new ImageIcon(pertsonaIrudia2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+            erregistratzeko_Button = new JButton("Erregistratu", pertsona2_TamainaAldatuta);
+            erregistratzeko_Button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new Erregistratu().sortu_Erregistratu();
+                    f_Index.dispose();
+                }
+            });
 
-        mb.setBorder(new EmptyBorder(0,0,0,530));
-        panel1.add(mb);
+            panel1.add(erregistratzeko_Button);
 
-        //login botoia
-        ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");
-        ImageIcon pertsona_TamainaAldatuta= new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
-        loginButton = new JButton("Login", pertsona_TamainaAldatuta);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Login().sortu_login();
-                f_Index.dispose();
-            }
-        });
-        //mb.add(Box.createHorizontalGlue()); //botoia eskuinaldean jarriko du
-        panel1.add(loginButton);
-
-        ImageIcon pertsonaIrudia2 = new ImageIcon(".\\Irudiak\\Erregistratu.png");
-        ImageIcon pertsona2_TamainaAldatuta= new ImageIcon(pertsonaIrudia2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
-        erregistratzeko_Button = new JButton("Erregistratu", pertsona2_TamainaAldatuta);
-        erregistratzeko_Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Erregistratu().sortu_Erregistratu();
-                f_Index.dispose();
-            }
-        });
-
-        panel1.add(erregistratzeko_Button);
-
-        f_Index.add(panel1, BorderLayout.NORTH);
-
+            f_Index.add(panel1, BorderLayout.NORTH);
     }
 
     public void center(){
         card1= new CardLayout();
-        panel_2_3_4_5= new JPanel();
-        panel_2_3_4_5.setLayout(card1);
+        centerPanela= new JPanel();
+        centerPanela.setLayout(card1);
 
         panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg");
@@ -197,13 +202,44 @@ public class Index extends JFrame implements ActionListener {
 
         panel5.add(material_sp);
 
+        panel6 = new JPanel(new BorderLayout());
 
-        panel_2_3_4_5.add(panel2,"panel2");
-        panel_2_3_4_5.add(panel3,"panel3");
-        panel_2_3_4_5.add(panel4, "panel4");
-        panel_2_3_4_5.add(panel5, "panel5");
+        ImageIcon sozio_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");
+        ImageIcon sozio_irudia_aldatuta= new ImageIcon(sozio_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
+        JLabel sozio_Lirudi= new JLabel(sozio_irudia_aldatuta);
+        panel6.add(sozio_Lirudi, BorderLayout.NORTH);
 
-        f_Index.add(panel_2_3_4_5,BorderLayout.CENTER);
+
+        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};
+        final JTable sozio_tabla= new JTable(Sozioak.sozio_Array(),kolumna_Izenak_sozio);
+        sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
+        JScrollPane sozio_sp= new JScrollPane(sozio_tabla);
+
+        panel6.add(sozio_sp, BorderLayout.CENTER);
+
+        panel7 = new JPanel(new BorderLayout());
+
+        ImageIcon sozietateak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");
+        ImageIcon sozietateak_irudia_aldatuta= new ImageIcon(sozietateak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
+        JLabel sozietateak_Lirudi= new JLabel(sozietateak_irudia_aldatuta);
+        panel7.add(sozietateak_Lirudi, BorderLayout.NORTH);
+
+
+        String[] kolumna_Izenak_sozietateak= {"ID", "Izena","Herrialdea"};
+        final JTable sozietateak_tabla= new JTable(Datuak.center_3_txertatu(),kolumna_Izenak_sozietateak);
+        sozietateak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
+        JScrollPane sozietateak_sp= new JScrollPane(sozietateak_tabla);
+
+        panel7.add(sozietateak_sp, BorderLayout.CENTER);
+
+        centerPanela.add(panel2,"panel2");
+        centerPanela.add(panel3,"panel3");
+        centerPanela.add(panel4, "panel4");
+        centerPanela.add(panel5, "panel5");
+        centerPanela.add(panel6, "panel6");
+        centerPanela.add(panel7, "panel7");
+
+        f_Index.add(centerPanela,BorderLayout.CENTER);
     }
 
 

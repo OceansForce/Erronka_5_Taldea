@@ -4,18 +4,15 @@ import erleak.*;
 
 import java.sql.*;
 import java.util.ArrayList;
-<<<<<<< HEAD
 
 import static erleak.Sozioak.*;
-=======
->>>>>>> 872299c446c65c592248cd8bb5b4951210612efc
 
 public class Datuak {
     static String ip_eta_portua="10.14.4.124";
     static String erabiltzailea="T5_2";
     static String pazaitza="123";
     static String datu_base_IZENA="ORCLCDB";
-    static final String url= "jdbc:oracle:thin:@"+ip_eta_portua+":1521"+":"+datu_base_IZENA;
+    static final String url= "jdbc:oracle:thin:@"+ip_eta_portua+":1521:"+datu_base_IZENA;
     static final String driver= "oracle.jdbc.driver.OracleDriver";
     public static Connection con;
 
@@ -168,7 +165,6 @@ public class Datuak {
     }
     public static String pazaitza_jarri(){
         ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
-
         if(identifikatzaile_mota==1){
             for (Sozioak s: sozio_lista) {
                 if (izena_login.equals(s.getSozio_izena()) && abizena_login.equals(s.getSozio_abizena())){
@@ -177,41 +173,24 @@ public class Datuak {
             }
         } else if (identifikatzaile_mota==2){
             for (Sozioak s: sozio_lista) {
-                if(s.getTelefonoa().equals()){
-                    
+                if(nan_login.equals(s.getNan())){
+                    return s.getPasahitza();
                 }
             }
         }else if (identifikatzaile_mota==3){
             for (Sozioak s: sozio_lista) {
-
+                if (telefonoa_login.equals(s.getTelefonoa())){
+                    return s.getPasahitza();
+                }
             }
         }else if (identifikatzaile_mota==4){
             for (Sozioak s: sozio_lista) {
-
+                if (email_login.equals(s.getEmail())){
+                    return s.getPasahitza();
+                }
             }
         }
-
+        return "ERROREA pazaitza_jarri";
     }
 
-    public static ArrayList<Sozioak> sozio_denak(){
-        konexioa();
-        try {
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza");
-
-            ArrayList<Sozioak> sozio_arraya= new ArrayList<>();
-            ArrayList<Sozioak> proba = new ArrayList<Sozioak>();
-
-            Sozioak s1 = new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza"));
-            sozio_arraya.add(s1);
-            while (rs.next()){
-                sozio_arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
-                return sozio_arraya;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
-    }
 }

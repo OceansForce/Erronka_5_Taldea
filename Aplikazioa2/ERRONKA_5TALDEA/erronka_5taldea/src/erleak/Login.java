@@ -22,7 +22,9 @@ public class Login extends JFrame {
     private  JTextField txertatu_izen;
     private JPasswordField txertatupass;
     private JLabel mezua;
-    private static String identifikatzaile;
+    static String identifikatzaile;
+
+    static boolean logeatua_dago= true;
 
     public void sortu_login(){
 
@@ -271,8 +273,7 @@ public class Login extends JFrame {
             // Pasahitza jarri al izateko, aldatzen du.
             @Override
             public void actionPerformed(ActionEvent e) {
-                txertatu_izen.getText();
-                if (!txertatu_izen.getText().isEmpty() || !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila") || Datuak.izena_jarri(txertatu_izen.getText())) {
+                if (!txertatu_izen.getText().isEmpty() && !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila") && Datuak.izena_jarri(txertatu_izen.getText())) {
                     identifikatzaile = txertatu_izen.getText();
                     card2.show(panel_3_5, "panel5");
                     card1.show(panel_1_4, "panel4");
@@ -319,11 +320,12 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String pasahitza1= new String(txertatupass.getPassword());
-                String pasahitza2= Datuak.pazaitza_jarri();
-                System.out.println(pasahitza2);
-                /*if (Datuak.pazaitza_jarri().equals(txertatupass.getPassword())){
-                    JOptionPane.showMessageDialog(null, "Logeatu egin zara","Ondo", JOptionPane.INFORMATION_MESSAGE);
-                }*/
+                if (Datuak.pazaitza_jarri().equals(pasahitza1)){
+                    JOptionPane.showMessageDialog(null, "Logeatu egin zara");
+                    logeatua_dago= true;
+                    new Index().sortu();
+                    f_login.dispose();
+                }
             }
         });
 

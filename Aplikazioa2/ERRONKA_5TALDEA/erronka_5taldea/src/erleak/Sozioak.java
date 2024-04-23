@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import static erleak.Datuak.*;
 
@@ -35,7 +36,6 @@ public class Sozioak {
         this.pasahitza = pasahitza;
     }
 
-<<<<<<< HEAD
    public static ArrayList<Sozioak> sozio_ArrayList(){
 
         try {
@@ -54,7 +54,7 @@ public class Sozioak {
             throw new RuntimeException(e);
         }
     }
-    public static Sozioak[] sozio_Array(){
+    public static String[][] sozio_Array(){
 
         try {
             konexioa();
@@ -62,16 +62,43 @@ public class Sozioak {
             ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
 
             rs.last();
-            Sozioak[] sozio_Arraya= new Sozioak[rs.getRow()];
+            String[][] sozio_Arraya= new String[rs.getRow()][11];
             rs.beforeFirst();
 
             int x=0;
             while (rs.next()){
-                sozio_Arraya[x]=(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
+                sozio_Arraya[x][0]=rs.getString("id_sozioa");
+                sozio_Arraya[x][1]=rs.getString("id_zuzendaria");
+                sozio_Arraya[x][2]=rs.getString("erle_kantitatea");
+                sozio_Arraya[x][3]=rs.getString("kolmena_kantitatea");
+                sozio_Arraya[x][4]=rs.getString("sozio_izena");
+                sozio_Arraya[x][5]=rs.getString("sozio_abizena");
+                sozio_Arraya[x][6]=rs.getString("nan");
+                sozio_Arraya[x][7]=rs.getString("telefonoa");
+                sozio_Arraya[x][8]=rs.getString("jaiote_eguna");
+                sozio_Arraya[x][9]=rs.getString("email");
+                sozio_Arraya[x][10]=rs.getString("pasahitza");
                 x++;
             }
             con.close();
             return sozio_Arraya;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static HashSet<Integer> zuzendariak(){
+        try {
+            konexioa();
+            HashSet<Integer> id_zuzendariak= new HashSet<>();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("SELECT id_zuzendaria FROM sozioak");
+
+            while (rs.next()){
+                id_zuzendariak.add(rs.getInt("id_zuzendaria"));
+            }
+            con.close();
+            System.out.println(id_zuzendariak);
+            return id_zuzendariak;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -114,7 +141,5 @@ public class Sozioak {
     public String getPasahitza() {
         return pasahitza;
     }
-=======
 
->>>>>>> 872299c446c65c592248cd8bb5b4951210612efc
 }
