@@ -3,26 +3,28 @@
   <xsl:template match="/Produktuak">
       <html>
           <head>
-              <title>Produktuak</title>
+              <title>Produktuen lista</title>
           </head>
           <body>
               <center>
-                  <table>
-                      <tr>
-                          <td>ID_produktua<xsl:value-of select="Data_record/ID_produktua"/></td>
-                      </tr>
-                      <tr>
-                          <td>Kantitatea<xsl:value-of select="Data_record/Kantitatea"/></td>
-                      </tr>
-                      <tr>
-                          <td>Produktu_mota<xsl:value-of select="Data_record/Produktu_mota"/></td>
-                      </tr>
-                      <tr>
-                          <td>Prezioa<xsl:value-of select="Data_record/Prezioa"/></td>
-                      </tr>
-                      <tr>
-                          <td>Deskribapena<xsl:value-of select="Data_record/Deskribapena"/></td>
-                      </tr>
+                  <table border="1">
+                      <xsl:for-each select="Data_record">
+                          <tr>
+                              <td>l<label>ID_produktua<xsl:value-of select="ID_produktua"/></label></td>
+                          </tr>
+                          <tr>
+                              <td><label>Kantitatea<xsl:value-of select="Kantitatea"/></label></td>
+                          </tr>
+                          <tr>
+                              <td><label>Produktu_mota<xsl:value-of select="Produktu_mota"/></label></td>
+                          </tr>
+                          <tr>
+                              <td><label>Prezioa<xsl:value-of select="Prezioa"/></label></td>
+                          </tr>
+                          <tr>
+                              <td><label>Deskribapena<xsl:value-of select="Deskribapena"/></label></td>
+                          </tr>
+                      </xsl:for-each>
                   </table>
               </center>
           </body>

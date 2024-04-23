@@ -1,4 +1,4 @@
-﻿<!ELEMENT Sozioak (Data_record+)>
+<!ELEMENT Sozioak (Data_record+)>
 <!ELEMENT Data_record (Id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, Telefonoa, jaiote_eguna, email, pasahitza)>
 <!ELEMENT Id_sozioa (#PCDATA)>
 <!ELEMENT id_zuzendaria (#PCDATA)>
