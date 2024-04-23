@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:/D:/Arrizabalo/ERRONKA/Erronka_5_Taldea/XML/DB_XML/EZTIA.xsl"?>
+<EZTIA>
+  <DATA_RECORD>
+    <ID_PRODUKTUA>1</ID_PRODUKTUA>
+    <ID_LOREA>1</ID_LOREA>
+    <EZTIA_MOTA>manuka</EZTIA_MOTA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_PRODUKTUA>3</ID_PRODUKTUA>
+    <ID_LOREA>3</ID_LOREA>
+    <EZTIA_MOTA>akaziko</EZTIA_MOTA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_PRODUKTUA>7</ID_PRODUKTUA>
+    <ID_LOREA>9</ID_LOREA>
+    <EZTIA_MOTA>eukalipto</EZTIA_MOTA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_PRODUKTUA>2</ID_PRODUKTUA>
+    <ID_LOREA>8</ID_LOREA>
+    <EZTIA_MOTA>erromero</EZTIA_MOTA>
+  </DATA_RECORD>
+  <DATA_RECORD>
+    <ID_PRODUKTUA>9</ID_PRODUKTUA>
+    <ID_LOREA>4</ID_LOREA>
+    <EZTIA_MOTA>lavanda</EZTIA_MOTA>
+  </DATA_RECORD>
+</EZTIA>

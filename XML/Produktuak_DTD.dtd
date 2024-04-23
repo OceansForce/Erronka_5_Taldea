@@ -1,4 +1,4 @@
-﻿<!ELEMENT Produktuak (Data_record+)>
+<!ELEMENT Produktuak (Data_record+)>
 <!ELEMENT Data_record (Id_produktua, Kantitatea, Produktu_mota, Prezioa, Deskribapena)>
 <!ELEMENT Id_produktua (#PCDATA)>
 <!ELEMENT Kantitatea (#PCDATA)>
