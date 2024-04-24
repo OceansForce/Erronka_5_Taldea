@@ -18,11 +18,11 @@ public class Sozioak {
     private String sozio_abizena;
     private String nan;
     private String telefonoa;
-    private Date jaiote_eguna;
+    private String jaiote_eguna;
     private String email;
     private String pasahitza;
 
-    public Sozioak(int id_sozioa, int id_zuzendaria, long erle_kantitatea, long kolmena_kantitatea, String sozio_izena, String sozio_abizena, String nan, String telefonoa, Date jaiote_eguna, String email, String pasahitza) {
+    public Sozioak(int id_sozioa, int id_zuzendaria, long erle_kantitatea, long kolmena_kantitatea, String sozio_izena, String sozio_abizena, String nan, String telefonoa, String jaiote_eguna, String email, String pasahitza) {
         this.id_sozioa = id_sozioa;
         this.id_zuzendaria = id_zuzendaria;
         this.erle_kantitatea = erle_kantitatea;
@@ -46,7 +46,7 @@ public class Sozioak {
             ArrayList<Sozioak> sozio_Arraya= new ArrayList<>();
 
             while (rs.next()){
-                sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getDate("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
+                sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getString("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
             }
             con.close();
             return sozio_Arraya;
@@ -99,9 +99,40 @@ public class Sozioak {
             con.close();
             System.out.println(id_zuzendariak);
             return id_zuzendariak;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static int id_atera(){
+            ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
+            if(identifikatzaile_mota==1){
+                for (Sozioak s: sozio_lista) {
+                    if (izena_login.equals(s.getSozio_izena()) && abizena_login.equals(s.getSozio_abizena())){
+                        return s.getId_sozioa();
+                    }
+                }
+            } else if (identifikatzaile_mota==2){
+                for (Sozioak s: sozio_lista) {
+                    if(nan_login.equals(s.getNan())){
+                        return s.getId_sozioa();
+                    }
+                }
+            }else if (identifikatzaile_mota==3){
+                for (Sozioak s: sozio_lista) {
+                    if (telefonoa_login.equals(s.getTelefonoa())){
+                        return s.getId_sozioa();
+                    }
+                }
+            }else if (identifikatzaile_mota==4){
+                for (Sozioak s: sozio_lista) {
+                    if (email_login.equals(s.getEmail())){
+                        return s.getId_sozioa();
+                    }
+                }
+            }
+            return 0;
     }
     @Override
     public String toString() {
@@ -116,6 +147,10 @@ public class Sozioak {
                 " || "+ jaiote_eguna +
                 " || "+ email + '\'' +
                 " || "+ pasahitza + '\'' + "\n";
+    }
+
+    public int getId_sozioa() {
+        return id_sozioa;
     }
 
     public String getSozio_izena() {
@@ -142,4 +177,15 @@ public class Sozioak {
         return pasahitza;
     }
 
+    public long getErle_kantitatea() {
+        return erle_kantitatea;
+    }
+
+    public long getKolmena_kantitatea() {
+        return kolmena_kantitatea;
+    }
+
+    public String getJaiote_eguna() {
+        return jaiote_eguna;
+    }
 }

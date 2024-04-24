@@ -18,7 +18,7 @@ public class Datuak {
 
 
     public static int identifikatzaile_mota;
-    public static String izena_login, abizena_login, nan_login, telefonoa_login, email_login;
+    public static String izena_login, abizena_login, nan_login, telefonoa_login, email_login, jaio_eguna_login, erle_kantitatea_login, kolmena_kantitatea_login, pazaitza_login, id_sozioa_login;
 
     public static void konexioa(){
         try {
@@ -122,44 +122,66 @@ public class Datuak {
     }
 
     public static boolean izena_jarri(String identifikatzailea){
-        try {
-            konexioa();
-            Statement stmt= Datuak.con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("SELECT sozio_izena, sozio_abizena, nan, telefonoa,email FROM sozioak");
-            while (rs.next()) {
-                String izen_abizen= " "+rs.getString("sozio_izena")+" "+rs.getString("sozio_abizena");
-                if (izen_abizen.equals(identifikatzailea) || (" "+rs.getString("nan")).equals(identifikatzailea) || (" "+rs.getString("telefonoa")).equals(identifikatzailea) || (" "+rs.getString("email")).equals(identifikatzailea)) {
-                    if (izen_abizen.equals(identifikatzailea)){
+        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
+        for (Sozioak s: sozio_lista) {
+            String izen_abizen = s.getSozio_izena()+" "+s.getSozio_abizena();
+            if ((" "+izen_abizen).equals(identifikatzailea) || izen_abizen.equals(identifikatzailea)){
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                jaio_eguna_login= s.getJaiote_eguna();
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
 
-                        izena_login= rs.getString("sozio_izena");
-                        abizena_login= rs.getString("sozio_abizena");
+                identifikatzaile_mota=1;
+                return true;
+            } else if ((" " + s.getNan()).equals(identifikatzailea) || s.getNan().equals(identifikatzailea)) {
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                jaio_eguna_login= s.getJaiote_eguna();
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
 
-                        identifikatzaile_mota=1;
-                    }else if ((" "+rs.getString("nan")).equals(identifikatzailea)){
+                identifikatzaile_mota=2;
+                return true;
+            } else if ((" " + s.getTelefonoa()).equals(identifikatzailea) || s.getTelefonoa().equals(identifikatzailea)) {
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                jaio_eguna_login= s.getJaiote_eguna();
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
 
-                        nan_login=rs.getString("nan");
+                identifikatzaile_mota=3;
+                return true;
+            }else if ((" " + s.getEmail()).equals(identifikatzailea) || s.getEmail().equals(identifikatzailea)) {
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                jaio_eguna_login= s.getJaiote_eguna();
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
 
-                        identifikatzaile_mota=2;
-                    }else if ((" "+rs.getString("telefonoa")).equals(identifikatzailea)) {
-
-                        telefonoa_login= rs.getString("telefonoa");
-
-                        identifikatzaile_mota=3;
-                    } else if ((" "+rs.getString("email")).equals(identifikatzailea)) {
-
-                        email_login= rs.getString("email");
-
-                        identifikatzaile_mota=4;
-                    }
-                    con.close();
-                    return true;
-                }else {
-                    con.close();
-                    return false;
-                }
+                identifikatzaile_mota=4;
+                return true;
             }
-        } catch (SQLException e ) {
-            return false;
         }
         return false;
     }

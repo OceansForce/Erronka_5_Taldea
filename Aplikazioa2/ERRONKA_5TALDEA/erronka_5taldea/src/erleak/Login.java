@@ -7,6 +7,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,8 @@ public class Login extends JFrame {
     private JLabel mezua;
     static String identifikatzaile;
 
-    static boolean logeatua_dago= true;
+    static boolean logeatua_dago= false;
+    static boolean zuzendaria_da= false;
 
     public void sortu_login(){
 
@@ -63,30 +65,10 @@ public class Login extends JFrame {
 
         txertatu_izen = new JTextField(17);
         txertatu_izen.setEnabled(false);
-        txertatu_izen.addMouseListener(new MouseListener() {
+        txertatu_izen.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 txertatu_izen.setEnabled(true);
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
             }
         });
 
@@ -148,30 +130,10 @@ public class Login extends JFrame {
         txertatupass = new JPasswordField(18);
         txertatupass.setEnabled(false);
         txertatupass.setEchoChar((char) 0);
-        txertatupass.addMouseListener(new MouseListener() {
+        txertatupass.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 txertatupass.setEnabled(true);
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
             }
         });
 
@@ -323,6 +285,15 @@ public class Login extends JFrame {
                 if (Datuak.pazaitza_jarri().equals(pasahitza1)){
                     JOptionPane.showMessageDialog(null, "Logeatu egin zara");
                     logeatua_dago= true;
+                    if (Sozioak.zuzendariak().contains(Sozioak.id_atera())){
+                        zuzendaria_da=true;
+                    }
+                    try {
+                        FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");
+                        erabiltzaila.write(Sozioak.id_atera());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     new Index().sortu();
                     f_login.dispose();
                 }

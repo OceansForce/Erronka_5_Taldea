@@ -12,7 +12,7 @@ public class Index extends JFrame implements ActionListener {
     private JPanel centerPanela;
     private JMenu menu2, menu3;
     private JMenuItem mj1, mj2, mj3;
-    private JButton loginButton, erregistratzeko_Button;
+    private JButton loginButton, erregistratzeko_Button, sesioButton;
     private CardLayout card1;
     private JFrame f_Index = new JFrame();
 
@@ -90,34 +90,51 @@ public class Index extends JFrame implements ActionListener {
             panel1.add(mb);
 
         if (logeatua_dago) {
+            boolean atera= true;
+            if(zuzendaria_da) {
+                JMenuBar mb2 = new JMenuBar();
+                menu3 = new JMenu("Sozioak eta Sozietateak");
+                mb2.add(menu3);
 
-            JMenuBar mb2 = new JMenuBar();
-            menu3= new JMenu("Sozioak eta Sozietateak");
-            mb2.add(menu3);
+                JMenuItem mj4 = new JMenuItem("Sozioak");
+                mj4.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        card1.show(centerPanela, "panel6");
+                    }
+                });
+                JMenuItem mj5 = new JMenuItem("Sozietateak");
+                mj5.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        card1.show(centerPanela, "panel7");
+                    }
+                });
+                menu3.add(mj4);
+                menu3.add(mj5);
 
-            JMenuItem mj4= new JMenuItem("Sozioak");
-            mj4.addActionListener(new ActionListener() {
+                mb2.setBorder(new EmptyBorder(0, 0, 0, 520));
+                panel1.add(mb2);
+                atera=false;
+            }
+            ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");
+            ImageIcon pertsona_TamainaAldatuta = new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH));
+            sesioButton = new JButton(pertsona_TamainaAldatuta);
+            sesioButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    card1.show(centerPanela,"panel6");
+                    new Sesioa().sortu_login();
+                    f_Index.dispose();
                 }
             });
-            JMenuItem mj5= new JMenuItem("Sozietateak");
-            mj5.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    card1.show(centerPanela,"panel7");
-                }
-            });
-            menu3.add(mj4);
-            menu3.add(mj5);
 
-            mb2.setBorder(new EmptyBorder(0, 0, 0, 380));
+            if (atera) {
+                mb.setBorder(new EmptyBorder(0, 0, 0, 668));
+            }
+            panel1.add(sesioButton);
 
-            panel1.add(mb2);
         }else {
-            mb.setBorder(new EmptyBorder(0, 0, 0, 530));
-        }
+            mb.setBorder(new EmptyBorder(0, 0, 0, 512));
             //login botoia
             ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");
             ImageIcon pertsona_TamainaAldatuta = new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
@@ -129,7 +146,7 @@ public class Index extends JFrame implements ActionListener {
                     f_Index.dispose();
                 }
             });
-            //mb.add(Box.createHorizontalGlue()); //botoia eskuinaldean jarriko du
+
             panel1.add(loginButton);
 
             ImageIcon pertsonaIrudia2 = new ImageIcon(".\\Irudiak\\Erregistratu.png");
@@ -144,7 +161,7 @@ public class Index extends JFrame implements ActionListener {
             });
 
             panel1.add(erregistratzeko_Button);
-
+        }
             f_Index.add(panel1, BorderLayout.NORTH);
     }
 
@@ -226,7 +243,7 @@ public class Index extends JFrame implements ActionListener {
 
 
         String[] kolumna_Izenak_sozietateak= {"ID", "Izena","Herrialdea"};
-        final JTable sozietateak_tabla= new JTable(Datuak.center_3_txertatu(),kolumna_Izenak_sozietateak);
+        final JTable sozietateak_tabla= new JTable(Sozietateak.sozietate_Arraya(),kolumna_Izenak_sozietateak);
         sozietateak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
         JScrollPane sozietateak_sp= new JScrollPane(sozietateak_tabla);
 
