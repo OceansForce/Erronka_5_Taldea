@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Loreak">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Data_record"/>
+          <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_lorea" type="xs:int" />
+                <xs:element name="ID_erlea" type="xs:int" />
+                <xs:element name="Izena" type="xs:string" />
+                <xs:element name="Kokapena" type="xs:string" />
+                <xs:element name="Kantitatea" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

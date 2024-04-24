@@ -1,0 +1,8 @@
+<!ELEMENT Fabrikatzailea (Data_record+)>
+<!ELEMENT Data_record (id_fabrikatzailea, izena, hiria, helbidea, telefonoa, korreoa)>
+<!ELEMENT id_fabrikatzailea (#PCDATA)>
+<!ELEMENT izena (#PCDATA)>
+<!ELEMENT hiria (#PCDATA)>
+<!ELEMENT helbidea (#PCDATA)>
+<!ELEMENT telefonoa (#PCDATA)>
+<!ELEMENT korreoa (#PCDATA)>

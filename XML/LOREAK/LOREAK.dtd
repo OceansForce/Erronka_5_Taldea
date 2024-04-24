@@ -1,0 +1,7 @@
+<!ELEMENT Loreak (Data_record+)>
+<!ELEMENT Data_record (id_lorea, id_erlea, izena, kokapena, kantitatea)>
+<!ELEMENT id_lorea (#PCDATA)>
+<!ELEMENT id_erlea (#PCDATA)>
+<!ELEMENT izena (#PCDATA)>
+<!ELEMENT kokapena (#PCDATA)>
+<!ELEMENT kantitatea (#PCDATA)>
