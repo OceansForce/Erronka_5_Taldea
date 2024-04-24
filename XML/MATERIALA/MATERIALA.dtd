@@ -1,0 +1,8 @@
+<!ELEMENT Materiala (Data_record+)>
+<!ELEMENT Data_record (id_materiala, id_fabrikatzailea, materiala_izena, prezioa, deskribapena, kantitatea)>
+<!ELEMENT id_materiala (#PCDATA)>
+<!ELEMENT id_fabrikatzailea (#PCDATA)>
+<!ELEMENT materiala_izena (#PCDATA)>
+<!ELEMENT prezioa (#PCDATA)>
+<!ELEMENT deskribapena (#PCDATA)>
+<!ELEMENT kantitatea (#PCDATA)>

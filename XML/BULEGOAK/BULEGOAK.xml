@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="file:/D:/Arrizabalo/ERRONKA/Erronka_5_Taldea/XML/DB_XML/BULEGOAK.xsl"?><BULEGOAK>
+<?xml-stylesheet type="text/xsl" href="file:/D:/Arrizabalo/ERRONKA/Erronka_5_Taldea/XML/BULEGOAK/BULEGOAK.xsl"?>
+<BULEGOAK>
   <DATA_RECORD>
     <ID_BULEGOA>1</ID_BULEGOA>
     <ID_ASOZIAZIOA>2</ID_ASOZIAZIOA>

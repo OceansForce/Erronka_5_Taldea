@@ -1,0 +1,5 @@
+<!ELEMENT Eztia (Data_record+)>
+<!ELEMENT Data_record (id_produktua, id_lorea, eztia_mota)>
+<!ELEMENT id_produktua (#PCDATA)>
+<!ELEMENT id_lorea (#PCDATA)>
+<!ELEMENT eztia_mota (#PCDATA)>

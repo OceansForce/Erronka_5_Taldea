@@ -1,0 +1,5 @@
+<!ELEMENT Bulegoak (Data_record+)>
+<!ELEMENT Data_record (id_bulegoa, id_asoziazioa, herria)>
+<!ELEMENT id_bulegoa (#PCDATA)>
+<!ELEMENT id_asoziazioa (#PCDATA)>
+<!ELEMENT herria (#PCDATA)>

@@ -1,0 +1,5 @@
+<!ELEMENT Asoziazioak (Data_record+)>
+<!ELEMENT Data_record(id_asoziazioa, asoziazio_izena, herrialdea)>
+<!ELEMENT id_asoziazioa (#PCDATA)>
+<!ELEMENT asoziazio_izena (#PCDATA)>
+<!ELEMENT herrialdea (#PCDATA)>
