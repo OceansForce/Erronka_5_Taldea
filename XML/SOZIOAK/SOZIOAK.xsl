@@ -45,11 +45,7 @@
                                     <td><label>Pasahitza: <xsl:value-of select="PASAHITZA"/></label></td>
                                 </tr>       
                             </table>
-                        
-
-
                         </div>
-                      
                   </xsl:for-each>
               </center>
           </body>
