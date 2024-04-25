@@ -132,7 +132,8 @@ public class Datuak {
                 abizena_login= s.getSozio_abizena();
                 nan_login= s.getNan();
                 telefonoa_login=s.getTelefonoa();
-                jaio_eguna_login= s.getJaiote_eguna();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
                 pazaitza_login=s.getPasahitza();
@@ -146,7 +147,8 @@ public class Datuak {
                 abizena_login= s.getSozio_abizena();
                 nan_login= s.getNan();
                 telefonoa_login=s.getTelefonoa();
-                jaio_eguna_login= s.getJaiote_eguna();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
                 pazaitza_login=s.getPasahitza();
@@ -160,7 +162,8 @@ public class Datuak {
                 abizena_login= s.getSozio_abizena();
                 nan_login= s.getNan();
                 telefonoa_login=s.getTelefonoa();
-                jaio_eguna_login= s.getJaiote_eguna();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
                 pazaitza_login=s.getPasahitza();
@@ -174,7 +177,8 @@ public class Datuak {
                 abizena_login= s.getSozio_abizena();
                 nan_login= s.getNan();
                 telefonoa_login=s.getTelefonoa();
-                jaio_eguna_login= s.getJaiote_eguna();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
                 pazaitza_login=s.getPasahitza();

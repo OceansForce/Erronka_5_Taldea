@@ -2,15 +2,12 @@ package erleak;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.MaskFormatter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
+import java.io.*;
+import java.sql.*;
 
 import static erleak.Login.*;
 import static erleak.Datuak.*;
@@ -20,7 +17,7 @@ public class Sesioa {
     private JPanel panel1, panel2, panel3;
     private JButton itzuli1, itxi_sesioa, editatu, gorde;
     private JTextField email, izena, abizena, nan, telefonoa, jaio_eguna, erle_kantitatea, kolmena_kantitatea, pazaitza, pazaitza2;
-    private JLabel email_textua, izena_textua, abizena_textua, nan_textua, telefonoa_textua, jaio_eguna_Textua, erle_kantitatea_textua, kolmena_kantitatea_textua,pazaitza_textua, pazaitza2_textua;
+    private JLabel email_textua, izena_textua, abizena_textua, nan_textua, telefonoa_textua, jaio_eguna_Textua, erle_kantitatea_textua, kolmena_kantitatea_textua,pazaitza_textua, pazaitza2_textua, pazaitz_mezua;
     public  void sortu_login(){
         nothr();
         center();
@@ -68,6 +65,7 @@ public class Sesioa {
         pazaitza2_textua= new JLabel("Pazaitza Egiaztatua");
         pazaitza2= new JTextField();
         gorde= new JButton("Gorde Aldaketak");
+        pazaitz_mezua= new JLabel("");
 
         email_textua.setBounds(90,58,100, 10);
         email.setBounds(90,70,210,20);
@@ -90,6 +88,7 @@ public class Sesioa {
         pazaitza2_textua.setBounds(145, 296, 200, 15);
         pazaitza2.setBounds(145, 310, 100, 20);
         gorde.setBounds(92, 350, 200, 25);
+        pazaitz_mezua.setBounds(92, 390, 200, 25);
 
         email.setText(email_login);
         izena.setText(izena_login);
@@ -135,29 +134,44 @@ public class Sesioa {
         panel1.add(pazaitza2_textua);
         panel1.add(pazaitza2);
         panel1.add(gorde);
+        panel1.add(pazaitz_mezua);
 
         gorde.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    konexioa();
-                    PreparedStatement update= con.prepareStatement("UPDATE sozioak SET email=?, nan=?, Telefonoa=?, sozio_izena=?, sozio_abizena=?, kolmena_kantitatea=?, erle_kantitatea=?, jaiote_eguna=?, pasahitza=? WHERE id_sozioa=?");
-                    update.setString(1, email.getText());
-                    update.setString(2, nan.getText());
-                    update.setString(3, telefonoa.getText());
-                    update.setString(4, izena.getText());
-                    update.setString(5, abizena.getText());
-                    update.setString(6, kolmena_kantitatea.getText());
-                    update.setString(7, erle_kantitatea.getText());
-                    update.setString(8, jaio_eguna.getText());
-                    update.setString(9, pazaitza2.getText());
-                    update.setString(10, id_sozioa_login);
+                    if (pazaitza.getText().equals(pazaitza2.getText())) {
+                        pazaitz_mezua.setText(" ");
+                        konexioa();
+                        PreparedStatement update = con.prepareStatement("UPDATE sozioak SET email=?, nan=?, Telefonoa=?, sozio_izena=?, sozio_abizena=?, kolmena_kantitatea=?, erle_kantitatea=?, jaiote_eguna=?, pasahitza=? WHERE id_sozioa=?");
+                        update.setString(1, email.getText());
+                        update.setString(2, nan.getText());
+                        update.setLong(3, Long.parseLong(telefonoa.getText()));
+                        update.setString(4, izena.getText());
+                        update.setString(5, abizena.getText());
+                        update.setLong(6, Long.parseLong(kolmena_kantitatea.getText()));
+                        update.setLong(7, Long.parseLong(erle_kantitatea.getText()));
+                        update.setDate(8, Date.valueOf(jaio_eguna.getText()));
+                        update.setString(9, pazaitza2.getText());
+                        update.setString(10, id_sozioa_login);
 
-                    int exekutatu = update.executeUpdate();
-                    System.out.println("Filas actualizadas: " + exekutatu);
+                        update.executeUpdate();
 
-                    // Confirmar la transacción
-                    con.commit();
+                        email.setEnabled(false);
+                        izena.setEnabled(false);
+                        abizena.setEnabled(false);
+                        nan.setEnabled(false);
+                        telefonoa.setEnabled(false);
+                        jaio_eguna.setEnabled(false);
+                        erle_kantitatea.setEnabled(false);
+                        kolmena_kantitatea.setEnabled(false);
+                        pazaitza.setEnabled(false);
+                        pazaitza2.setEnabled(false);
+                        gorde.setEnabled(false);
+                    }else {
+                        pazaitz_mezua.setText("Pasahitzak ez dira berdinak");
+                        pazaitz_mezua.setForeground(Color.red);
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     throw new RuntimeException("Error al ejecutar la actualización", ex);
@@ -178,7 +192,7 @@ public class Sesioa {
 
         itzuli1 = new JButton("Atzera");
         editatu= new JButton("Editatu");
-        itxi_sesioa= new JButton("Sesio Itxi");
+        itxi_sesioa= new JButton("Sesioa Itxi");
 
         panel3.add(tartea1);
         panel3.add(itzuli1);
@@ -212,20 +226,28 @@ public class Sesioa {
         itxi_sesioa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                logeatua_dago=false;
-                zuzendaria_da=false;
+                try {
+                    logeatua_dago=false;
+                    zuzendaria_da=false;
 
-                id_sozioa_login= null;
-                email_login=null;
-                izena_login= null;
-                abizena_login= null;
-                nan_login= null;
-                telefonoa_login=null;
-                jaio_eguna_login= null;
-                erle_kantitatea_login= null;
-                kolmena_kantitatea_login= null;
-                pazaitza_login=null;
+                    id_sozioa_login= null;
+                    email_login=null;
+                    izena_login= null;
+                    abizena_login= null;
+                    nan_login= null;
+                    telefonoa_login=null;
+                    jaio_eguna_login= null;
+                    erle_kantitatea_login= null;
+                    kolmena_kantitatea_login= null;
+                    pazaitza_login=null;
 
+
+                    FileWriter fw= new FileWriter(".\\sesio.txt");
+                    fw.write(Integer.toString(0));
+                    fw.close();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 f_sesio.dispose();
                 new Index().sortu();
             }

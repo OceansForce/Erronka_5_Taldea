@@ -1,6 +1,5 @@
 package erleak;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -86,6 +85,24 @@ public class Sozioak {
             throw new RuntimeException(e);
         }
     }
+    public static HashSet<Integer> id_sozioak(){
+        try {
+            konexioa();
+            HashSet<Integer> id_sozioak= new HashSet<>();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("SELECT id_sozioa FROM sozioak");
+
+            while (rs.next()){
+                id_sozioak.add(rs.getInt("id_sozioa"));
+            }
+            con.close();
+            System.out.println(id_sozioak);
+            return id_sozioak;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static HashSet<Integer> zuzendariak(){
         try {
             konexioa();
@@ -133,6 +150,27 @@ public class Sozioak {
                 }
             }
             return 0;
+    }
+
+    public static int id_hadiena(){
+        try {
+            konexioa();
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery("SELECT MAX(id_sozioa) FROM SOZIOAK");
+            return rs.getInt("MAX(id_sozioa)")+1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String nan_atera(int id){
+        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
+            for (Sozioak s: sozio_lista) {
+                if (id == s.getId_sozioa()){
+                    return s.getNan();
+                }
+            }
+        return "ERROR";
     }
     @Override
     public String toString() {

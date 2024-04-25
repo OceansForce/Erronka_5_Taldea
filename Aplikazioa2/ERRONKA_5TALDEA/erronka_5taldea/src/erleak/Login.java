@@ -1,18 +1,12 @@
 package erleak;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Arrays;
 
 
 public class Login extends JFrame {
@@ -105,15 +99,11 @@ public class Login extends JFrame {
                     }
                 });
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
-
             }
-
             @Override
             public void changedUpdate(DocumentEvent e) {
-
             }
         });
 
@@ -178,15 +168,11 @@ public class Login extends JFrame {
                     }
                 });
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
-
             }
-
             @Override
             public void changedUpdate(DocumentEvent e) {
-
             }
         });
 
@@ -247,8 +233,6 @@ public class Login extends JFrame {
             }
         });
 
-
-
         panel5 = new JPanel();
         panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));
 
@@ -290,7 +274,8 @@ public class Login extends JFrame {
                     }
                     try {
                         FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");
-                        erabiltzaila.write(Sozioak.id_atera());
+                        erabiltzaila.write(Integer.toString(Sozioak.id_atera()));
+                        erabiltzaila.close();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

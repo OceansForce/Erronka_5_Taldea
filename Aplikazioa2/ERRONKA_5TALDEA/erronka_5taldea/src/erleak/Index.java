@@ -3,6 +3,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 import static erleak.Login.*;
@@ -17,8 +21,22 @@ public class Index extends JFrame implements ActionListener {
     private JFrame f_Index = new JFrame();
 
     public static void main(String[] args){
-
-        new Index().sortu();
+        try {
+            int ida=0;
+            BufferedReader irakurri = new BufferedReader(new FileReader(".\\sesio.txt"));
+            ida= Integer.parseInt(irakurri.readLine());
+            if (Sozioak.id_sozioak().contains(ida)){
+                logeatua_dago=true;
+                if (Sozioak.zuzendariak().contains(ida)){
+                    zuzendaria_da=true;
+                }
+                Datuak.izena_jarri(Sozioak.nan_atera(ida));
+            }
+            new Index().sortu();
+            System.out.println(Sozioak.id_hadiena());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void sortu(){
