@@ -9,7 +9,8 @@ import java.awt.event.*;
 import java.sql.*;
 import java.text.ParseException;
 import static erleak.Datuak.*;
-
+import static erleak.Sozioak.*;
+import static erleak.Login.*;
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
     private JPanel panel1, panel2, panel3;
@@ -53,7 +54,7 @@ public class Erregistratu {
 
         String emailT= email.getText();
 
-        if (!emailT.matches("-+@.+..+")){
+        if (!emailT.matches(".+@.+..+")){
             System.out.println("MAL");
         }
 
@@ -198,13 +199,21 @@ public class Erregistratu {
                 izena_login= izena.getText();
                 abizena_login= abizena.getText();
                 nan_login= nan.getText();
-                telefonoa_login= telefonoa.getText();
+                telefonoa_login=  telefonoa.getText();
                 jaio_eguna_login= jaio_eguna.getText();
+                Date jaio_eguna_date= Date.valueOf(jaio_eguna.getText());
                 pazaitza_login= pazaitza2.getText();
                 try {
+                    konexioa();
                     PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
-                            "VALUES (,3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+telefonoa_login+", TO_DATE('"+jaio_eguna_login+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"');");
+                            "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"')");
                     insert.executeUpdate();
+                    logeatua_dago=true;
+                    if (Sozioak.zuzendariak().contains(id_atera(nan_login))){
+                        zuzendaria_da=true;
+                    }
+                    f_Erregistratu.dispose();
+                    new Index().sortu();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

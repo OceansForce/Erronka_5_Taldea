@@ -269,12 +269,12 @@ public class Login extends JFrame {
                 if (Datuak.pazaitza_jarri().equals(pasahitza1)){
                     JOptionPane.showMessageDialog(null, "Logeatu egin zara");
                     logeatua_dago= true;
-                    if (Sozioak.zuzendariak().contains(Sozioak.id_atera())){
+                    if (Sozioak.zuzendariak().contains(Sozioak.id_atera_login())){
                         zuzendaria_da=true;
                     }
                     try {
                         FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");
-                        erabiltzaila.write(Integer.toString(Sozioak.id_atera()));
+                        erabiltzaila.write(Integer.toString(Sozioak.id_atera_login()));
                         erabiltzaila.close();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);

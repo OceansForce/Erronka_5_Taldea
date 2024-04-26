@@ -96,7 +96,6 @@ public class Sozioak {
                 id_sozioak.add(rs.getInt("id_sozioa"));
             }
             con.close();
-            System.out.println(id_sozioak);
             return id_sozioak;
 
         } catch (SQLException e) {
@@ -114,7 +113,6 @@ public class Sozioak {
                 id_zuzendariak.add(rs.getInt("id_zuzendaria"));
             }
             con.close();
-            System.out.println(id_zuzendariak);
             return id_zuzendariak;
 
         } catch (SQLException e) {
@@ -122,7 +120,7 @@ public class Sozioak {
         }
     }
 
-    public static int id_atera(){
+    public static int id_atera_login(){
             ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
             if(identifikatzaile_mota==1){
                 for (Sozioak s: sozio_lista) {
@@ -151,13 +149,22 @@ public class Sozioak {
             }
             return 0;
     }
-
+    public static int id_atera(String nan){
+        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
+            for (Sozioak s: sozio_lista) {
+                if (nan.equals(s.getNan())){
+                    return s.getId_sozioa();
+                }
+            }
+        return 0;
+    }
     public static int id_hadiena(){
         try {
             konexioa();
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_sozioa) FROM SOZIOAK");
-            return rs.getInt("MAX(id_sozioa)")+1;
+            rs.next();
+            return rs.getInt(1)+1;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
