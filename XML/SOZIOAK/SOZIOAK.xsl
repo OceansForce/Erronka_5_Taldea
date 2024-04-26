@@ -12,7 +12,7 @@
                 .header .cover {
                     position: relative;
                     margin-bottom: 70px;
-                    height: 200px; /* Altura del encabezado */
+                    height: 200px; 
                     background: cover;
                     width: 100%;
                 }
@@ -66,9 +66,6 @@
                     box-sizing: border-box;
                     padding: 0 5px;
                 }
-
-
-
           </style>
           <body>
           <div class="header">
