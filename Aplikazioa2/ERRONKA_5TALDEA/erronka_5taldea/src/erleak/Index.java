@@ -33,7 +33,6 @@ public class Index extends JFrame implements ActionListener {
                 Datuak.izena_jarri(Sozioak.nan_atera(ida));
             }
             new Index().sortu();
-            System.out.println(Sozioak.id_hadiena());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
