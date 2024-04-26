@@ -1,22 +1,21 @@
 package erleak;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
+import java.sql.*;
 import java.text.ParseException;
+import static erleak.Datuak.*;
 
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
     private JPanel panel1, panel2, panel3;
-    private JTextField email, izena, abizena;
+    private JTextField email, izena, abizena, pazaitza, pazaitza2;
     private JFormattedTextField nan, telefonoa,jaio_eguna;
-    private JLabel nan_textua, jaio_eguna_Textua;
+    private JLabel nan_textua, jaio_eguna_Textua,pazaitza_textua,pazaitza2_textua;
     private JButton login, erregistratu, atzera;
 
     public static void main(String[] args){
@@ -64,20 +63,27 @@ public class Erregistratu {
         abizena = new JTextField();
         textuGrixa(abizena, "Abizena");
 
+        pazaitza_textua= new JLabel("Pazaitza");
+        pazaitza= new JTextField();
+        enable_false_true(pazaitza);
+
+        pazaitza2_textua= new JLabel("Pazaitza Egiaztatua");
+        pazaitza2= new JTextField();
+        enable_false_true(pazaitza2);
         try {
             nan_textua= new JLabel("NAN:");
             MaskFormatter nan_formatua= new MaskFormatter("########?");
             nan = new JFormattedTextField(nan_formatua);
-            nan.setEnabled(false);
+            enable_false_true(nan);
 
-            MaskFormatter telefono_formatua = new MaskFormatter("+34-###-###-###");
+            MaskFormatter telefono_formatua = new MaskFormatter("34#########");
             telefonoa = new JFormattedTextField(telefono_formatua);
-            telefonoa.setEnabled(false);
+            enable_false_true(telefonoa);
 
             jaio_eguna_Textua= new JLabel("Jaio Eguna:");
-            MaskFormatter jaio_eguna_Formatua = new MaskFormatter("####/##/##");
+            MaskFormatter jaio_eguna_Formatua = new MaskFormatter("####-##-##");
             jaio_eguna = new JFormattedTextField(jaio_eguna_Formatua);
-            jaio_eguna.setEnabled(false);
+            enable_false_true(jaio_eguna);
 
         }catch (ParseException e){
             System.err.println("MaskFormatter-ekin errorea. Erregistratu.cente()");
@@ -90,6 +96,10 @@ public class Erregistratu {
         abizena.setBounds(200,90,100,20);
         jaio_eguna_Textua.setBounds(140, 116, 100, 15);
         jaio_eguna.setBounds(140, 130, 100, 20);
+        pazaitza_textua.setBounds(135, 156, 200, 15);
+        pazaitza.setBounds(135, 170, 110, 20);
+        pazaitza2_textua.setBounds(135, 196, 200, 15);
+        pazaitza2.setBounds(135, 210, 110, 20);
 
         panel2.add(email);
         panel2.add(nan_textua);
@@ -99,37 +109,22 @@ public class Erregistratu {
         panel2.add(abizena);
         panel2.add(jaio_eguna_Textua);
         panel2.add(jaio_eguna);
+        panel2.add(pazaitza_textua);
+        panel2.add(pazaitza);
+        panel2.add(pazaitza2_textua);
+        panel2.add(pazaitza2);
 
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
 
     public void textuGrixa(JTextField kuadroa , String textua){
         kuadroa.setEnabled(false);
-        kuadroa.addMouseListener(new MouseListener() {
+        kuadroa.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 kuadroa.setEnabled(true);
             }
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
         });
 
         kuadroa.setForeground(Color.GRAY);
@@ -165,15 +160,11 @@ public class Erregistratu {
                     }
                 });
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
-
             }
-
             @Override
             public void changedUpdate(DocumentEvent e) {
-
             }
         });
     }
@@ -203,7 +194,20 @@ public class Erregistratu {
         erregistratu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //new Erregistratu().sortu_Erregistratu();
+                email_login= email.getText();
+                izena_login= izena.getText();
+                abizena_login= abizena.getText();
+                nan_login= nan.getText();
+                telefonoa_login= telefonoa.getText();
+                jaio_eguna_login= jaio_eguna.getText();
+                pazaitza_login= pazaitza2.getText();
+                try {
+                    PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
+                            "VALUES (,3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+telefonoa_login+", TO_DATE('"+jaio_eguna_login+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"');");
+                    insert.executeUpdate();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -212,6 +216,17 @@ public class Erregistratu {
             public void actionPerformed(ActionEvent e) {
                 new Login().sortu_login();
                 f_Erregistratu.dispose();
+            }
+        });
+
+    }
+
+    public void  enable_false_true(JTextField a){
+        a.setEnabled(false);
+        a.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                a.setEnabled(true);
             }
         });
 
