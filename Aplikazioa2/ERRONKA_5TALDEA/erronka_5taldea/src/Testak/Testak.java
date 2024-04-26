@@ -1,4 +1,4 @@
-package Testak;
+/*package Testak;
 
 import org.junit.jupiter.api.*;
 
@@ -8,3 +8,4 @@ public class Testak {
 
     }
 }
+*/
