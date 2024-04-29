@@ -276,8 +276,6 @@ public class Index extends JFrame implements ActionListener {
         f_Index.add(centerPanela,BorderLayout.CENTER);
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
