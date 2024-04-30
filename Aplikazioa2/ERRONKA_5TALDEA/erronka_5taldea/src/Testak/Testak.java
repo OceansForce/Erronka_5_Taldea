@@ -1,4 +1,4 @@
-/*package Testak;
+package Testak;
 
 import erleak.*;
 import org.junit.jupiter.api.*;
@@ -73,8 +73,4 @@ public class Testak {
 
 
 }
-<<<<<<< HEAD
-*/
-=======
 
->>>>>>> aac3f9e33dfe7a06501e21bf1a67003244d9d687
