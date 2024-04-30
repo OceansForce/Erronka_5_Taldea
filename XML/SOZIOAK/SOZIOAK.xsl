@@ -5,7 +5,7 @@
           <head>
               <title>Sozioak</title>
           </head>
-          <style>
+            <style>
                 * {
                     font-family: Calibri;
                 }
@@ -66,7 +66,7 @@
                     box-sizing: border-box;
                     padding: 0 5px;
                 }
-          </style>
+            </style>
           <body>
           <div class="header">
             <img src="../IRUDIAK/cover.PNG" alt="" class="cover"/>
