@@ -113,6 +113,7 @@ public class Sozioak {
                 id_zuzendariak.add(rs.getInt("id_zuzendaria"));
             }
             con.close();
+            System.out.println(id_zuzendariak);
             return id_zuzendariak;
 
         } catch (SQLException e) {

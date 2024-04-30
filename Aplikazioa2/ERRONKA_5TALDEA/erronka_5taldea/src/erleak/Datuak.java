@@ -120,7 +120,6 @@ public class Datuak {
             throw new RuntimeException(e);
         }
     }
-
     public static boolean izena_jarri(String identifikatzailea){
         ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
         for (Sozioak s: sozio_lista) {
@@ -217,6 +216,26 @@ public class Datuak {
             }
         }
         return "ERROREA pazaitza_jarri";
+    }
+    public static void datuak_eguneratu(String email, String nan, long telefonoa, String izena, String abizena, long kolmena_kantitatea, long erle_kantitatea, Date jaio_eguna, String pazaitza){
+        try {
+            konexioa();
+            PreparedStatement update = con.prepareStatement("UPDATE sozioak SET email=?, nan=?, Telefonoa=?, sozio_izena=?, sozio_abizena=?, kolmena_kantitatea=?, erle_kantitatea=?, jaiote_eguna=?, pasahitza=? WHERE id_sozioa=?");
+            update.setString(1, email);
+            update.setString(2, nan);
+            update.setLong(3, telefonoa);
+            update.setString(4, izena);
+            update.setString(5, abizena);
+            update.setLong(6, kolmena_kantitatea);
+            update.setLong(7, erle_kantitatea);
+            update.setDate(8, jaio_eguna);
+            update.setString(9, pazaitza);
+            update.setString(10, id_sozioa_login);
+
+            update.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar la actualización", e);
+        }
     }
 
 }

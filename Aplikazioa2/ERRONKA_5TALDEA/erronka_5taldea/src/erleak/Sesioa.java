@@ -139,23 +139,10 @@ public class Sesioa {
         gorde.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
                     if (pazaitza.getText().equals(pazaitza2.getText())) {
                         pazaitz_mezua.setText(" ");
-                        konexioa();
-                        PreparedStatement update = con.prepareStatement("UPDATE sozioak SET email=?, nan=?, Telefonoa=?, sozio_izena=?, sozio_abizena=?, kolmena_kantitatea=?, erle_kantitatea=?, jaiote_eguna=?, pasahitza=? WHERE id_sozioa=?");
-                        update.setString(1, email.getText());
-                        update.setString(2, nan.getText());
-                        update.setLong(3, Long.parseLong(telefonoa.getText()));
-                        update.setString(4, izena.getText());
-                        update.setString(5, abizena.getText());
-                        update.setLong(6, Long.parseLong(kolmena_kantitatea.getText()));
-                        update.setLong(7, Long.parseLong(erle_kantitatea.getText()));
-                        update.setDate(8, Date.valueOf(jaio_eguna.getText()));
-                        update.setString(9, pazaitza2.getText());
-                        update.setString(10, id_sozioa_login);
 
-                        update.executeUpdate();
+                        datuak_eguneratu(email.getText(), nan.getText(), Long.parseLong(telefonoa.getText()), izena.getText(), abizena.getText(), Long.parseLong(kolmena_kantitatea.getText()), Long.parseLong(erle_kantitatea.getText()), Date.valueOf(jaio_eguna.getText()), pazaitza2.getText());
 
                         email.setEnabled(false);
                         izena.setEnabled(false);
@@ -172,10 +159,6 @@ public class Sesioa {
                         pazaitz_mezua.setText("Pasahitzak ez dira berdinak");
                         pazaitz_mezua.setForeground(Color.red);
                     }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    throw new RuntimeException("Error al ejecutar la actualización", ex);
-                }
             }
         });
 
