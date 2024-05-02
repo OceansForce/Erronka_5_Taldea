@@ -5,7 +5,8 @@ import erleak.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-import static erleak.Sozioak.*;
+import erleak.Sozioak.*;
+import static erleak.Sozioak.sozio_ArrayList;
 
 public class Datuak {
     static String ip_eta_portua="10.14.4.124";
