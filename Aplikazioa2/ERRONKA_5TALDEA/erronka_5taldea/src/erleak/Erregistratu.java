@@ -64,11 +64,11 @@ public class Erregistratu {
         abizena = new JTextField();
         textuGrixa(abizena, "Abizena");
 
-        pazaitza_textua= new JLabel("Pazaitza");
+        pazaitza_textua= new JLabel("Pasahitza");
         pazaitza= new JTextField();
         enable_false_true(pazaitza);
 
-        pazaitza2_textua= new JLabel("Pazaitza Egiaztatua");
+        pazaitza2_textua= new JLabel("Pasahitza Egiaztatua");
         pazaitza2= new JTextField();
         enable_false_true(pazaitza2);
         try {
