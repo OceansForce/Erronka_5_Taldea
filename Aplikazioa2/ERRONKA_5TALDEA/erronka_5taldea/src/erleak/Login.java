@@ -22,40 +22,40 @@ public class Login extends JFrame {
     static boolean logeatua_dago= false;
     static boolean zuzendaria_da= false;
 
-    public void sortu_login(){
+    public void sortu_login(){// login display-a sortu.
 
-        nothr();
+        north();
         center1();
         south();
         login_orria();
     }
-    public void login_orria(){
-        f_login.setTitle("Login");
-        f_login.setSize(400, 250);
-        f_login.setVisible(true);
-        f_login.setLocationRelativeTo(null);
-        f_login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f_login.setLayout(new BorderLayout());
+    public void login_orria(){ //login orria sortu.
+        f_login.setTitle("Login");// Display-ari titulua jarri
+        f_login.setSize(400, 250);// Display-aren tamaina ezarri
+        f_login.setVisible(true);// display-a ikusgarria egin.
+        f_login.setLocationRelativeTo(null);// display nagusia pantailaren erdialdean egertarazi.
+        f_login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// display-a ixterakoan.
+        f_login.setLayout(new BorderLayout());// logina border layout ezarri.
 
     }
 
-    public void nothr(){
-        panel2 = new JPanel();
-        panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));
-        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");
-        ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));
-        JLabel irudia = new JLabel(fondo_aldatuta);
-        panel2.add(irudia);
-        f_login.add(panel2, BorderLayout.NORTH);
+    public void north(){
+        panel2 = new JPanel();// panel2 jpanela sortu.
+        panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));// panel2 box layout mota x ardatzean bihurtu.
+        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irdudia aldagaian kargatu.
+        ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina aldatu.
+        JLabel irudia = new JLabel(fondo_aldatuta);// label bat sortu irudiarekin
+        panel2.add(irudia); // sortutako label-a panel2-an gehitu.
+        f_login.add(panel2, BorderLayout.NORTH);// panel2-a display-aren goian jarri.
     }
 
 
     public void center1(){
-        card1= new CardLayout();
-        panel_1_4 = new JPanel();
-        panel_1_4.setLayout(card1);
+        card1= new CardLayout();// card bat sortu.
+        panel_1_4 = new JPanel();// panel bat sortu.
+        panel_1_4.setLayout(card1); // panela cardlayout bihurtu.
 
-        panel1 = new JPanel(null);
+        panel1 = new JPanel(null);// panel bat sortu.
 
         txertatu_izen = new JTextField(17);
         txertatu_izen.setEnabled(false);

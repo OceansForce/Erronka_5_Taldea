@@ -184,92 +184,94 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
             panel1.add(erregistratzeko_Button);// display nagusiara erregistratu botoia gehitu.
         }
-            f_Index.add(panel1, BorderLayout.NORTH); // Sortutako panel guztia 
+            f_Index.add(panel1, BorderLayout.NORTH); // Sortutako menu guztiak eta argazkiak panelaren goiko aldea txertatu.
     }
 
     public void center(){
-        card1= new CardLayout();
-        centerPanela= new JPanel();
-        centerPanela.setLayout(card1);
+        card1= new CardLayout();// card berri bat sortu.
+        centerPanela= new JPanel();// panela sortu.
+        centerPanela.setLayout(card1);// panelari card mota ezarri.
 
-        panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg");
-        JLabel portada= new JLabel(portada_irudia);
-        panel2.add(portada);
+        panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));// panel bat sortu erdian kokatzen dena.
+        ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg"); // irudia aldagaian kargatu.
+        JLabel portada= new JLabel(portada_irudia);// irudia jlabel batean jarri.
+        panel2.add(portada);// irudia erdian kokatutako panelean txertatu.
 
-        panel3 = new JPanel(new BorderLayout());
+        panel3 = new JPanel(new BorderLayout());// panel bat sortu borderlayout motakoa.
 
-        ImageIcon eztia_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");
-        ImageIcon eztia_irudia_aldatuta= new ImageIcon(eztia_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
-        JLabel eztia_Lirudi= new JLabel(eztia_irudia_aldatuta);
-        panel3.add(eztia_Lirudi, BorderLayout.NORTH);
-
-
-        String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
-        final JTable ezti_tabla= new JTable(Datuak.center_3_txertatu(),kolumna_Izenak_eztia);
-        ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
-        JScrollPane ezti_sp= new JScrollPane(ezti_tabla);
-
-        panel3.add(ezti_sp, BorderLayout.CENTER);
-
-        panel4= new JPanel(new BorderLayout());
-
-        ImageIcon besteak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");
-        ImageIcon besteak_irudia_aldatuta= new ImageIcon(besteak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
-        JLabel besteak_Lirudi= new JLabel(besteak_irudia_aldatuta);
-        panel4.add(besteak_Lirudi, BorderLayout.NORTH);
-
-        String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
-        final JTable besteak_tabla= new JTable(Datuak.center_4_txertatu(),kolumna_Izenak_besteak);
-        besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
-        JScrollPane bestak_sp= new JScrollPane(besteak_tabla);
-
-        panel4.add(bestak_sp);
-
-        panel5= new JPanel(new BorderLayout());
-
-        ImageIcon besteak_irudia2 = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");
-        ImageIcon besteak_irudia_aldatuta2= new ImageIcon(besteak_irudia2.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
-        JLabel besteak_Lirudi2= new JLabel(besteak_irudia_aldatuta2);
-        panel5.add(besteak_Lirudi2, BorderLayout.NORTH);
+        ImageIcon eztia_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean txertatu.
+        ImageIcon eztia_irudia_aldatuta= new ImageIcon(eztia_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina jarri.
+        JLabel eztia_Lirudi= new JLabel(eztia_irudia_aldatuta); // irudia jlabel batean jarri.
+        panel3.add(eztia_Lirudi, BorderLayout.NORTH);// aurreko jlabel-a  sortutako panelaren goiko partean jarri.
 
 
-        String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
-        final JTable material_tabla= new JTable(Datuak.center_5_txertatu(),kolumna_Izenak_material);
-        material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
-        JScrollPane material_sp= new JScrollPane(material_tabla);
+        String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"}; // String-en array bat hasieratu datu bateko taularen eremuen izenekin.
+        final JTable ezti_tabla= new JTable(Datuak.center_3_txertatu(),kolumna_Izenak_eztia);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
+        ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taulari tamaina ezarri.
+        JScrollPane ezti_sp= new JScrollPane(ezti_tabla);//taulan scroll bat sortu.
 
-        panel5.add(material_sp);
+        panel3.add(ezti_sp, BorderLayout.CENTER);// sortutako taula eta scroll-a panelaren erdian txertatu.
 
-        panel6 = new JPanel(new BorderLayout());
+        panel4= new JPanel(new BorderLayout());// Panel berri bat sortu.
 
-        ImageIcon sozio_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");
-        ImageIcon sozio_irudia_aldatuta= new ImageIcon(sozio_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
-        JLabel sozio_Lirudi= new JLabel(sozio_irudia_aldatuta);
-        panel6.add(sozio_Lirudi, BorderLayout.NORTH);
+        ImageIcon besteak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irudia aldagai batean hasieratu.
+        ImageIcon besteak_irudia_aldatuta= new ImageIcon(besteak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
+        JLabel besteak_Lirudi= new JLabel(besteak_irudia_aldatuta);// irudia jlabel batean jarri.
+        panel4.add(besteak_Lirudi, BorderLayout.NORTH);// sortutako labela panelean txertatu.
+
+        String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String-en array bat hasieratu datu baseko taularen eremuen izenekin.
+        final JTable besteak_tabla= new JTable(Datuak.center_4_txertatu(),kolumna_Izenak_besteak);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
+        besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taularen tamaina ezarri.
+        JScrollPane bestak_sp= new JScrollPane(besteak_tabla);// taulari scroll bat sortu.
+
+        panel4.add(bestak_sp);// taula panelean txertatu.
+
+        panel5= new JPanel(new BorderLayout());// panel bat sortu.
+
+        ImageIcon besteak_irudia2 = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irudia aldagai batean hasieratu.
+        ImageIcon besteak_irudia_aldatuta2= new ImageIcon(besteak_irudia2.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
+        JLabel besteak_Lirudi2= new JLabel(besteak_irudia_aldatuta2);// irudia jlabel batean jarri.
+        panel5.add(besteak_Lirudi2, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
 
 
-        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};
-        final JTable sozio_tabla= new JTable(Sozioak.sozio_Array(),kolumna_Izenak_sozio);
-        sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
-        JScrollPane sozio_sp= new JScrollPane(sozio_tabla);
+        String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String bat hasieratu datu baseko taularen eremuen izenekin.
+        final JTable material_tabla= new JTable(Datuak.center_5_txertatu(),kolumna_Izenak_material);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
+        material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
+        JScrollPane material_sp= new JScrollPane(material_tabla);//taulari scroll bat sortu.
 
-        panel6.add(sozio_sp, BorderLayout.CENTER);
+        panel5.add(material_sp);// taula panelean txertatu.
 
-        panel7 = new JPanel(new BorderLayout());
+        panel6 = new JPanel(new BorderLayout());// panel bat sortu.
 
-        ImageIcon sozietateak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");
-        ImageIcon sozietateak_irudia_aldatuta= new ImageIcon(sozietateak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));
-        JLabel sozietateak_Lirudi= new JLabel(sozietateak_irudia_aldatuta);
-        panel7.add(sozietateak_Lirudi, BorderLayout.NORTH);
+        ImageIcon sozio_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean hasieratu.
+        ImageIcon sozio_irudia_aldatuta= new ImageIcon(sozio_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
+        JLabel sozio_Lirudi= new JLabel(sozio_irudia_aldatuta);// irudia jlabel batean jarri.
+        panel6.add(sozio_Lirudi, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
 
 
-        String[] kolumna_Izenak_sozietateak= {"ID", "Izena","Herrialdea"};
-        final JTable sozietateak_tabla= new JTable(Sozietateak.sozietate_Arraya(),kolumna_Izenak_sozietateak);
-        sozietateak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));
-        JScrollPane sozietateak_sp= new JScrollPane(sozietateak_tabla);
+        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
+        final JTable sozio_tabla= new JTable(Sozioak.sozio_Array(),kolumna_Izenak_sozio);//aldatu ezin den taula bat sortu, array-eko eremuekin.
+        sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
+        JScrollPane sozio_sp= new JScrollPane(sozio_tabla);//taulari scroll bat sortu.
 
-        panel7.add(sozietateak_sp, BorderLayout.CENTER);
+        panel6.add(sozio_sp, BorderLayout.CENTER);// taula panelaren erdian txertatu.
+
+        panel7 = new JPanel(new BorderLayout());// panel bat sortu.
+
+        ImageIcon sozietateak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean hasieratu.
+        ImageIcon sozietateak_irudia_aldatuta= new ImageIcon(sozietateak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
+        JLabel sozietateak_Lirudi= new JLabel(sozietateak_irudia_aldatuta);// irudia jlabel batean jarri.
+        panel7.add(sozietateak_Lirudi, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
+
+
+        String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
+        final JTable asoziazioak_tabla= new JTable(Sozietateak.sozietate_Arraya(),kolumna_Izenak_asoziazioak);//aldatu ezin den taula bat sortu, array-eko eremuekin.
+        asoziazioak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
+        JScrollPane asoziazioak_sp= new JScrollPane(asoziazioak_tabla);//taulari scroll bat sortu.
+
+        panel7.add(asoziazioak_sp, BorderLayout.CENTER);// taula panelaren erdian txertatu.
+
+        // panel guztiak card-en gorde bakoitza bere identifikatzailearekin.
 
         centerPanela.add(panel2,"panel2");
         centerPanela.add(panel3,"panel3");
@@ -278,7 +280,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         centerPanela.add(panel6, "panel6");
         centerPanela.add(panel7, "panel7");
 
-        f_Index.add(centerPanela,BorderLayout.CENTER);
+        f_Index.add(centerPanela,BorderLayout.CENTER);//panel nagusiko erdialdean gehitu card panela.
     }
 
     @Override

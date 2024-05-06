@@ -18,32 +18,31 @@ public class Sesioa {
     private JButton itzuli1, itxi_sesioa, editatu, gorde;
     private JTextField email, izena, abizena, nan, telefonoa, jaio_eguna, erle_kantitatea, kolmena_kantitatea, pazaitza, pazaitza2;
     private JLabel email_textua, izena_textua, abizena_textua, nan_textua, telefonoa_textua, jaio_eguna_Textua, erle_kantitatea_textua, kolmena_kantitatea_textua,pazaitza_textua, pazaitza2_textua, pazaitz_mezua;
-    public  void sortu_login(){
-        nothr();
+    public  void sortu_login(){//logina sortzeko funtzioei deitu.
+        north();
         center();
         south();
         sesio_orria();
     }
-    public void sesio_orria(){
-        f_sesio.setTitle("Sesioa");
-        f_sesio.setSize(400, 600);
-        f_sesio.setVisible(true);
-        f_sesio.setLocationRelativeTo(null);
-        f_sesio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f_sesio.setLayout(new BorderLayout());
+    public void sesio_orria(){//sesio orria sortu.
+        f_sesio.setTitle("Sesioa");// Display-ari titulua jarri.
+        f_sesio.setSize(400, 600);// display-aren tamaina ezarri.
+        f_sesio.setVisible(true);// ikusgai egin.
+        f_sesio.setLocationRelativeTo(null);// display-a pantailaren erdian agertu.
+        f_sesio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// lehioa ixterakoan programa amaitu.
+        f_sesio.setLayout(new BorderLayout()); //display nagusia BorderLayout matakoa ezarri.
     }
-    public void nothr(){
-        panel2 = new JPanel();
-        panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));
-        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");
-        ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));
-        JLabel irudia = new JLabel(fondo_aldatuta);
-        panel2.add(irudia);
-        f_sesio.add(panel2, BorderLayout.NORTH);
+    public void north(){// display-ko gaiko panela sortu.
+        panel2 = new JPanel();//panel2 sortu.
+        panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS)); //panel2-ri box layout x ardatzean mota ezarri.
+        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg"); // irudia aldagaian kargatu.
+        ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina aldatu.
+        JLabel irudia = new JLabel(fondo_aldatuta);// irudia label batean bihurtu.
+        panel2.add(irudia);// irudiaren label-a panel2-an txertatu.
+        f_sesio.add(panel2, BorderLayout.NORTH);// panel2-a display nagusian txertatu.
     }
-    public void center(){
+    public void center(){// sesioa hasteko display-eko textfiel eta labelak sortu, sozioaren datu bakoitzarentzako bana.
         panel1= new JPanel(null);
-
         email_textua= new JLabel("Email:");
         email= new JTextField(17);
         izena_textua= new JLabel("Izena:");
@@ -67,6 +66,7 @@ public class Sesioa {
         gorde= new JButton("Gorde Aldaketak");
         pazaitz_mezua= new JLabel("");
 
+        // aurretik sortutako textfiel eta label guztie tamaina ezarri.
         email_textua.setBounds(90,58,100, 10);
         email.setBounds(90,70,210,20);
         izena_textua.setBounds(90,138,100, 10);
@@ -90,6 +90,7 @@ public class Sesioa {
         gorde.setBounds(92, 350, 200, 25);
         pazaitz_mezua.setBounds(92, 390, 200, 25);
 
+        //fiel bakoitzari dagokion testua ezarri datuak klasetik.
         email.setText(email_login);
         izena.setText(izena_login);
         abizena.setText(abizena_login);
@@ -101,6 +102,7 @@ public class Sesioa {
         pazaitza.setText(pazaitza_login);
         pazaitza2.setText(pazaitza_login);
 
+        // eremu guztiak ez editagarriak egin.
         email.setEnabled(false);
         izena.setEnabled(false);
         abizena.setEnabled(false);
@@ -113,6 +115,7 @@ public class Sesioa {
         pazaitza2.setEnabled(false);
         gorde.setEnabled(false);
 
+        // panel1-ean label eta textfiel guztian gehitu.
         panel1.add(email_textua);
         panel1.add(email);
         panel1.add(izena_textua);
@@ -136,14 +139,14 @@ public class Sesioa {
         panel1.add(gorde);
         panel1.add(pazaitz_mezua);
 
-        gorde.addActionListener(new ActionListener() {
+        gorde.addActionListener(new ActionListener() { //gorde botoiaren gainean entzle bat sortu.
             @Override
-            public void actionPerformed(ActionEvent e) {
-                    if (pazaitza.getText().equals(pazaitza2.getText())) {
-                        pazaitz_mezua.setText(" ");
-
+            public void actionPerformed(ActionEvent e) {// aldaketak gordetzeko botoiaren gainean click egiterakoan.
+                    if (pazaitza.getText().equals(pazaitza2.getText())) {// pasahitza bi textfield-etan berdina bada.
+                        pazaitz_mezua.setText(" ");// errore mezurik ez.
+// sartutako datu berriak jaso textfiel bakoitzetik eta datuak klaseko funtzioari deia eginez, datu basean update bat egin eta datuak eguneratu.
                         datuak_eguneratu(email.getText(), nan.getText(), Long.parseLong(telefonoa.getText()), izena.getText(), abizena.getText(), Long.parseLong(kolmena_kantitatea.getText()), Long.parseLong(erle_kantitatea.getText()), Date.valueOf(jaio_eguna.getText()), pazaitza2.getText());
-
+// datuak ez editagarriak egin.
                         email.setEnabled(false);
                         izena.setEnabled(false);
                         abizena.setEnabled(false);
@@ -155,43 +158,45 @@ public class Sesioa {
                         pazaitza.setEnabled(false);
                         pazaitza2.setEnabled(false);
                         gorde.setEnabled(false);
-                    }else {
-                        pazaitz_mezua.setText("Pasahitzak ez dira berdinak");
-                        pazaitz_mezua.setForeground(Color.red);
+                    }else {// sartutako bi pasahitzak ezberdinak badira.
+                        pazaitz_mezua.setText("Pasahitzak ez dira berdinak");// errore mezua pantailaratu da.
+                        pazaitz_mezua.setForeground(Color.red);// errore mezuaren kolorea gorria ezarri.
                     }
             }
         });
 
-        f_sesio.add(panel1, BorderLayout.CENTER);
+        f_sesio.add(panel1, BorderLayout.CENTER);// display nagusiko erdian panel1 gehitu.
 
     }
     public void south(){
 
-        panel3 = new JPanel();
-        panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));
+        panel3 = new JPanel();// panel3 sortu.
+        panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panel3 box leyaut x ardatzean mota ezarri.
 
-        JLabel tartea1= new JLabel("    ");
-        tartea1.setBorder(new EmptyBorder(0, 0, 0, 70));
+        JLabel tartea1= new JLabel("    ");// jlabel bat sortu textu huts batekin.
+        tartea1.setBorder(new EmptyBorder(0, 0, 0, 70));// jlabel-aren kokalekua ezarri.
 
-        itzuli1 = new JButton("Atzera");
-        editatu= new JButton("Editatu");
-        itxi_sesioa= new JButton("Sesioa Itxi");
-
+        itzuli1 = new JButton("Atzera");// itzuli botoia sortu.
+        editatu= new JButton("Editatu");// editatu botoia sortu.
+        itxi_sesioa= new JButton("Sesioa Itxi");// sesioa itxi botoia sortu.
+// panel3an sortutako botaiak eta label-a gahitu.
         panel3.add(tartea1);
         panel3.add(itzuli1);
         panel3.add(editatu);
         panel3.add(itxi_sesioa);
-        itzuli1.addActionListener(new ActionListener() {
+        itzuli1.addActionListener(new ActionListener() {// izuli botoiaren gainean entzule bat sortu.
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new Index().sortu();
-                f_sesio.dispose();
+            public void actionPerformed(ActionEvent e) {//itzuli botoiaren gainean click egiterakoan.
+                new Index().sortu();// index display-a sortu eta pantailaratu.
+                f_sesio.dispose();// sesio display-a itxi.
             }
         });
 
-        editatu.addActionListener(new ActionListener() {
+        editatu.addActionListener(new ActionListener() { // editatu botoiaren gainean entzule bat sortu.
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { // botoiaren gainean click egiterakoan.
+
+                //  profileko textfield guztiak editagarriak egin.
                 email.setEnabled(true);
                 izena.setEnabled(true);
                 abizena.setEnabled(true);
@@ -206,13 +211,14 @@ public class Sesioa {
             }
         });
 
-        itxi_sesioa.addActionListener(new ActionListener() {
+        itxi_sesioa.addActionListener(new ActionListener() {// itxi sesioaren botoiaren gainean entzule bat gehitu.
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { // botoiaren gainean click egitean.
                 try {
+                    // logeatuta ez egotean eta ezuzendaria ez izan.
                     logeatua_dago=false;
                     zuzendaria_da=false;
-
+                    // langilearen datuak null gorde fitxategian.
                     id_sozioa_login= null;
                     email_login=null;
                     izena_login= null;
@@ -225,21 +231,21 @@ public class Sesioa {
                     pazaitza_login=null;
 
 
-                    FileWriter fw= new FileWriter(".\\sesio.txt");
-                    fw.write(Integer.toString(0));
-                    fw.close();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    FileWriter fw= new FileWriter(".\\sesio.txt");// fitxategi gainean idazlea difinitu.
+                    fw.write(Integer.toString(0));// fitxategian zenbakiak 0;
+                    fw.close();//idazlea itxi.
+                } catch (IOException ex) {//Errorea arrapatu
+                    throw new RuntimeException(ex);//Errorea bota.
                 }
-                f_sesio.dispose();
-                new Index().sortu();
+                f_sesio.dispose();// sesio display-a itxi.
+                new Index().sortu(); // index display-a sortu eta pantailaratu.
             }
         });
 
-        f_sesio.add(panel3, BorderLayout.SOUTH);
+        f_sesio.add(panel3, BorderLayout.SOUTH);//panel3 sesio displayko behealdean txertau.
 
     }
     public static void main(String[] args){
-        new Sesioa().sortu_login();
+        new Sesioa().sortu_login();// logis display sortu eta pantailaratu.
     }
 }
