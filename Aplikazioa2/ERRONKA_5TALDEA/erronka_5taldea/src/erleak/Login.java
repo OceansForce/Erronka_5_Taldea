@@ -57,45 +57,44 @@ public class Login extends JFrame {
 
         panel1 = new JPanel(null);// panel bat sortu.
 
-        txertatu_izen = new JTextField(17);
-        txertatu_izen.setEnabled(false);
+        txertatu_izen = new JTextField(17);// textfield bat sortu eta honen tamaina ezarri.
+        txertatu_izen.setEnabled(false);// texfield-a ez editagarria egin.
         txertatu_izen.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                txertatu_izen.setEnabled(true);
+            public void mouseClicked(MouseEvent e) {// textfield-aren gainean entzule bat gehitu, click egitea kontrolatzeko.
+                txertatu_izen.setEnabled(true);// textfield-a editagarria egin.
             }
         });
 
-        txertatu_izen.setForeground(Color.GRAY);
-        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");
-        txertatu_izen.addFocusListener(new FocusListener() {
+        txertatu_izen.setForeground(Color.GRAY);// textfield-eko letra kolorea gisxa jarri.
+        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");// Texfield-ean testua jarri.
+        txertatu_izen.addFocusListener(new FocusListener() {// Textfield_ean entzule bat sortu click eginda dagoela jakiteko.
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e) {// textfield-ean click egin eta beste edonon click egiten ez bada.
                 SwingUtilities.invokeLater(() -> {
-                    if (txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila")) {
-                        txertatu_izen.setText(" ");
-                        txertatu_izen.setForeground(Color.BLACK);
+                    if (txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila")) {// testua idatzita badago.
+                        txertatu_izen.setText(" ");// textfield-a hutsa utzi.
+                        txertatu_izen.setForeground(Color.BLACK);// letren kolorea beltzera aldatu.
                     }
                 });
             }
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e) {// textfield-ean click egin eta beste edonon click egiten  bada.
                 SwingUtilities.invokeLater(() -> {
-                    if (txertatu_izen.getText().equals(" ")) {
-                        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");
-                        txertatu_izen.setForeground(Color.GRAY);
+                    if (txertatu_izen.getText().equals(" ")) {// textfield-ean ez badogo ezer idatzita.
+                        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");// Testua idatzi.
+                        txertatu_izen.setForeground(Color.GRAY);// testuaren kolorea grixera aldatu.
                     }
                 });
             }
         });
-
-        txertatu_izen.getDocument().addDocumentListener(new DocumentListener() {
+        txertatu_izen.getDocument().addDocumentListener(new DocumentListener() {// Textfield_ean entzule bat sortu.
             @Override
             public void insertUpdate(DocumentEvent e) {
                 SwingUtilities.invokeLater(() -> {
-                    if (txertatu_izen.getText().isEmpty()) {
-                        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");
-                        txertatu_izen.setForeground(Color.GRAY);
+                    if (txertatu_izen.getText().isEmpty()) {// textfield-a hutsa badago.
+                        txertatu_izen.setText("Izena, NAN, Telefonoa edo Emaila");// Testua idatzi.
+                        txertatu_izen.setForeground(Color.GRAY);// testuaren kolorea grixera aldatu.
                     }
                 });
             }
@@ -107,64 +106,64 @@ public class Login extends JFrame {
             }
         });
 
-        mezua = new JLabel("");
+        mezua = new JLabel("");// mezua display bat sortu.
 
-        txertatu_izen.setBounds(95,10,200, 25);
-        mezua.setBounds(105, 30, 200, 50);
+        txertatu_izen.setBounds(95,10,200, 25);//textfield-ari tamaina ezarri.
+        mezua.setBounds(105, 30, 200, 50);// mezua display-ari tamaina ezarri.
 
-        panel1.add(txertatu_izen);
-        panel1.add(mezua);
+        panel1.add(txertatu_izen);// panel1-era texfield-a gehitu.
+        panel1.add(mezua); // panel1-era mezua texfield-a gehitu.
 
-        panel4 = new JPanel();
+        panel4 = new JPanel();// display bat sortu.
 
-        txertatupass = new JPasswordField(18);
-        txertatupass.setEnabled(false);
-        txertatupass.setEchoChar((char) 0);
+        txertatupass = new JPasswordField(18);// passwordfield bat sortu pasahitzarentzako.
+        txertatupass.setEnabled(false);// passwordfield-a ez editagarria jarri.
+        txertatupass.setEchoChar((char) 0);// passwordfield-ean sartzen diren karektereak eta zenbakiak normal ikusi.
         txertatupass.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                txertatupass.setEnabled(true);
+            public void mouseClicked(MouseEvent e) {//passwordfield-ean entzule bat gehitu click-atzeko momenturako.
+                txertatupass.setEnabled(true);// passwordfield-a editagarri a egin
             }
         });
 
 
-        txertatupass.setForeground(Color.GRAY);
-        txertatupass.setText("Pasahitza");
+        txertatupass.setForeground(Color.GRAY);//passwordfield-eko testu kolerea grixa.
+        txertatupass.setText("Pasahitza");// // passwordfield-ean testua jarri.
 
-        txertatupass.addFocusListener(new FocusListener() {
+        txertatupass.addFocusListener(new FocusListener() {// passwordfield-ean entzule bat gehitu clic egida dagoen unerako.
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e) {// passwordfield-ean click egin eta beste edonon click egiten ez bada.
                 SwingUtilities.invokeLater(() -> {
-                    String pasahitza= new String(txertatupass.getPassword());
-                    if (pasahitza.equals("Pasahitza")) {
-                        txertatupass.setText("");
-                        txertatupass.setForeground(Color.BLACK);
-                        txertatupass.setEchoChar('*');
+                    String pasahitza= new String(txertatupass.getPassword());// sartutako pasahitza gorde.
+                    if (pasahitza.equals("Pasahitza")) {// pasahitza testua agertzen bada.
+                        txertatupass.setText("");// passwordfield-a hutsa jarri.
+                        txertatupass.setForeground(Color.BLACK);//passwordfield-eko kolorea beltza jarri.
+                        txertatupass.setEchoChar('*');//passwordfield-ean karaktereak agertu beharrean * agertu.
                     }
                 });
             }
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e) {// passwordfield-ean click egin eta beste edonon click egiten bada.
                 SwingUtilities.invokeLater(() -> {
-                    String pasahitza= new String(txertatupass.getPassword());
-                    if (pasahitza.equals("")) {
-                        txertatupass.setText("Pasahitza");
-                        txertatupass.setForeground(Color.GRAY);
-                        txertatupass.setEchoChar((char) 0);
+                    String pasahitza= new String(txertatupass.getPassword());// pasahitza gorde.
+                    if (pasahitza.equals("")) {//passwordfield-a utsa badago
+                        txertatupass.setText("Pasahitza");// testua jarri.
+                        txertatupass.setForeground(Color.GRAY);// testu kolorea aldatu gixera.
+                        txertatupass.setEchoChar((char) 0);//passwordfield-an sartutako karaktere eta zenbakiak ikusi.
                     }
                 });
             }
         });
 
-        txertatupass.getDocument().addDocumentListener(new DocumentListener() {
+        txertatupass.getDocument().addDocumentListener(new DocumentListener() {// passwordfield-ean egiten diren aldaketak kontrolatzen duen entzulea gehitu.
             @Override
-            public void insertUpdate(DocumentEvent e) {
+            public void insertUpdate(DocumentEvent e) {// passwordfield-ean zerbai sartzen denean.
                 SwingUtilities.invokeLater(() -> {
-                    String pasahitza= new String(txertatupass.getPassword());
-                    if (pasahitza.isEmpty()) {
-                        txertatupass.setText("Pasahitza");
-                        txertatupass.setForeground(Color.GRAY);
-                        txertatupass.setEchoChar((char) 0);
+                    String pasahitza= new String(txertatupass.getPassword());// pasahitza gorde.
+                    if (pasahitza.isEmpty()) {// passwordfield hutsa badago.
+                        txertatupass.setText("Pasahitza");// testua jarri.
+                        txertatupass.setForeground(Color.GRAY);//testu kolorea grixera aldatu.
+                        txertatupass.setEchoChar((char) 0);// passwordfield-ean sartutako testua eta zenbakiak ikusi alko dira.
                     }
                 });
             }
@@ -186,69 +185,71 @@ public class Login extends JFrame {
 
 
     public void south(){
-        card2= new CardLayout();
-        panel_3_5= new JPanel();
-        panel_3_5.setLayout(card2);
+        card2= new CardLayout();// card2 sortu.
+        panel_3_5= new JPanel();// panel bat sortu.
+        panel_3_5.setLayout(card2);// panelari card mota ezarri.
 
-        panel3 = new JPanel();
-        panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));
+        panel3 = new JPanel();// panel3 sortu.
+        panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panel3-ri box layout mota ezarri x ardatzean.
 
-        JLabel tartea1= new JLabel("                    ");
-        urrengoa = new JButton("Hurrengoa");
-        erregistratu = new JButton("Erregistratu");
-        itzuli1 = new JButton("Atzera");
+        JLabel tartea1= new JLabel("                    ");// tartea egiteko label bat sortu.
+        urrengoa = new JButton("Hurrengoa");//Botoia sortu.
+        erregistratu = new JButton("Erregistratu");//Botoia sortu.
+        itzuli1 = new JButton("Atzera");//Botoia sortu.
 
+        // Sortutako hiru botoiak eta label-a panel3-an gehitu.
         panel3.add(tartea1);
         panel3.add(itzuli1);
         panel3.add(erregistratu);
         panel3.add(urrengoa);
 
-        itzuli1.addActionListener(new ActionListener() {
+        itzuli1.addActionListener(new ActionListener() {// itzili botoiean entzule bat sortu click egiteko momenturako.
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new Index().sortu();
-                f_login.dispose();
+            public void actionPerformed(ActionEvent e) {// click egiten bada.
+                new Index().sortu();// index display-a sortu eta bistaratu.
+                f_login.dispose();// login display-a itxi.
             }
         });
 
-        erregistratu.addActionListener(new ActionListener() {
+        erregistratu.addActionListener(new ActionListener() {// erregistratu botoiean entzule bat sortu click egiteko unerako.
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new Erregistratu().sortu_Erregistratu();
+            public void actionPerformed(ActionEvent e) { // click egiterakoan.
+                new Erregistratu().sortu_Erregistratu();// erregistratu
             }
         });
-        urrengoa.addActionListener(new ActionListener() {
+        urrengoa.addActionListener(new ActionListener() {// urrengoa botoiean entzule bat gehitu.
             // Pasahitza jarri al izateko, aldatzen du.
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!txertatu_izen.getText().isEmpty() && !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila") && Datuak.izena_jarri(txertatu_izen.getText())) {
-                    identifikatzaile = txertatu_izen.getText();
-                    card2.show(panel_3_5, "panel5");
+            public void actionPerformed(ActionEvent e) {// urrengoa botoian click egiterakoan.
+                if (!txertatu_izen.getText().isEmpty() && !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila") && Datuak.izena_jarri(txertatu_izen.getText())) {// sartutako sozioa zuzena baldin bada edo ez badago hutsa textfield-a.
+                    identifikatzaile = txertatu_izen.getText();// txertatutako sozioaren identifikatzailea gorde.
+                    card2.show(panel_3_5, "panel5");//
                     card1.show(panel_1_4, "panel4");
                     mezua.setText("");
-                }else {
-                    mezua.setForeground(Color.red);
-                    mezua.setText("Identifikatzailea sartu behar da");
+                }else {// sartutako langilea okerra bada edo textfield-a utsa badago.
+                    mezua.setForeground(Color.red);// mezua agertiko da textfield azpian.
+                    mezua.setText("Identifikatzailea sartu behar da");// mezuko esaldia.
                 }
             }
         });
 
-        panel5 = new JPanel();
-        panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));
+        panel5 = new JPanel();// display bat sortu.
+        panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));// panelari mota ezarri, boxlayout x ardatzean.
 
-        JLabel tartea2= new JLabel("                          ");
-        login = new JButton("Login");
-        erregistratu = new JButton("Erregistratu");
-        itzuli2 = new JButton("Atzera");
+        JLabel tartea2= new JLabel("                          ");// tartea uzteko label-a sortu.
+        login = new JButton("Login");// login botoia sortu.
+        erregistratu = new JButton("Erregistratu");// erregistratu botoia sortu.
+        itzuli2 = new JButton("Atzera"); //itzuli botoia sortu.
 
+        // sortutako label-a eta botoiak display-ean gehitu.
         panel5.add(tartea2);
         panel5.add(itzuli2);
         panel5.add(erregistratu);
         panel5.add(login);
 
-        itzuli2.addActionListener(new ActionListener() {
+        itzuli2.addActionListener(new ActionListener() { //itzuli botoian entzule bat gehitu.
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {// itzuli botoian click egiterakoan.
                 //Pasahitzatik atzera bueltatzeko
                 card2.show(panel_3_5, "panel3");
                 card1.show(panel_1_4, "panel1");
@@ -256,12 +257,7 @@ public class Login extends JFrame {
             }
         });
 
-        erregistratu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Erregistroko funtzioa sortu gabe");
-            }
-        });
+       
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
