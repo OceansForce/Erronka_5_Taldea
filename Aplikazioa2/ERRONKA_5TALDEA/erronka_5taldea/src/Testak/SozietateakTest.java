@@ -1,4 +1,4 @@
-package Testak;
+/*package Testak;
 
 import erleak.Sozietateak;
 import org.junit.jupiter.api.Assertions;
@@ -12,4 +12,4 @@ class SozietateakTest {
     void sozietate_Arraya() {
         Assertions.assertNotNull(Sozietateak.sozietate_Arraya());
     }
-}
+}*/

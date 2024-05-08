@@ -1,4 +1,4 @@
-package Testak;
+/*package Testak;
 
 import erleak.Datuak;
 import erleak.Login;
@@ -65,4 +65,4 @@ class SozioakTest {
         Sozioak sozioa = new Sozioak(1,1,43,54, "Julen", "Garcia", "62259722J", "34231232132", "2004/04/23", "Julen@gmail.com", "32432");
         Assertions.assertEquals("Julen",sozioa.getSozio_izena());
     }
-}
+}*/

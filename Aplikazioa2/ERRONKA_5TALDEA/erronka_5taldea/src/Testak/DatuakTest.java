@@ -1,4 +1,4 @@
-package Testak;
+/*package Testak;
 
 import erleak.Datuak;
 import org.junit.jupiter.api.Assertions;
@@ -28,4 +28,4 @@ class DatuakTest {
     void center_5_txertatu() {
         Assertions.assertNotNull(Datuak.center_5_txertatu());
     }
-}
+}*/

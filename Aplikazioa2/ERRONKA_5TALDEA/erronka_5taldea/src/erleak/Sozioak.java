@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 import static erleak.Datuak.*;
 
-public class Sozioak {
+public class Sozioak {// adagaiak definitu.
     private int id_sozioa;
     private int id_zuzendaria;
     private long erle_kantitatea;
@@ -21,6 +21,8 @@ public class Sozioak {
     private String email;
     private String pasahitza;
 
+
+    // eraikitzailea
     public Sozioak(int id_sozioa, int id_zuzendaria, long erle_kantitatea, long kolmena_kantitatea, String sozio_izena, String sozio_abizena, String nan, String telefonoa, String jaiote_eguna, String email, String pasahitza) {
         this.id_sozioa = id_sozioa;
         this.id_zuzendaria = id_zuzendaria;
@@ -35,33 +37,35 @@ public class Sozioak {
         this.pasahitza = pasahitza;
     }
 
-   public static ArrayList<Sozioak> sozio_ArrayList(){
+   public static ArrayList<Sozioak> sozio_ArrayList(){// datu basetik sozioak jaso eta arraylist batean sartu.
 
         try {
-            konexioa();
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            konexioa();// datu basera konektatu.
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baserako eskaera sortu.
+            //Eskaera egin.
             ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
+            ArrayList<Sozioak> sozio_Arraya= new ArrayList<>();//Eskaeran jasotako balioak gordetzeko arraylist-a sortu.
 
-            ArrayList<Sozioak> sozio_Arraya= new ArrayList<>();
-
-            while (rs.next()){
+            while (rs.next()){// balio guztiak jasotzeko
+                //datubaseko datuak jaso eta array-an sartu.
                 sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getString("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
             }
-            con.close();
-            return sozio_Arraya;
+            con.close();// eskaera itxi.
+            return sozio_Arraya;// array-a datuekin itzuli.
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public static String[][] sozio_Array(){
+    public static String[][] sozio_Array(){// datu basetik sozioak jaso eta arraylist batean sartu, jtable-an erabiltzeko.
 
         try {
-            konexioa();
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            konexioa();// datu basearekin konexioa egin.
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baseko eskaera sortu.
+            // eskaera egin.
             ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
 
-            rs.last();
-            String[][] sozio_Arraya= new String[rs.getRow()][11];
+            rs.last();//azken elementura joan.
+            String[][] sozio_Arraya= new String[rs.getRow()][11];//arrat bat sortu
             rs.beforeFirst();
 
             int x=0;
