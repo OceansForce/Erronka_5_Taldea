@@ -236,7 +236,7 @@ public class Erregistratu {
 
     }
 
-    public void  enable_false_true(JTextField a){
+    public void  enable_false_true(JTextField a){// textfield-a entzulearen bitartez editagarria edo ez egin.
         a.setEnabled(false);
         a.addMouseListener(new MouseAdapter() {
             @Override

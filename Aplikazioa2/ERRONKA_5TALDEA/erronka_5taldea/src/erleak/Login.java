@@ -281,14 +281,14 @@ public class Login extends JFrame {
             }
         });
 
-
+// panel bakoitza bere posizioan gehitu.
         panel_3_5.add(panel3, "panel3");
         panel_3_5.add(panel5, "panel5");
         f_login.add(panel_3_5, BorderLayout.SOUTH);
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args){//logina sortu eta biztaratu.
         new Login().sortu_login();
     }
 
