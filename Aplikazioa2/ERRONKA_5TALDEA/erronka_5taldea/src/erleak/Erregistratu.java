@@ -212,10 +212,10 @@ public class Erregistratu {
                     konexioa();// datu basearekin konexioa egin.
                     //eremu bakoitzean sartutako textua jasota  insert into bat sortu.
                     PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
-                            "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"')");
+                                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"')");
                     insert.executeUpdate(); // aurreko insert-a datu basean exekutatu.
                     logeatua_dago=true;// logeatuta egon.
-                    if (Sozioak.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
+                    if (Datuak.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
                         zuzendaria_da=true;// zuzendaria izan.
                     }
                     f_Erregistratu.dispose();// erregistratu display-a itxi.
@@ -236,7 +236,7 @@ public class Erregistratu {
 
     }
 
-    public void  enable_false_true(JTextField a){
+    public void  enable_false_true(JTextField a){// textfield-a entzulearen bitartez editagarria edo ez egin.
         a.setEnabled(false);
         a.addMouseListener(new MouseAdapter() {
             @Override

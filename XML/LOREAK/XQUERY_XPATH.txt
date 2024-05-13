@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <table>
+    
+    {
+      for $DATA_RECORD in db:open("LOREAK")/LOREAK/DATA_RECORD 
+
+        let $Lorearen_ID := $DATA_RECORD/ID_LOREA
+        let $Erlearen_ID := $DATA_RECORD/ID_ERLEA
+        let $Izena := $DATA_RECORD/IZENA
+        let $Kokapena := $DATA_RECORD/KOKAPENA
+        let $Kopurua := $DATA_RECORD/KANTITATEA
+        
+        return <tr><td>Lorearen ID-a: {data($Lorearen_ID)}</td>
+                    <td>Erlearen ID-a: {data($Erlearen_ID)}</td>
+                    <td>Izena: {data($Izena)}</td>
+                    <td>Kokapena: {data($Kokapena)}</td>
+                    <td>Kopurua: {data($Kopurua)}</td>
+                </tr>
+
+    }
+    </table>
+  </body>
+</html>

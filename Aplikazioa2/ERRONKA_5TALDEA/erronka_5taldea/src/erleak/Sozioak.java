@@ -37,155 +37,8 @@ public class Sozioak {// adagaiak definitu.
         this.pasahitza = pasahitza;
     }
 
-   public static ArrayList<Sozioak> sozio_ArrayList(){// datu basetik sozioak jaso eta arraylist batean sartu.
-
-        try {
-            konexioa();// datu basera konektatu.
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baserako eskaera sortu.
-            //Eskaera egin.
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
-            ArrayList<Sozioak> sozio_Arraya= new ArrayList<>();//Eskaeran jasotako balioak gordetzeko arraylist-a sortu.
-
-            while (rs.next()){// balio guztiak jasotzeko
-                //datubaseko datuak jaso eta array-an sartu.
-                sozio_Arraya.add(new Sozioak(rs.getInt("id_sozioa"), rs.getInt("id_zuzendaria"), rs.getLong("erle_kantitatea"), rs.getLong("kolmena_kantitatea"), rs.getString("sozio_izena"), rs.getString("sozio_abizena"), rs.getString("nan"), rs.getString("telefonoa"), rs.getString("jaiote_eguna"), rs.getString("email"), rs.getString("pasahitza")));
-            }
-            con.close();// eskaera itxi.
-            return sozio_Arraya;// array-a datuekin itzuli.
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public static String[][] sozio_Array(){// datu basetik sozioak jaso eta arraylist batean sartu, jtable-an erabiltzeko.
-
-        try {
-            konexioa();// datu basearekin konexioa egin.
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baseko eskaera sortu.
-            // eskaera egin.
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
-
-            rs.last();//azken elementura joan.
-            String[][] sozio_Arraya= new String[rs.getRow()][11];//arrat bat sortu
-            rs.beforeFirst();
-
-            int x=0;
-            while (rs.next()){
-                sozio_Arraya[x][0]=rs.getString("id_sozioa");
-                sozio_Arraya[x][1]=rs.getString("id_zuzendaria");
-                sozio_Arraya[x][2]=rs.getString("erle_kantitatea");
-                sozio_Arraya[x][3]=rs.getString("kolmena_kantitatea");
-                sozio_Arraya[x][4]=rs.getString("sozio_izena");
-                sozio_Arraya[x][5]=rs.getString("sozio_abizena");
-                sozio_Arraya[x][6]=rs.getString("nan");
-                sozio_Arraya[x][7]=rs.getString("telefonoa");
-                sozio_Arraya[x][8]=rs.getString("jaiote_eguna");
-                sozio_Arraya[x][9]=rs.getString("email");
-                sozio_Arraya[x][10]=rs.getString("pasahitza");
-                x++;
-            }
-            con.close();
-            return sozio_Arraya;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public static HashSet<Integer> id_sozioak(){
-        try {
-            konexioa();
-            HashSet<Integer> id_sozioak= new HashSet<>();
-            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("SELECT id_sozioa FROM sozioak");
-
-            while (rs.next()){
-                id_sozioak.add(rs.getInt("id_sozioa"));
-            }
-            con.close();
-            return id_sozioak;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public static HashSet<Integer> zuzendariak(){
-        try {
-            konexioa();
-            HashSet<Integer> id_zuzendariak= new HashSet<>();
-            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("SELECT id_zuzendaria FROM sozioak");
-
-            while (rs.next()){
-                id_zuzendariak.add(rs.getInt("id_zuzendaria"));
-            }
-            con.close();
-            System.out.println(id_zuzendariak);
-            return id_zuzendariak;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static int id_atera_login(){
-            ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
-            if(identifikatzaile_mota==1){
-                for (Sozioak s: sozio_lista) {
-                    if (izena_login.equals(s.getSozio_izena()) && abizena_login.equals(s.getSozio_abizena())){
-                        return s.getId_sozioa();
-                    }
-                }
-            } else if (identifikatzaile_mota==2){
-                for (Sozioak s: sozio_lista) {
-                    if(nan_login.equals(s.getNan())){
-                        return s.getId_sozioa();
-                    }
-                }
-            }else if (identifikatzaile_mota==3){
-                for (Sozioak s: sozio_lista) {
-                    if (telefonoa_login.equals(s.getTelefonoa())){
-                        return s.getId_sozioa();
-                    }
-                }
-            }else if (identifikatzaile_mota==4){
-                for (Sozioak s: sozio_lista) {
-                    if (email_login.equals(s.getEmail())){
-                        return s.getId_sozioa();
-                    }
-                }
-            }
-            return 0;
-    }
-    public static int id_atera(String nan){
-        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
-            for (Sozioak s: sozio_lista) {
-                if (nan.equals(s.getNan())){
-                    return s.getId_sozioa();
-                }
-            }
-        return 0;
-    }
-    public static int id_hadiena(){
-        try {
-            konexioa();
-            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("SELECT MAX(id_sozioa) FROM SOZIOAK");
-            rs.next();
-            return rs.getInt(1)+1;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static String nan_atera(int id){
-        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();
-            for (Sozioak s: sozio_lista) {
-                if (id == s.getId_sozioa()){
-                    return s.getNan();
-                }
-            }
-        return "ERROR";
-    }
     @Override
-    public String toString() {
+    public String toString() {// Sozioaren balioak string motara pasatu.
         return id_sozioa +
                 " || "+ id_zuzendaria +
                 " || "+ erle_kantitatea +
@@ -199,43 +52,43 @@ public class Sozioak {// adagaiak definitu.
                 " || "+ pasahitza + '\'' + "\n";
     }
 
-    public int getId_sozioa() {
+    public int getId_sozioa() {// getterra datuk jasotzeko.
         return id_sozioa;
     }
 
-    public String getSozio_izena() {
+    public String getSozio_izena() {// getterra datuk jasotzeko.
         return sozio_izena;
     }
 
-    public String getSozio_abizena() {
+    public String getSozio_abizena() {// getterra datuk jasotzeko.
         return sozio_abizena;
     }
 
-    public String getNan() {
+    public String getNan() {// getterra datuk jasotzeko.
         return nan;
     }
 
-    public String getTelefonoa() {
+    public String getTelefonoa() {// getterra datuk jasotzeko.
         return telefonoa;
     }
 
-    public String getEmail() {
+    public String getEmail() {// getterra datuk jasotzeko.
         return email;
     }
 
-    public String getPasahitza() {
+    public String getPasahitza() {// getterra datuk jasotzeko.
         return pasahitza;
     }
 
-    public long getErle_kantitatea() {
+    public long getErle_kantitatea() {// getterra datuk jasotzeko.
         return erle_kantitatea;
     }
 
-    public long getKolmena_kantitatea() {
+    public long getKolmena_kantitatea() {// getterra datuk jasotzeko.
         return kolmena_kantitatea;
     }
 
-    public String getJaiote_eguna() {
+    public String getJaiote_eguna() {// getterra datuk jasotzeko.
         return jaiote_eguna;
     }
 }
