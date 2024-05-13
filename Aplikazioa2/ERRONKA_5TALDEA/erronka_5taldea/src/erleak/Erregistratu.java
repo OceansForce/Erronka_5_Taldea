@@ -215,7 +215,7 @@ public class Erregistratu {
                             "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"')");
                     insert.executeUpdate(); // aurreko insert-a datu basean exekutatu.
                     logeatua_dago=true;// logeatuta egon.
-                    if (Sozioak.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
+                    if (Datuak.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
                         zuzendaria_da=true;// zuzendaria izan.
                     }
                     f_Erregistratu.dispose();// erregistratu display-a itxi.

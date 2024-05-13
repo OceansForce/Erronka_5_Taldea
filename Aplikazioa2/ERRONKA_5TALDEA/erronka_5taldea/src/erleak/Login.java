@@ -265,12 +265,12 @@ public class Login extends JFrame {
                 if (Datuak.pazaitza_jarri().equals(pasahitza1)){// datu baseko pasahitza sartutako pasahitz berbera bada.
                     JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
                     logeatua_dago= true;// logetuta egon.
-                    if (Sozioak.zuzendariak().contains(Sozioak.id_atera_login())){// logetutako sozioa zuzendariak taulan egon.
+                    if (Datuak.zuzendariak().contains(Datuak.id_atera_login())){// logetutako sozioa zuzendariak taulan egon.
                         zuzendaria_da=true;// zuzendaria izan.
                     }
                     try {
                         FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");// fitxategian idazlea sortu.
-                        erabiltzaila.write(Integer.toString(Sozioak.id_atera_login()));// sartutako sozioa
+                        erabiltzaila.write(Integer.toString(Datuak.id_atera_login()));// sartutako sozioa
                         erabiltzaila.close();//idazlea itxi.
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);

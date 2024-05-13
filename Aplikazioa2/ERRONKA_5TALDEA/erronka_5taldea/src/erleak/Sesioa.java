@@ -116,6 +116,8 @@ public class Sesioa {
         gorde.setEnabled(false);
 
         // panel1-ean label eta textfiel guztian gehitu.
+        JPanel kaxak= new JPanel(new GridLayout(1,3));
+        JPanel kaxa1= new JPanel()
         panel1.add(email_textua);
         panel1.add(email);
         panel1.add(izena_textua);
