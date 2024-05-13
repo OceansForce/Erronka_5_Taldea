@@ -28,12 +28,12 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             int ida=0;
             BufferedReader irakurri = new BufferedReader(new FileReader(".\\sesio.txt"));
             ida= Integer.parseInt(irakurri.readLine());// TXT irakurri eta id-a gorde.
-            if (Sozioak.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
+            if (Datuak.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
                 logeatua_dago=true;
-                if (Sozioak.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.
+                if (Datuak.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.
                     zuzendaria_da=true;
                 }
-                Datuak.izena_jarri(Sozioak.nan_atera(ida)); // Izenak_jarri funtzioari deituz sozioaren datu guztiak jaso.
+                Datuak.izena_jarri(Datuak.nan_atera(ida)); // Izenak_jarri funtzioari deituz sozioaren datu guztiak jaso.
             }
             new Index().sortu();//Horria sortu.
         } catch (IOException e) {
@@ -250,7 +250,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
 
         String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
-        final JTable sozio_tabla= new JTable(Sozioak.sozio_Array(),kolumna_Izenak_sozio);//aldatu ezin den taula bat sortu, array-eko eremuekin.
+        final JTable sozio_tabla= new JTable(Datuak.sozio_Array(),kolumna_Izenak_sozio);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane sozio_sp= new JScrollPane(sozio_tabla);//taulari scroll bat sortu.
 
@@ -265,7 +265,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
 
         String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
-        final JTable asoziazioak_tabla= new JTable(Sozietateak.sozietate_Arraya(),kolumna_Izenak_asoziazioak);//aldatu ezin den taula bat sortu, array-eko eremuekin.
+        final JTable asoziazioak_tabla= new JTable(Datuak.sozietate_Arraya(),kolumna_Izenak_asoziazioak);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         asoziazioak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane asoziazioak_sp= new JScrollPane(asoziazioak_tabla);//taulari scroll bat sortu.
 

@@ -1,0 +1,26 @@
+<html>
+  <body>
+    <table>
+    
+    {
+      for $DATA_RECORD in db:open("FABRIKATZAILEA")/FABRIKATZAILEA/DATA_RECORD 
+
+        let $Fabrikatzailearen_ID := $DATA_RECORD/ID_FABRIKATZAILEA
+        let $Izena := $DATA_RECORD/IZENA
+        let $Hiria := $DATA_RECORD/HIRIA
+        let $Helbidea := $DATA_RECORD/HELBIDEA
+        let $Telefonoa := $DATA_RECORD/TELEFONOA
+        let $Korreoa := $DATA_RECORD/KORREOA
+        
+        return <tr><td>Fabrikatzailearen ID-a: {data($Fabrikatzailearen_ID)}</td>
+                    <td>Izena: {data($Izena)}</td>
+                    <td>Hiria: {data($Hiria)}</td>
+                    <td>Helbidea: {data($Helbidea)}</td>
+                    <td>Telefonoa: {data($Telefonoa)}</td>
+                    <td>Korreoa: {data($Korreoa)}</td>
+                </tr>
+
+    }
+    </table>
+  </body>
+</html>

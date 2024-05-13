@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <table>
+    
+    {
+      for $DATA_RECORD in db:open("BULEGOAK")/BULEGOAK/DATA_RECORD 
+
+        let $Bulegoaren_ID := $DATA_RECORD/ID_BULEGOA
+        let $Asoziazioaren_ID := $DATA_RECORD/ID_ASOZIAZIOA
+        let $Herrialdea := $DATA_RECORD/HERRIA
+        
+        return <tr><td>Bulegoaren ID-a: {data($Asoziazioaren_ID)}</td><td>Asoziazioaren ID-a: {data($Asoziazioaren_ID)}</td><td>Herrialdea: {data($Herrialdea)}</td></tr>
+
+    }
+    </table>
+  </body>
+</html>
