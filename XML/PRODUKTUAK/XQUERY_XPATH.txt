@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <table>
+    
+    {
+      for $DATA_RECORD in db:open("PRODUKTUAK")/PRODUKTUAK/DATA_RECORD 
+
+        let $Produktuaren_ID := $DATA_RECORD/ID_PRODUKTUA
+        let $Kopurua := $DATA_RECORD/KANTITATEA
+        let $produktuMota := $DATA_RECORD/PRODUKTU_MOTA
+        let $Prezioa := $DATA_RECORD/PREZIOA
+        let $Deskribapena := $DATA_RECORD/DESKRIBAPENA
+        
+        return <tr><td>Produktuaren ID-a: {data($Produktuaren_ID)}</td>
+                    <td>Kopurua: {data($Kopurua)}</td>
+                    <td>Produktu mota: {data($produktuMota)}</td>
+                    <td>Prezioa: {data($Prezioa)}</td>
+                    <td>Deskribapena: {data($Deskribapena)}</td>
+                </tr>
+
+    }
+    </table>
+  </body>
+</html>

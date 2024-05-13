@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <table>
+    
+    {
+      for $DATA_RECORD in db:open("SOZIOAK")/SOZIOAK/DATA_RECORD 
+
+        let $Sozioaren_ID := $DATA_RECORD/ID_SOZIOA
+        let $ZuzendariID := $DATA_RECORD/ID_ZUZENDARIA
+        let $erleKopuru := $DATA_RECORD/ERLE_KANTITATEA
+        let $kolmenaKopuru := $DATA_RECORD/KOLMENA_KANTITATEA
+        let $sozioIzena := $DATA_RECORD/SOZIO_IZENA
+        let $sozioAbizena := $DATA_RECORD/SOZIO_ABIZENA
+        let $NAN := $DATA_RECORD/NAN
+        let $Telefonoa := $DATA_RECORD/TELEFONOA
+        let $jaioTeguna := $DATA_RECORD/JAIOTE_EGUNA
+        let $posta := $DATA_RECORD/EMAIL
+        let $pasahitz := $DATA_RECORD/PASAHITZA
+        
+        return <tr><td>Sozioaren ID-a: {data($Sozioaren_ID)}</td>
+                    <td>Zuzendariaren ID-a: {data($ZuzendariID)}</td>
+                    <td>Erle kopurua: {data($erleKopuru)}</td>
+                    <td>Kolmena kopurua: {data($kolmenaKopuru)}</td>
+                    <td>Sozioaren Izena: {data($sozioIzena)}</td>
+                    <td>Sozioaren Abizena: {data($sozioAbizena)}</td>
+                    <td>NAN: {data($NAN)}</td>
+                    <td>Telefonoa: {data($Telefonoa)}</td>
+                    <td>Jaiote eguna: {data($jaioTeguna)}</td>
+                    <td>Posta elektronikoa: {data($posta)}</td>
+                    <td>Pasahitza: {data($pasahitz)}</td>
+                </tr>
+
+    }
+    </table>
+  </body>
+</html>
