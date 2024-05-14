@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Login extends JFrame {
     private JFrame f_login= new JFrame();
-    private JPanel panel1, panel2, panel3, panel4, panel5, panel_1_4, panel_3_5;
+    private JPanel panel_1_4;
     private CardLayout card1, card2;
     private JButton erregistratu, login ,urrengoa, itzuli1,itzuli2;
     private  JTextField txertatu_izen;
@@ -23,7 +23,6 @@ public class Login extends JFrame {
     static boolean zuzendaria_da= false;
 
     public void sortu_login(){// login display-a sortu.
-
         north();
         center1();
         south();
@@ -40,7 +39,7 @@ public class Login extends JFrame {
     }
 
     public void north(){
-        panel2 = new JPanel();// panel2 jpanela sortu.
+        JPanel panel2 = new JPanel();// panel2 jpanela sortu.
         panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));// panel2 box layout mota x ardatzean bihurtu.
         ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irdudia aldagaian kargatu.
         ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina aldatu.
@@ -55,7 +54,7 @@ public class Login extends JFrame {
         panel_1_4 = new JPanel();// panel bat sortu.
         panel_1_4.setLayout(card1); // panela cardlayout bihurtu.
 
-        panel1 = new JPanel(null);// panel bat sortu.
+        JPanel panel1 = new JPanel(null);// panel bat sortu.
 
         txertatu_izen = new JTextField(17);// textfield bat sortu eta honen tamaina ezarri.
         txertatu_izen.setEnabled(false);// texfield-a ez editagarria egin.
@@ -114,7 +113,7 @@ public class Login extends JFrame {
         panel1.add(txertatu_izen);// panel1-era texfield-a gehitu.
         panel1.add(mezua); // panel1-era mezua texfield-a gehitu.
 
-        panel4 = new JPanel();// display bat sortu.
+        JPanel panel4 = new JPanel();// display bat sortu.
 
         txertatupass = new JPasswordField(18);// passwordfield bat sortu pasahitzarentzako.
         txertatupass.setEnabled(false);// passwordfield-a ez editagarria jarri.
@@ -186,10 +185,10 @@ public class Login extends JFrame {
 
     public void south(){
         card2= new CardLayout();// card2 sortu.
-        panel_3_5= new JPanel();// panel bat sortu.
+        JPanel panel_3_5= new JPanel();// panel bat sortu.
         panel_3_5.setLayout(card2);// panelari card mota ezarri.
 
-        panel3 = new JPanel();// panel3 sortu.
+        JPanel panel3 = new JPanel();// panel3 sortu.
         panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panel3-ri box layout mota ezarri x ardatzean.
 
         JLabel tartea1= new JLabel("                    ");// tartea egiteko label bat sortu.
@@ -233,7 +232,7 @@ public class Login extends JFrame {
             }
         });
 
-        panel5 = new JPanel();// display bat sortu.
+        JPanel panel5 = new JPanel();// display bat sortu.
         panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));// panelari mota ezarri, boxlayout x ardatzean.
 
         JLabel tartea2= new JLabel("                          ");// tartea uzteko label-a sortu.
