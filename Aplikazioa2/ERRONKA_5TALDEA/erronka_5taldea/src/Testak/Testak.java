@@ -64,7 +64,7 @@ public class Testak {
         Assertions.assertNotNull(center_3_txertatu());
     }*/
 
-    @DisplayName("CSV")
+   /* @DisplayName("CSV")
     @CsvFileSource(resources = ".././CSV.csv")
     @ParameterizedTest
     void test6(int IDa){

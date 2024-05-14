@@ -13,7 +13,7 @@ import static erleak.Login.zuzendaria_da;
 
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
-    static String ip_eta_portua="10.14.4.124";
+    static String ip_eta_portua= "192.168.8.106"/*"10.14.4.124"*/;
     static String erabiltzailea="T5_2";
     static String pazaitza="123";
     static String datu_base_IZENA="ORCLCDB";
@@ -392,6 +392,46 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 sozietateak[x][1]= rs.getString("asoziazio_izena");
                 sozietateak[x][2]= rs.getString("herrialdea");
                 x++;
+            }
+            con.close();
+            return sozietateak;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static ArrayList<Sozietateak> sozietate_Arrayalist(){
+        konexioa();
+        try {
+            ArrayList<Sozietateak> sozietateak= new ArrayList<>();
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("Select id_asoziazioa, asoziazio_izena, herrialdea From asoziazioak");
+            while (rs.next()){
+                Sozietateak s= new Sozietateak(rs.getInt("id_asoziazioa"), rs.getString("asoziazio_izena"), rs.getString("herrialdea"));
+                sozietateak.add(s);
+            }
+            con.close();
+            return sozietateak;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String[][] sozietate_Arraya_filtroa(String izena){
+        konexioa();
+        try {
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak");
+            rs.last();
+            String[][] sozietateak=  new String[rs.getRow()][3];
+            rs.beforeFirst();
+            int x=0;
+            while (rs.next()) {
+                if (rs.getString("asoziazio_izena").equals(izena)) {
+                    sozietateak[x][0] = rs.getString("id_asoziazioa");
+                    sozietateak[x][1] = rs.getString("asoziazio_izena");
+                    sozietateak[x][2] = rs.getString("herrialdea");
+                    x++;
+                }
             }
             con.close();
             return sozietateak;

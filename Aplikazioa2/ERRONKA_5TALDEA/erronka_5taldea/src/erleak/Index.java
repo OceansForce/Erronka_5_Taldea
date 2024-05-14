@@ -4,12 +4,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 import static erleak.Login.*;
+import static erleak.Datuak.*;
 
 public class Index extends JFrame implements ActionListener {// Erabiliko diren aldagai guztiak definitu.
     private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7;
@@ -257,19 +258,33 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel6.add(sozio_sp, BorderLayout.CENTER);// taula panelaren erdian txertatu.
 
         panel7 = new JPanel(new BorderLayout());// panel bat sortu.
-
         ImageIcon sozietateak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean hasieratu.
         ImageIcon sozietateak_irudia_aldatuta= new ImageIcon(sozietateak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
         JLabel sozietateak_Lirudi= new JLabel(sozietateak_irudia_aldatuta);// irudia jlabel batean jarri.
         panel7.add(sozietateak_Lirudi, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
 
+        SpringLayout layout7 = new SpringLayout();
+        JPanel panel7_1 = new JPanel(layout7);
+        JTextField bilatzailea = new JTextField(15);
+        ImageIcon lupa_irudia = new ImageIcon(".\\Irudiak\\lupa.png");
+        ImageIcon lupa_irudia_aldatuta = new ImageIcon(lupa_irudia.getImage().getScaledInstance(10,10, java.awt.Image.SCALE_SMOOTH));
+        JButton L_lupa_irudia = new JButton(lupa_irudia_aldatuta);
+
+        panel7_1.add(bilatzailea);
+        layout7.putConstraint(SpringLayout.WEST, bilatzailea,  10, SpringLayout.WEST, panel7);
+
+        panel7_1.add(L_lupa_irudia);
+        layout7.putConstraint(SpringLayout.WEST, L_lupa_irudia,  170, SpringLayout.WEST, bilatzailea);
+
+        panel7.add(panel7_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
-        final JTable asoziazioak_tabla= new JTable(Datuak.sozietate_Arraya(),kolumna_Izenak_asoziazioak);//aldatu ezin den taula bat sortu, array-eko eremuekin.
+        DefaultTableModel asoziazioak_model = new DefaultTableModel(Datuak.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+        JTable asoziazioak_tabla= new JTable(asoziazioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         asoziazioak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane asoziazioak_sp= new JScrollPane(asoziazioak_tabla);//taulari scroll bat sortu.
 
-        panel7.add(asoziazioak_sp, BorderLayout.CENTER);// taula panelaren erdian txertatu.
+        panel7.add(asoziazioak_sp, BorderLayout.SOUTH);// taula panelaren erdian txertatu.
 
         // panel guztiak card-en gorde bakoitza bere identifikatzailearekin.
 
@@ -281,6 +296,19 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         centerPanela.add(panel7, "panel7");
 
         f_Index.add(centerPanela,BorderLayout.CENTER);//panel nagusiko erdialdean gehitu card panela.
+
+        L_lupa_irudia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              ArrayList<Sozietateak> sozietateak = sozietate_Arrayalist();
+              for (Sozietateak s: sozietateak){
+                  if (s.getIzena().equals( bilatzailea.getText())){
+                      asoziazioak_model.setDataVector(sozietate_Arraya_filtroa(s.getIzena()),kolumna_Izenak_asoziazioak);
+                  }
+              }
+
+            }
+        });
     }
 
     @Override
