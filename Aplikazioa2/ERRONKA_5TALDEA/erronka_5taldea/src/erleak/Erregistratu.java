@@ -208,21 +208,10 @@ public class Erregistratu {
                 jaio_eguna_login= jaio_eguna.getText();// sartutako jaiotze eguna itzuli.
                 Date jaio_eguna_date= Date.valueOf(jaio_eguna.getText());// jaitze eguna testutik date motara pasatu.
                 pazaitza_login= pasahitza2.getText();// sartutako pasahitza itzuli.
-                try {
-                    konexioa();// datu basearekin konexioa egin.
-                    //eremu bakoitzean sartutako textua jasota  insert into bat sortu.
-                    PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
-                                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"')");
-                    insert.executeUpdate(); // aurreko insert-a datu basean exekutatu.
-                    logeatua_dago=true;// logeatuta egon.
-                    if (Datuak.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
-                        zuzendaria_da=true;// zuzendaria izan.
-                    }
-                    f_Erregistratu.dispose();// erregistratu display-a itxi.
-                    new Index().sortu();// index display-a sortu eta ireki.
-                } catch (SQLException ex) {// errorea jaso.
-                    throw new RuntimeException(ex); // errorea bota.
-                }
+
+                erregistratu(jaio_eguna_date);
+                f_Erregistratu.dispose();// erregistratu display-a itxi.
+                new Index().sortu();// index display-a sortu eta ireki.
             }
         });
 

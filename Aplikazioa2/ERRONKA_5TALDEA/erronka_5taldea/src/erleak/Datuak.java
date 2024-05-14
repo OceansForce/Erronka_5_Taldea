@@ -8,6 +8,9 @@ import java.util.HashSet;
 
 import erleak.Sozioak.*;
 
+import static erleak.Login.logeatua_dago;
+import static erleak.Login.zuzendaria_da;
+
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
     static String ip_eta_portua="10.14.4.124";
@@ -417,6 +420,22 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             update.executeUpdate();// updatea exekutatu.
         } catch (SQLException e) {// Errorea kudeatu.
             throw new RuntimeException("Error al ejecutar la actualización", e);
+        }
+    }
+
+    public static void erregistratu(Date jaio_eguna_date){
+        try {
+            konexioa();// datu basearekin konexioa egin.
+            //eremu bakoitzean sartutako textua jasota  insert into bat sortu.
+            PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
+                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+pazaitza_login+"')");
+            insert.executeUpdate(); // aurreko insert-a datu basean exekutatu.
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        logeatua_dago=true;// logeatuta egon.
+        if (Datuak.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
+            zuzendaria_da=true;// zuzendaria izan.
         }
     }
 

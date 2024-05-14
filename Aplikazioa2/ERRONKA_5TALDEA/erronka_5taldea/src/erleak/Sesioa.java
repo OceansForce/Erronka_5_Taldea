@@ -17,7 +17,6 @@ public class Sesioa {
     private JPanel panel1, panel2, panel3;
     private JButton itzuli1, itxi_sesioa, editatu, gorde;
     private JTextField email, izena, abizena, nan, telefonoa, jaio_eguna, erle_kantitatea, kolmena_kantitatea, pazaitza, pazaitza2;
-    private JLabel email_textua, izena_textua, abizena_textua, nan_textua, telefonoa_textua, jaio_eguna_Textua, erle_kantitatea_textua, kolmena_kantitatea_textua,pazaitza_textua, pazaitza2_textua, pazaitz_mezua;
     public  void sortu_login(){//logina sortzeko funtzioei deitu.
         north();
         center();
@@ -42,53 +41,31 @@ public class Sesioa {
         f_sesio.add(panel2, BorderLayout.NORTH);// panel2-a display nagusian txertatu.
     }
     public void center(){// sesioa hasteko display-eko textfiel eta labelak sortu, sozioaren datu bakoitzarentzako bana.
-        panel1= new JPanel(null);
-        email_textua= new JLabel("Email:");
+        panel1= new JPanel();
+        panel1.setLayout(new BoxLayout(panel1,BoxLayout.Y_AXIS));
+        JLabel email_textua= new JLabel("Email:");
         email= new JTextField(17);
-        izena_textua= new JLabel("Izena:");
+        JLabel izena_textua= new JLabel("Izena:");
         izena = new JTextField();
-        abizena_textua= new JLabel("Abizena:");
+        JLabel abizena_textua= new JLabel("Abizena:");
         abizena = new JTextField();
-        nan_textua= new JLabel("NAN:");
+        JLabel nan_textua= new JLabel("NAN:");
         nan= new JTextField();
-        telefonoa_textua= new JLabel("Telefonoa:");
+        JLabel telefonoa_textua= new JLabel("Telefonoa:");
         telefonoa= new JTextField();
-        erle_kantitatea_textua= new JLabel("Erle KANT");
+        JLabel erle_kantitatea_textua= new JLabel("Erle KANT");
         erle_kantitatea= new JTextField();
-        kolmena_kantitatea_textua= new JLabel("Kolmena KANT");
+        JLabel kolmena_kantitatea_textua= new JLabel("Kolmena KANT");
         kolmena_kantitatea= new JTextField();
-        jaio_eguna_Textua= new JLabel("Jaio Eguna:");
+        JLabel jaio_eguna_Textua= new JLabel("Jaio Eguna:");
         jaio_eguna= new JTextField();
-        pazaitza_textua= new JLabel("Pazaitza");
+        JLabel pazaitza_textua= new JLabel("Pazaitza");
         pazaitza= new JTextField();
-        pazaitza2_textua= new JLabel("Pazaitza Egiaztatua");
+        JLabel pazaitza2_textua= new JLabel("Pazaitza Egiaztatua");
         pazaitza2= new JTextField();
         gorde= new JButton("Gorde Aldaketak");
-        pazaitz_mezua= new JLabel("");
+        JLabel pazaitz_mezua= new JLabel("");
 
-        // aurretik sortutako textfiel eta label guztie tamaina ezarri.
-        email_textua.setBounds(90,58,100, 10);
-        email.setBounds(90,70,210,20);
-        izena_textua.setBounds(90,138,100, 10);
-        izena.setBounds(90,150,100,20);
-        abizena_textua.setBounds(200,138,100, 10);
-        abizena.setBounds(200,150,100,20);
-        nan_textua.setBounds(90,98, 100, 10);
-        nan.setBounds(90,110,100,20);
-        telefonoa_textua.setBounds(200, 98, 100, 10);
-        telefonoa.setBounds(200, 110, 100, 20);
-        erle_kantitatea_textua.setBounds(200, 176, 100, 15);
-        erle_kantitatea.setBounds(200, 190, 100, 20);
-        kolmena_kantitatea_textua.setBounds(90, 176, 100, 15);
-        kolmena_kantitatea.setBounds(90, 190, 100, 20);
-        jaio_eguna_Textua.setBounds(145, 216, 100, 15);
-        jaio_eguna.setBounds(145, 230, 100, 20);
-        pazaitza_textua.setBounds(145, 256, 200, 15);
-        pazaitza.setBounds(145, 270, 100, 20);
-        pazaitza2_textua.setBounds(145, 296, 200, 15);
-        pazaitza2.setBounds(145, 310, 100, 20);
-        gorde.setBounds(92, 350, 200, 25);
-        pazaitz_mezua.setBounds(92, 390, 200, 25);
 
         //fiel bakoitzari dagokion testua ezarri datuak klasetik.
         email.setText(email_login);
@@ -115,31 +92,55 @@ public class Sesioa {
         pazaitza2.setEnabled(false);
         gorde.setEnabled(false);
 
-        // panel1-ean label eta textfiel guztian gehitu.
-        JPanel kaxak= new JPanel(new GridLayout(1,3));
-        JPanel kaxa1= new JPanel()
-        panel1.add(email_textua);
-        panel1.add(email);
-        panel1.add(izena_textua);
-        panel1.add(izena);
-        panel1.add(abizena_textua);
-        panel1.add(abizena);
-        panel1.add(nan_textua);
-        panel1.add(nan);
-        panel1.add(telefonoa_textua);
-        panel1.add(telefonoa);
-        panel1.add(jaio_eguna_Textua);
-        panel1.add(jaio_eguna);
-        panel1.add(erle_kantitatea_textua);
-        panel1.add(erle_kantitatea);
-        panel1.add(kolmena_kantitatea_textua);
-        panel1.add(kolmena_kantitatea);
-        panel1.add(pazaitza_textua);
-        panel1.add(pazaitza);
-        panel1.add(pazaitza2_textua);
-        panel1.add(pazaitza2);
-        panel1.add(gorde);
-        panel1.add(pazaitz_mezua);
+        // Sortu diren textfiel eta labelak Jpanel-etan sartzen dira, frame-an ondo kokatuta egoteko.
+        JPanel kaxak= new JPanel();
+        kaxak.setLayout(new BoxLayout(kaxak,BoxLayout.Y_AXIS));
+
+        JPanel kaxak0= new JPanel(new GridLayout(2,1));
+        kaxak0.add(email_textua);
+        kaxak0.add(email);
+        kaxak.add(kaxak0);
+
+        JPanel kaxa1= new JPanel(new GridLayout(1,2));
+
+        JPanel kaxak1_1= new JPanel();
+        kaxak1_1.setLayout(new BoxLayout(kaxak1_1,BoxLayout.Y_AXIS));
+
+        JPanel kaxak1_2= new JPanel();
+        kaxak1_2.setLayout(new BoxLayout(kaxak1_2,BoxLayout.Y_AXIS));
+
+        kaxa1.add(kaxak1_1);
+        kaxa1.add(kaxak1_2);
+
+        kaxak.add(kaxa1);
+        kaxak1_1.add(nan_textua);
+        kaxak1_1.add(nan);
+        kaxak1_1.add(izena_textua);
+        kaxak1_1.add(izena);
+        kaxak1_1.add(kolmena_kantitatea_textua);
+        kaxak1_1.add(kolmena_kantitatea);
+
+        kaxak1_2.add(telefonoa_textua);
+        kaxak1_2.add(telefonoa);
+        kaxak1_2.add(abizena_textua);
+        kaxak1_2.add(abizena);
+        kaxak1_2.add(erle_kantitatea_textua);
+        kaxak1_2.add(erle_kantitatea);
+
+        JPanel kaxak2 = new JPanel(new GridLayout(7,1));
+        kaxak2.add(jaio_eguna_Textua);
+        kaxak2.add(jaio_eguna);
+        kaxak2.add(pazaitza_textua);
+        kaxak2.add(pazaitza);
+        kaxak2.add(pazaitza2_textua);
+        kaxak2.add(pazaitza2);
+        kaxak2.add(gorde);
+        kaxak.add(kaxak2);
+
+        JPanel dena= new JPanel();
+        dena.add(kaxak);
+        dena.add(pazaitz_mezua);
+        panel1.add(dena);
 
         gorde.addActionListener(new ActionListener() { //gorde botoiaren gainean entzle bat sortu.
             @Override
@@ -173,19 +174,20 @@ public class Sesioa {
     public void south(){
 
         panel3 = new JPanel();// panel3 sortu.
-        panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panel3 box leyaut x ardatzean mota ezarri.
+        panel3.setLayout(new BoxLayout(panel3,BoxLayout.Y_AXIS));// panel3 boxlayaut erabili da Y ardatzean egoteko.
 
-        JLabel tartea1= new JLabel("    ");// jlabel bat sortu textu huts batekin.
-        tartea1.setBorder(new EmptyBorder(0, 0, 0, 70));// jlabel-aren kokalekua ezarri.
+        JPanel panel3_1 = new JPanel();
+        panel3_1.setLayout(new BoxLayout(panel3_1, BoxLayout.X_AXIS));// panel3_1 boxlayaut erabili da X ardatzean egoteko.
 
         itzuli1 = new JButton("Atzera");// itzuli botoia sortu.
         editatu= new JButton("Editatu");// editatu botoia sortu.
         itxi_sesioa= new JButton("Sesioa Itxi");// sesioa itxi botoia sortu.
-// panel3an sortutako botaiak eta label-a gahitu.
-        panel3.add(tartea1);
-        panel3.add(itzuli1);
-        panel3.add(editatu);
-        panel3.add(itxi_sesioa);
+
+        //botoi guztiak panel3_1 barruan sartu dira eta panel3_1 panel3 barruan sartu da.
+        panel3_1.add(itzuli1);
+        panel3_1.add(editatu);
+        panel3_1.add(itxi_sesioa);
+        panel3.add(panel3_1);
         itzuli1.addActionListener(new ActionListener() {// izuli botoiaren gainean entzule bat sortu.
             @Override
             public void actionPerformed(ActionEvent e) {//itzuli botoiaren gainean click egiterakoan.
