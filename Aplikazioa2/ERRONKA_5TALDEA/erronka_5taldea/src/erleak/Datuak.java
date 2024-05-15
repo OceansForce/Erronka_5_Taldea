@@ -13,7 +13,7 @@ import static erleak.Login.zuzendaria_da;
 
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
-    static String ip_eta_portua= "192.168.8.106"/*"10.14.4.124"*/;
+    static String ip_eta_portua= "10.14.4.124";
     static String erabiltzailea="T5_2";
     static String pazaitza="123";
     static String datu_base_IZENA="ORCLCDB";
@@ -416,22 +416,44 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
-    public static String[][] sozietate_Arraya_filtroa(String izena){
+
+    public static String[][] sozietate_Arraya_bilatzailea(String izena){
         konexioa();
         try {
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak");
+            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak WHERE asoziazio_izena like '"+izena+"%'");
             rs.last();
             String[][] sozietateak=  new String[rs.getRow()][3];
             rs.beforeFirst();
             int x=0;
             while (rs.next()) {
-                if (rs.getString("asoziazio_izena").equals(izena)) {
-                    sozietateak[x][0] = rs.getString("id_asoziazioa");
-                    sozietateak[x][1] = rs.getString("asoziazio_izena");
-                    sozietateak[x][2] = rs.getString("herrialdea");
-                    x++;
-                }
+
+                sozietateak[x][0] = rs.getString("id_asoziazioa");
+                sozietateak[x][1] = rs.getString("asoziazio_izena");
+                sozietateak[x][2] = rs.getString("herrialdea");
+                x++;
+            }
+            con.close();
+            return sozietateak;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String[][] sozietate_Arraya_herria(String izena){
+        konexioa();
+        try {
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak WHERE herrialdea like '"+izena+"'");
+            rs.last();
+            String[][] sozietateak=  new String[rs.getRow()][3];
+            rs.beforeFirst();
+            int x=0;
+            while (rs.next()) {
+
+                sozietateak[x][0] = rs.getString("id_asoziazioa");
+                sozietateak[x][1] = rs.getString("asoziazio_izena");
+                sozietateak[x][2] = rs.getString("herrialdea");
+                x++;
             }
             con.close();
             return sozietateak;

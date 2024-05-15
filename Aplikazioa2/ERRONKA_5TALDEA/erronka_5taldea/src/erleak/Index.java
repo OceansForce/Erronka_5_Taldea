@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 
 import static erleak.Login.*;
@@ -193,6 +194,9 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         centerPanela= new JPanel();// panela sortu.
         centerPanela.setLayout(card1);// panelari card mota ezarri.
 
+        ImageIcon lupa_irudia = new ImageIcon(".\\Irudiak\\lupa.png");
+        ImageIcon lupa_irudia_aldatuta = new ImageIcon(lupa_irudia.getImage().getScaledInstance(10,10, java.awt.Image.SCALE_SMOOTH));
+
         panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));// panel bat sortu erdian kokatzen dena.
         ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg"); // irudia aldagaian kargatu.
         JLabel portada= new JLabel(portada_irudia);// irudia jlabel batean jarri.
@@ -249,9 +253,26 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JLabel sozio_Lirudi= new JLabel(sozio_irudia_aldatuta);// irudia jlabel batean jarri.
         panel6.add(sozio_Lirudi, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
 
+        SpringLayout layout6 = new SpringLayout();
+        JPanel panel6_1 = new JPanel(layout6);
+        JTextField bilatzailea6 = new JTextField(15);
+        JButton L_lupa_irudia6 = new JButton(lupa_irudia_aldatuta);
+        JButton desegin6 = new JButton("Desegin");
+
+        panel6_1.add(bilatzailea6);
+        layout6.putConstraint(SpringLayout.WEST, bilatzailea6,  10, SpringLayout.WEST, panel7);
+
+        panel6_1.add(L_lupa_irudia6);
+        layout6.putConstraint(SpringLayout.WEST, L_lupa_irudia6,  170, SpringLayout.WEST, bilatzailea6);
+
+        panel6_1.add(desegin6);
+        layout6.putConstraint(SpringLayout.WEST, desegin6, 80, SpringLayout.WEST, L_lupa_irudia6);
+
+        panel6.add(panel6_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
-        final JTable sozio_tabla= new JTable(Datuak.sozio_Array(),kolumna_Izenak_sozio);//aldatu ezin den taula bat sortu, array-eko eremuekin.
+        DefaultTableModel sozioak_model = new DefaultTableModel(Datuak.sozio_Array(), kolumna_Izenak_sozio);
+        JTable sozio_tabla= new JTable(sozioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane sozio_sp= new JScrollPane(sozio_tabla);//taulari scroll bat sortu.
 
@@ -265,18 +286,34 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         SpringLayout layout7 = new SpringLayout();
         JPanel panel7_1 = new JPanel(layout7);
-        JTextField bilatzailea = new JTextField(15);
-        ImageIcon lupa_irudia = new ImageIcon(".\\Irudiak\\lupa.png");
-        ImageIcon lupa_irudia_aldatuta = new ImageIcon(lupa_irudia.getImage().getScaledInstance(10,10, java.awt.Image.SCALE_SMOOTH));
-        JButton L_lupa_irudia = new JButton(lupa_irudia_aldatuta);
+        JTextField bilatzailea7 = new JTextField(15);
+        JButton L_lupa_irudia7 = new JButton(lupa_irudia_aldatuta);
+        JButton desegin7 = new JButton("Desegin");
 
-        panel7_1.add(bilatzailea);
-        layout7.putConstraint(SpringLayout.WEST, bilatzailea,  10, SpringLayout.WEST, panel7);
+        ArrayList<Sozietateak> sozietateak = sozietate_Arrayalist();
+        String[] hirriak_lista = new String[sozietateak.size()];
 
-        panel7_1.add(L_lupa_irudia);
-        layout7.putConstraint(SpringLayout.WEST, L_lupa_irudia,  170, SpringLayout.WEST, bilatzailea);
+        int x=0;
+        for (Sozietateak a: sozietateak) {
+            hirriak_lista[x]=a.getHerrialdea();
+            x++;
+        }
+        JComboBox herriak = new JComboBox<>(hirriak_lista);
+
+        panel7_1.add(bilatzailea7);
+        layout7.putConstraint(SpringLayout.WEST, bilatzailea7,  10, SpringLayout.WEST, panel7);
+
+        panel7_1.add(L_lupa_irudia7);
+        layout7.putConstraint(SpringLayout.WEST, L_lupa_irudia7,  170, SpringLayout.WEST, bilatzailea7);
+
+        panel7_1.add(herriak);
+        layout7.putConstraint(SpringLayout.WEST, herriak, 50, SpringLayout.WEST, L_lupa_irudia7);
+
+        panel7_1.add(desegin7);
+        layout7.putConstraint(SpringLayout.WEST, desegin7, 80, SpringLayout.WEST, herriak);
 
         panel7.add(panel7_1, BorderLayout.CENTER);
+
 
         String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
         DefaultTableModel asoziazioak_model = new DefaultTableModel(Datuak.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
@@ -297,16 +334,38 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         f_Index.add(centerPanela,BorderLayout.CENTER);//panel nagusiko erdialdean gehitu card panela.
 
-        L_lupa_irudia.addActionListener(new ActionListener() {
+        L_lupa_irudia6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              ArrayList<Sozietateak> sozietateak = sozietate_Arrayalist();
-              for (Sozietateak s: sozietateak){
-                  if (s.getIzena().equals( bilatzailea.getText())){
-                      asoziazioak_model.setDataVector(sozietate_Arraya_filtroa(s.getIzena()),kolumna_Izenak_asoziazioak);
-                  }
-              }
+                sozioak_model.setDataVector(sozietate_Arraya_bilatzailea(bilatzailea7.getText()),kolumna_Izenak_asoziazioak);
+            }
+        });
 
+        desegin6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                asoziazioak_model.setDataVector(sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+            }
+        });
+
+        L_lupa_irudia7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                asoziazioak_model.setDataVector(sozietate_Arraya_bilatzailea(bilatzailea7.getText()),kolumna_Izenak_asoziazioak);
+            }
+        });
+
+        desegin7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                asoziazioak_model.setDataVector(sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+            }
+        });
+
+        herriak.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                asoziazioak_model.setDataVector( sozietate_Arraya_herria((String) herriak.getSelectedItem()),kolumna_Izenak_asoziazioak);
             }
         });
     }
