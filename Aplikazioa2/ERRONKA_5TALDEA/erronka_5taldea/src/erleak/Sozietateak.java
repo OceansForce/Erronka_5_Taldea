@@ -18,5 +18,15 @@ public class Sozietateak {
         this.herrialdea = herrialdea;
     }
 
+    public int getId_asoziazioa() {
+        return id_asoziazioa;
+    }
 
+    public String getIzena() {
+        return izena;
+    }
+
+    public String getHerrialdea() {
+        return herrialdea;
+    }
 }

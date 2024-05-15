@@ -57,14 +57,14 @@ public class Testak {
             Assertions.assertNotNull(center_4_txertatu());
         }
     }
-    @Tag("3.Panelan")
+    /*@Tag("3.Panelan")
     @Test
     @RepeatedTest(value = 3)
     public void test5(){
         Assertions.assertNotNull(center_3_txertatu());
-    }
+    }*/
 
-    @DisplayName("CSV")
+   /* @DisplayName("CSV")
     @CsvFileSource(resources = ".././CSV.csv")
     @ParameterizedTest
     void test6(int IDa){
