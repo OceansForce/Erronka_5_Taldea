@@ -1,4 +1,4 @@
-/*package Testak;
+package Testak;
 
 import erleak.Datuak;
 import org.junit.jupiter.api.Assertions;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static erleak.Datuak.izena_jarri;
 import static org.junit.jupiter.api.Assertions.*;
 
-class DatuakTest {
+/*class DatuakTest {
 
     @Test
     public void izena_jarri() {

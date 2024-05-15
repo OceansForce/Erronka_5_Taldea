@@ -50,13 +50,10 @@ public class Login extends JFrame {
 
 
     public void center1(){
-        card1= new CardLayout();// card bat sortu.
-        panel_1_4 = new JPanel();// panel bat sortu.
-        panel_1_4.setLayout(card1); // panela cardlayout bihurtu.
+        SpringLayout layout= new SpringLayout();
+        JPanel panel1 = new JPanel(layout);// panel bat sortu.
 
-        JPanel panel1 = new JPanel(null);// panel bat sortu.
-
-        txertatu_izen = new JTextField(17);// textfield bat sortu eta honen tamaina ezarri.
+        txertatu_izen = new JTextField(18);// textfield bat sortu eta honen tamaina ezarri.
         txertatu_izen.setEnabled(false);// texfield-a ez editagarria egin.
         txertatu_izen.addMouseListener(new MouseAdapter() {
             @Override
@@ -105,15 +102,6 @@ public class Login extends JFrame {
             }
         });
 
-        mezua = new JLabel("");// mezua display bat sortu.
-
-        txertatu_izen.setBounds(95,10,200, 25);//textfield-ari tamaina ezarri.
-        mezua.setBounds(105, 30, 200, 50);// mezua display-ari tamaina ezarri.
-
-        panel1.add(txertatu_izen);// panel1-era texfield-a gehitu.
-        panel1.add(mezua); // panel1-era mezua texfield-a gehitu.
-
-        JPanel panel4 = new JPanel();// display bat sortu.
 
         txertatupass = new JPasswordField(18);// passwordfield bat sortu pasahitzarentzako.
         txertatupass.setEnabled(false);// passwordfield-a ez editagarria jarri.
@@ -174,25 +162,31 @@ public class Login extends JFrame {
             }
         });
 
-        panel4.add(txertatupass);
+        mezua = new JLabel("");// mezua display bat sortu.
 
-        panel_1_4.add(panel1, "panel1");
-        panel_1_4.add(panel4, "panel4");
+        panel1.add(txertatu_izen);// panel1-era texfield-a gehitu.
+        panel1.add(txertatupass);
+        panel1.add(mezua); // panel1-era mezua texfield-a gehitu.
 
-        f_login.add(panel_1_4,  BorderLayout.CENTER);
+        layout.putConstraint(SpringLayout.NORTH, txertatu_izen, 10, SpringLayout.NORTH, panel1);
+        layout.putConstraint(SpringLayout.NORTH, txertatupass, 10, SpringLayout.SOUTH, txertatu_izen);
+        layout.putConstraint(SpringLayout.NORTH, mezua, 10, SpringLayout.SOUTH, txertatupass);
+
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, txertatu_izen, 0, SpringLayout.HORIZONTAL_CENTER, panel1);
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, txertatupass, 0, SpringLayout.HORIZONTAL_CENTER, panel1);
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, mezua, 0, SpringLayout.HORIZONTAL_CENTER, panel1);
+
+        f_login.add(panel1,  BorderLayout.CENTER);
     }
 
 
     public void south(){
-        card2= new CardLayout();// card2 sortu.
-        JPanel panel_3_5= new JPanel();// panel bat sortu.
-        panel_3_5.setLayout(card2);// panelari card mota ezarri.
 
         JPanel panel3 = new JPanel();// panel3 sortu.
         panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panel3-ri box layout mota ezarri x ardatzean.
 
-        JLabel tartea1= new JLabel("                    ");// tartea egiteko label bat sortu.
-        urrengoa = new JButton("Hurrengoa");//Botoia sortu.
+        JLabel tartea1= new JLabel("                       ");// tartea egiteko label bat sortu.
+        login = new JButton("Login");// login botoia sortu.
         erregistratu = new JButton("Erregistratu");//Botoia sortu.
         itzuli1 = new JButton("Atzera");//Botoia sortu.
 
@@ -200,7 +194,7 @@ public class Login extends JFrame {
         panel3.add(tartea1);
         panel3.add(itzuli1);
         panel3.add(erregistratu);
-        panel3.add(urrengoa);
+        panel3.add(login);
 
         itzuli1.addActionListener(new ActionListener() {// itzili botoiean entzule bat sortu click egiteko momenturako.
             @Override
@@ -210,58 +204,13 @@ public class Login extends JFrame {
             }
         });
 
-        erregistratu.addActionListener(new ActionListener() {// erregistratu botoiean entzule bat sortu click egiteko unerako.
-            @Override
-            public void actionPerformed(ActionEvent e) { // click egiterakoan.
-                new Erregistratu().sortu_Erregistratu();// erregistratu display a sortu eta pantailaratu.
-            }
-        });
-        urrengoa.addActionListener(new ActionListener() {// urrengoa botoiean entzule bat gehitu.
-            // Pasahitza jarri al izateko, aldatzen du.
-            @Override
-            public void actionPerformed(ActionEvent e) {// urrengoa botoian click egiterakoan.
-                if (!txertatu_izen.getText().isEmpty() && !txertatu_izen.getText().equals("Izena, NAN, Telefonoa edo Emaila") && Datuak.izena_jarri(txertatu_izen.getText())) {// sartutako sozioa zuzena baldin bada edo ez badago hutsa textfield-a.
-                    identifikatzaile = txertatu_izen.getText();// txertatutako sozioaren identifikatzailea gorde.
-                    card2.show(panel_3_5, "panel5");//
-                    card1.show(panel_1_4, "panel4");
-                    mezua.setText("");
-                }else {// sartutako langilea okerra bada edo textfield-a utsa badago.
-                    mezua.setForeground(Color.red);// mezua agertiko da textfield azpian.
-                    mezua.setText("Identifikatzailea sartu behar da");// mezuko esaldia.
-                }
-            }
-        });
 
-        JPanel panel5 = new JPanel();// display bat sortu.
-        panel5.setLayout(new BoxLayout(panel5,BoxLayout.X_AXIS));// panelari mota ezarri, boxlayout x ardatzean.
-
-        JLabel tartea2= new JLabel("                          ");// tartea uzteko label-a sortu.
-        login = new JButton("Login");// login botoia sortu.
-        erregistratu = new JButton("Erregistratu");// erregistratu botoia sortu.
-        itzuli2 = new JButton("Atzera"); //itzuli botoia sortu.
-
-        // sortutako label-a eta botoiak display-ean gehitu.
-        panel5.add(tartea2);
-        panel5.add(itzuli2);
-        panel5.add(erregistratu);
-        panel5.add(login);
-
-        itzuli2.addActionListener(new ActionListener() { //itzuli botoian entzule bat gehitu.
-            @Override
-            public void actionPerformed(ActionEvent e) {// itzuli botoian click egiterakoan.
-                //Pasahitzatik atzera bueltatzeko
-                card2.show(panel_3_5, "panel3");//
-                card1.show(panel_1_4, "panel1");
-                txertatu_izen.setText(identifikatzaile);//
-            }
-        });
-
-       
         login.addActionListener(new ActionListener() {// login botoiari entzule bat gehitu.
             @Override
             public void actionPerformed(ActionEvent e) {// login botoiean click egiterakoan.
                 String pasahitza1= new String(txertatupass.getPassword());// sartutako pasahitza aldagaian gorde.
-                if (Datuak.pazaitza_jarri().equals(pasahitza1)){// datu baseko pasahitza sartutako pasahitz berbera bada.
+                if (Datuak.identifikatzailea_ondo(txertatu_izen.getText().trim()) && Datuak.pazaitza_jarri(txertatu_izen.getText().trim()).equals(pasahitza1)){// datu baseko pasahitza sartutako pasahitz berbera bada.
+                    Datuak.izena_jarri(txertatu_izen.getText().trim());
                     JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
                     logeatua_dago= true;// logetuta egon.
                     if (Datuak.zuzendariak().contains(Datuak.id_atera_login())){// logetutako sozioa zuzendariak taulan egon.
@@ -276,15 +225,14 @@ public class Login extends JFrame {
                     }
                     new Index().sortu();// index display-a sortu eta biztaratu
                     f_login.dispose();
+                }else {
+                    mezua.setText("Identifikatzailea edo pasahitza");
+                    mezua.setForeground(Color.red);
                 }
             }
         });
 
-// panel bakoitza bere posizioan gehitu.
-        panel_3_5.add(panel3, "panel3");
-        panel_3_5.add(panel5, "panel5");
-        f_login.add(panel_3_5, BorderLayout.SOUTH);
-
+        f_login.add(panel3, BorderLayout.SOUTH);
     }
 
     public static void main(String[] args){//logina sortu eta biztaratu.

@@ -123,7 +123,7 @@ public class Erregistratu {
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
 
-    public void textuGrixa(JTextField kuadroa , String textua){
+    public static void textuGrixa(JTextField kuadroa, String textua){
         kuadroa.setEnabled(false);// text field bateko atzeko testua
         kuadroa.addMouseListener(new MouseAdapter() { // text field en gainean entzule bat sortu click-ateko momenturako.
             @Override

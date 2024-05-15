@@ -209,13 +209,31 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JLabel eztia_Lirudi= new JLabel(eztia_irudia_aldatuta); // irudia jlabel batean jarri.
         panel3.add(eztia_Lirudi, BorderLayout.NORTH);// aurreko jlabel-a  sortutako panelaren goiko partean jarri.
 
+        SpringLayout layout3 = new SpringLayout();
+        JPanel panel3_1 = new JPanel(layout3);
+        JTextField bilatzailea3 = new JTextField(15);
+        JButton L_lupa_irudia3 = new JButton(lupa_irudia_aldatuta);
+        JButton desegin3 = new JButton("Desegin");
+        Erregistratu.textuGrixa(bilatzailea3,"Eztia-ren Izena");
+
+        panel3_1.add(bilatzailea3);
+        layout3.putConstraint(SpringLayout.WEST, bilatzailea3,  10, SpringLayout.WEST, panel3);
+
+        panel3_1.add(L_lupa_irudia3);
+        layout3.putConstraint(SpringLayout.WEST, L_lupa_irudia3,  170, SpringLayout.WEST, bilatzailea3);
+
+        panel3_1.add(desegin3);
+        layout3.putConstraint(SpringLayout.WEST, desegin3, 80, SpringLayout.WEST, L_lupa_irudia3);
+
+        panel3.add(panel3_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"}; // String-en array bat hasieratu datu bateko taularen eremuen izenekin.
-        final JTable ezti_tabla= new JTable(Datuak.center_3_txertatu(),kolumna_Izenak_eztia);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
+        DefaultTableModel eztia_model = new DefaultTableModel(Datuak.center_3_txertatu(),kolumna_Izenak_eztia);
+        JTable ezti_tabla= new JTable(eztia_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taulari tamaina ezarri.
         JScrollPane ezti_sp= new JScrollPane(ezti_tabla);//taulan scroll bat sortu.
 
-        panel3.add(ezti_sp, BorderLayout.CENTER);// sortutako taula eta scroll-a panelaren erdian txertatu.
+        panel3.add(ezti_sp, BorderLayout.SOUTH);// sortutako taula eta scroll-a panelaren erdian txertatu.
 
         panel4= new JPanel(new BorderLayout());// Panel berri bat sortu.
 
@@ -224,27 +242,62 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JLabel besteak_Lirudi= new JLabel(besteak_irudia_aldatuta);// irudia jlabel batean jarri.
         panel4.add(besteak_Lirudi, BorderLayout.NORTH);// sortutako labela panelean txertatu.
 
+        SpringLayout layout4 = new SpringLayout();
+        JPanel panel4_1 = new JPanel(layout4);
+        JTextField bilatzailea4 = new JTextField(15);
+        JButton L_lupa_irudia4 = new JButton(lupa_irudia_aldatuta);
+        JButton desegin4 = new JButton("Desegin");
+        Erregistratu.textuGrixa(bilatzailea4,"Produktua-ren Izena");
+
+        panel4_1.add(bilatzailea4);
+        layout4.putConstraint(SpringLayout.WEST, bilatzailea4,  10, SpringLayout.WEST, panel4);
+
+        panel4_1.add(L_lupa_irudia4);
+        layout4.putConstraint(SpringLayout.WEST, L_lupa_irudia4,  170, SpringLayout.WEST, bilatzailea4);
+
+        panel4_1.add(desegin4);
+        layout4.putConstraint(SpringLayout.WEST, desegin4, 80, SpringLayout.WEST, L_lupa_irudia4);
+
+        panel4.add(panel4_1, BorderLayout.CENTER);
+
         String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String-en array bat hasieratu datu baseko taularen eremuen izenekin.
-        final JTable besteak_tabla= new JTable(Datuak.center_4_txertatu(),kolumna_Izenak_besteak);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
+        DefaultTableModel besteak_model = new DefaultTableModel(Datuak.center_4_txertatu(),kolumna_Izenak_besteak);
+        JTable besteak_tabla= new JTable(besteak_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taularen tamaina ezarri.
         JScrollPane bestak_sp= new JScrollPane(besteak_tabla);// taulari scroll bat sortu.
 
-        panel4.add(bestak_sp);// taula panelean txertatu.
+        panel4.add(bestak_sp, BorderLayout.SOUTH);// taula panelean txertatu.
 
         panel5= new JPanel(new BorderLayout());// panel bat sortu.
 
-        ImageIcon besteak_irudia2 = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irudia aldagai batean hasieratu.
-        ImageIcon besteak_irudia_aldatuta2= new ImageIcon(besteak_irudia2.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
-        JLabel besteak_Lirudi2= new JLabel(besteak_irudia_aldatuta2);// irudia jlabel batean jarri.
-        panel5.add(besteak_Lirudi2, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
+        JLabel materiala_Lirudi2= new JLabel(besteak_irudia_aldatuta);// irudia jlabel batean jarri.
+        panel5.add(materiala_Lirudi2, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
 
+        SpringLayout layout5 = new SpringLayout();
+        JPanel panel5_1 = new JPanel(layout5);
+        JTextField bilatzailea5 = new JTextField(15);
+        JButton L_lupa_irudia5 = new JButton(lupa_irudia_aldatuta);
+        JButton desegin5 = new JButton("Desegin");
+        Erregistratu.textuGrixa(bilatzailea5,"Materiala-ren Izena");
+
+        panel5_1.add(bilatzailea5);
+        layout5.putConstraint(SpringLayout.WEST, bilatzailea5,  10, SpringLayout.WEST, panel5);
+
+        panel5_1.add(L_lupa_irudia5);
+        layout5.putConstraint(SpringLayout.WEST, L_lupa_irudia5,  170, SpringLayout.WEST, bilatzailea5);
+
+        panel5_1.add(desegin5);
+        layout5.putConstraint(SpringLayout.WEST, desegin5, 80, SpringLayout.WEST, L_lupa_irudia5);
+
+        panel5.add(panel5_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String bat hasieratu datu baseko taularen eremuen izenekin.
-        final JTable material_tabla= new JTable(Datuak.center_5_txertatu(),kolumna_Izenak_material);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
+        DefaultTableModel material_model = new DefaultTableModel(Datuak.center_5_txertatu(), kolumna_Izenak_material);
+        JTable material_tabla= new JTable(material_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane material_sp= new JScrollPane(material_tabla);//taulari scroll bat sortu.
 
-        panel5.add(material_sp);// taula panelean txertatu.
+        panel5.add(material_sp, BorderLayout.SOUTH);// taula panelean txertatu.
 
         panel6 = new JPanel(new BorderLayout());// panel bat sortu.
 
@@ -258,9 +311,10 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea6 = new JTextField(15);
         JButton L_lupa_irudia6 = new JButton(lupa_irudia_aldatuta);
         JButton desegin6 = new JButton("Desegin");
+        Erregistratu.textuGrixa(bilatzailea6,"Sozio Izena");
 
         panel6_1.add(bilatzailea6);
-        layout6.putConstraint(SpringLayout.WEST, bilatzailea6,  10, SpringLayout.WEST, panel7);
+        layout6.putConstraint(SpringLayout.WEST, bilatzailea6,  10, SpringLayout.WEST, panel6);
 
         panel6_1.add(L_lupa_irudia6);
         layout6.putConstraint(SpringLayout.WEST, L_lupa_irudia6,  170, SpringLayout.WEST, bilatzailea6);
@@ -276,7 +330,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane sozio_sp= new JScrollPane(sozio_tabla);//taulari scroll bat sortu.
 
-        panel6.add(sozio_sp, BorderLayout.CENTER);// taula panelaren erdian txertatu.
+        panel6.add(sozio_sp, BorderLayout.SOUTH);// taula panelaren erdian txertatu.
 
         panel7 = new JPanel(new BorderLayout());// panel bat sortu.
         ImageIcon sozietateak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean hasieratu.
@@ -289,6 +343,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea7 = new JTextField(15);
         JButton L_lupa_irudia7 = new JButton(lupa_irudia_aldatuta);
         JButton desegin7 = new JButton("Desegin");
+        Erregistratu.textuGrixa(bilatzailea7,"Asoziazio Izena");
 
         ArrayList<Sozietateak> sozietateak = sozietate_Arrayalist();
         String[] hirriak_lista = new String[sozietateak.size()];
@@ -333,18 +388,58 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         centerPanela.add(panel7, "panel7");
 
         f_Index.add(centerPanela,BorderLayout.CENTER);//panel nagusiko erdialdean gehitu card panela.
+        L_lupa_irudia3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(Arrays.deepToString(ezti_bilatzailea(bilatzailea3.getText())));
+                eztia_model.setDataVector(ezti_bilatzailea(bilatzailea3.getText()),kolumna_Izenak_eztia);
+            }
+        });
+
+        desegin3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eztia_model.setDataVector(center_3_txertatu(), kolumna_Izenak_eztia);
+            }
+        });
+        L_lupa_irudia4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                besteak_model.setDataVector(besteak_bilatu(bilatzailea4.getText()),kolumna_Izenak_besteak);
+            }
+        });
+
+        desegin4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                besteak_model.setDataVector(center_4_txertatu(), kolumna_Izenak_besteak);
+            }
+        });
+        L_lupa_irudia5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                material_model.setDataVector(materiala_bilatu(bilatzailea5.getText()),kolumna_Izenak_material);
+            }
+        });
+
+        desegin5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                material_model.setDataVector(center_5_txertatu(), kolumna_Izenak_material);
+            }
+        });
 
         L_lupa_irudia6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sozioak_model.setDataVector(sozietate_Arraya_bilatzailea(bilatzailea7.getText()),kolumna_Izenak_asoziazioak);
+                sozioak_model.setDataVector(sozio_Array_bilatzailea(bilatzailea6.getText()),kolumna_Izenak_sozio);
             }
         });
 
         desegin6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                asoziazioak_model.setDataVector(sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+                sozioak_model.setDataVector(sozio_Array(), kolumna_Izenak_sozio);
             }
         });
 
