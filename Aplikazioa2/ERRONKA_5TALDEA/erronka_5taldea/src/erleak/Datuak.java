@@ -2,17 +2,17 @@ package erleak;
 
 import erleak.*;
 
-import java.security.SecureRandom;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-
-import erleak.Sozioak.*;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
+import java.util.logging.Logger;
+import java.io.*;
+import java.util.logging.*;
 import javax.xml.bind.DatatypeConverter;
+
 
 import static erleak.Login.logeatua_dago;
 import static erleak.Login.zuzendaria_da;
@@ -151,7 +151,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=desenkriptatu(s.getPasahitza());
+                pazaitza_login=s.getPasahitza();
 
             } else if ((s.getNan()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
                 // sozioaren datu guztiak gorde.
@@ -165,7 +165,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=desenkriptatu(s.getPasahitza());
+                pazaitza_login=s.getPasahitza();
             } else if ((s.getTelefonoa()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
                 // sozioaren balio guztiak gorde.
                 id_sozioa_login= String.valueOf(s.getId_sozioa());
@@ -178,7 +178,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login= desenkriptatu(s.getPasahitza());
+                pazaitza_login= s.getPasahitza();
             }else if ((s.getEmail()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
                 id_sozioa_login= String.valueOf(s.getId_sozioa());
                 email_login=s.getEmail();
@@ -190,7 +190,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 jaio_eguna_login=ju[0];
                 erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
                 kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=desenkriptatu(s.getPasahitza());
+                pazaitza_login=s.getPasahitza();
             }
         }
     }
@@ -580,8 +580,10 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             update.setLong(6, kolmena_kantitatea);
             update.setLong(7, erle_kantitatea);
             update.setDate(8, jaio_eguna);
-            update.setString(9, pazaitza);
-            update.setString(10, enkriptatu(id_sozioa_login));
+            System.out.println(pazaitza);
+            System.out.println(hash(pazaitza));
+            update.setString(9, hash(pazaitza));
+            update.setString(10, id_sozioa_login);
 
             update.executeUpdate();// updatea exekutatu.
         } catch (SQLException e) {// Errorea kudeatu.
@@ -594,7 +596,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             konexioa();// datu basearekin konexioa egin.
             //eremu bakoitzean sartutako textua jasota  insert into bat sortu.
             PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
-                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+enkriptatu(pazaitza_login)+"')");
+                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+hash(pazaitza_login)+"')");
             insert.executeUpdate(); // aurreko insert-a datu basean exekutatu.
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -660,34 +662,17 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         }
     }
 
-    public static SecureRandom sr = new SecureRandom();
-
-    public static String enkriptatu (String value) {
+    public static String hash(String originalString){
+        String sha1 = null;
         try {
-            sr.nextBytes(iv);
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            SecretKeySpec sks = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
-            cipher.init(Cipher.ENCRYPT_MODE, sks, new IvParameterSpec(iv));
+            MessageDigest msdDigest = MessageDigest.getInstance("SHA-1");
+            msdDigest.update(originalString.getBytes("UTF-8"), 0, originalString.length());
+            sha1 = DatatypeConverter.printHexBinary(msdDigest.digest());
 
-            byte[] encriptado = cipher.doFinal(value.getBytes());
-            return DatatypeConverter.printBase64Binary(encriptado);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return sha1;
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            System.err.println("Hash errorea");
         }
-        return null;
-    }
-
-    public static String desenkriptatu(String encriptado) {
-        try {
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            SecretKeySpec sks = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
-            cipher.init(Cipher.DECRYPT_MODE, sks, new IvParameterSpec(iv));
-
-            byte[] dec = cipher.doFinal(DatatypeConverter.parseBase64Binary(encriptado));
-            return new String(dec);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
+        return sha1;
     }
 }

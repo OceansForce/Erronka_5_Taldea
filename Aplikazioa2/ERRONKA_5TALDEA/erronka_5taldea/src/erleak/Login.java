@@ -209,22 +209,24 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {// login botoiean click egiterakoan.
                 String pasahitza1= new String(txertatupass.getPassword());// sartutako pasahitza aldagaian gorde.
-                if (Datuak.identifikatzailea_ondo(txertatu_izen.getText().trim()) && Datuak.pazaitza_jarri(txertatu_izen.getText().trim()).equals(pasahitza1)){// datu baseko pasahitza sartutako pasahitz berbera bada.
-                    Datuak.izena_jarri(txertatu_izen.getText().trim());
-                    JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
-                    logeatua_dago= true;// logetuta egon.
-                    if (Datuak.zuzendariak().contains(Datuak.id_atera_login())){// logetutako sozioa zuzendariak taulan egon.
-                        zuzendaria_da=true;// zuzendaria izan.
-                    }
-                    try {
-                        FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");// fitxategian idazlea sortu.
-                        erabiltzaila.write(Integer.toString(Datuak.id_atera_login()));// sartutako sozioa
-                        erabiltzaila.close();//idazlea itxi.
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    new Index().sortu();// index display-a sortu eta biztaratu
-                    f_login.dispose();
+                if (Datuak.identifikatzailea_ondo(txertatu_izen.getText().trim()) && Datuak.pazaitza_jarri(txertatu_izen.getText().trim()).equals(Datuak.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
+
+                        Datuak.izena_jarri(txertatu_izen.getText().trim());
+                        JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
+                        logeatua_dago = true;// logetuta egon.
+                        if (Datuak.zuzendariak().contains(Datuak.id_atera_login())) {// logetutako sozioa zuzendariak taulan egon.
+                            zuzendaria_da = true;// zuzendaria izan.
+                        }
+                        try {
+                            FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");// fitxategian idazlea sortu.
+                            erabiltzaila.write(Integer.toString(Datuak.id_atera_login()));// sartutako sozioa
+                            erabiltzaila.close();//idazlea itxi.
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        new Index().sortu();// index display-a sortu eta biztaratu
+                        f_login.dispose();
+
                 }else {
                     mezua.setText("Identifikatzailea edo pasahitza");
                     mezua.setForeground(Color.red);

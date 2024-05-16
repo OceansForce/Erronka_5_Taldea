@@ -76,8 +76,6 @@ public class Sesioa {
         jaio_eguna.setText(jaio_eguna_login);
         erle_kantitatea.setText(erle_kantitatea_login);
         kolmena_kantitatea.setText(kolmena_kantitatea_login);
-        pazaitza.setText(pazaitza_login);
-        pazaitza2.setText(pazaitza_login);
 
         // eremu guztiak ez editagarriak egin.
         email.setEnabled(false);
