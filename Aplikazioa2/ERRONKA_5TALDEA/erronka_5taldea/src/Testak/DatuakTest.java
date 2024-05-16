@@ -4,7 +4,7 @@ import erleak.Datuak;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static erleak.Datuak.izena_jarri;
+import static erleak.Datuak.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /*class DatuakTest {

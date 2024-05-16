@@ -26,16 +26,17 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     Ondoren datu basetik HashSet bat bueltauko da funtzioari deituz eta bertan gordetako id_sozioa dagoen jakingo da. Horrera bada onderen berriro HashSet bat bueltatuko du baina kasu honetan zuzendari guztiena eta ea sartutako id_langilea zuzendaria den jakingo da.
      Azkenik funtzo baten bidez sozioaren datu guztiak eskatuko dira txt an gordetako id_sozioaren bidez. */
     public static void main(String[] args){
+        Datuak da = new Datuak();
         try {
             int ida=0;
             BufferedReader irakurri = new BufferedReader(new FileReader(".\\sesio.txt"));
             ida= Integer.parseInt(irakurri.readLine());// TXT irakurri eta id-a gorde.
-            if (Datuak.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
+            if (da.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
                 logeatua_dago=true;
-                if (Datuak.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.
+                if (da.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.
                     zuzendaria_da=true;
                 }
-                Datuak.izena_jarri(Datuak.nan_atera(ida)); // Izenak_jarri funtzioari deituz sozioaren datu guztiak jaso.
+                da.izena_jarri(da.nan_atera(ida)); // Izenak_jarri funtzioari deituz sozioaren datu guztiak jaso.
             }
             new Index().sortu();//Horria sortu.
         } catch (IOException e) {
@@ -190,6 +191,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     }
 
     public void center(){
+        Datuak da = new Datuak();
         card1= new CardLayout();// card berri bat sortu.
         centerPanela= new JPanel();// panela sortu.
         centerPanela.setLayout(card1);// panelari card mota ezarri.
@@ -228,7 +230,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel3.add(panel3_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"}; // String-en array bat hasieratu datu bateko taularen eremuen izenekin.
-        DefaultTableModel eztia_model = new DefaultTableModel(Datuak.center_3_txertatu(),kolumna_Izenak_eztia);
+        DefaultTableModel eztia_model = new DefaultTableModel(da.center_3_txertatu(),kolumna_Izenak_eztia);
         JTable ezti_tabla= new JTable(eztia_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taulari tamaina ezarri.
         JScrollPane ezti_sp= new JScrollPane(ezti_tabla);//taulan scroll bat sortu.
@@ -261,7 +263,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel4.add(panel4_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String-en array bat hasieratu datu baseko taularen eremuen izenekin.
-        DefaultTableModel besteak_model = new DefaultTableModel(Datuak.center_4_txertatu(),kolumna_Izenak_besteak);
+        DefaultTableModel besteak_model = new DefaultTableModel(da.center_4_txertatu(),kolumna_Izenak_besteak);
         JTable besteak_tabla= new JTable(besteak_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taularen tamaina ezarri.
         JScrollPane bestak_sp= new JScrollPane(besteak_tabla);// taulari scroll bat sortu.
@@ -292,7 +294,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel5.add(panel5_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String bat hasieratu datu baseko taularen eremuen izenekin.
-        DefaultTableModel material_model = new DefaultTableModel(Datuak.center_5_txertatu(), kolumna_Izenak_material);
+        DefaultTableModel material_model = new DefaultTableModel(da.center_5_txertatu(), kolumna_Izenak_material);
         JTable material_tabla= new JTable(material_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane material_sp= new JScrollPane(material_tabla);//taulari scroll bat sortu.
@@ -325,7 +327,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel6.add(panel6_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
-        DefaultTableModel sozioak_model = new DefaultTableModel(Datuak.sozio_Array(), kolumna_Izenak_sozio);
+        DefaultTableModel sozioak_model = new DefaultTableModel(da.sozio_Array(), kolumna_Izenak_sozio);
         JTable sozio_tabla= new JTable(sozioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane sozio_sp= new JScrollPane(sozio_tabla);//taulari scroll bat sortu.
@@ -345,7 +347,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JButton desegin7 = new JButton("Desegin");
         Erregistratu.textuGrixa(bilatzailea7,"Asoziazio Izena");
 
-        ArrayList<Sozietateak> sozietateak = sozietate_Arrayalist();
+        ArrayList<Sozietateak> sozietateak = da.sozietate_Arrayalist();
         String[] hirriak_lista = new String[sozietateak.size()];
 
         int x=0;
@@ -371,7 +373,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
 
         String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
-        DefaultTableModel asoziazioak_model = new DefaultTableModel(Datuak.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+        DefaultTableModel asoziazioak_model = new DefaultTableModel(da.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
         JTable asoziazioak_tabla= new JTable(asoziazioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         asoziazioak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane asoziazioak_sp= new JScrollPane(asoziazioak_tabla);//taulari scroll bat sortu.
@@ -391,76 +393,76 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         L_lupa_irudia3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(Arrays.deepToString(ezti_bilatzailea(bilatzailea3.getText())));
-                eztia_model.setDataVector(ezti_bilatzailea(bilatzailea3.getText()),kolumna_Izenak_eztia);
+                System.out.println(Arrays.deepToString(da.ezti_bilatzailea(bilatzailea3.getText())));
+                eztia_model.setDataVector(da.ezti_bilatzailea(bilatzailea3.getText()),kolumna_Izenak_eztia);
             }
         });
 
         desegin3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eztia_model.setDataVector(center_3_txertatu(), kolumna_Izenak_eztia);
+                eztia_model.setDataVector(da.center_3_txertatu(), kolumna_Izenak_eztia);
             }
         });
         L_lupa_irudia4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                besteak_model.setDataVector(besteak_bilatu(bilatzailea4.getText()),kolumna_Izenak_besteak);
+                besteak_model.setDataVector(da.besteak_bilatu(bilatzailea4.getText()),kolumna_Izenak_besteak);
             }
         });
 
         desegin4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                besteak_model.setDataVector(center_4_txertatu(), kolumna_Izenak_besteak);
+                besteak_model.setDataVector(da.center_4_txertatu(), kolumna_Izenak_besteak);
             }
         });
         L_lupa_irudia5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                material_model.setDataVector(materiala_bilatu(bilatzailea5.getText()),kolumna_Izenak_material);
+                material_model.setDataVector(da.materiala_bilatu(bilatzailea5.getText()),kolumna_Izenak_material);
             }
         });
 
         desegin5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                material_model.setDataVector(center_5_txertatu(), kolumna_Izenak_material);
+                material_model.setDataVector(da.center_5_txertatu(), kolumna_Izenak_material);
             }
         });
 
         L_lupa_irudia6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sozioak_model.setDataVector(sozio_Array_bilatzailea(bilatzailea6.getText()),kolumna_Izenak_sozio);
+                sozioak_model.setDataVector(da.sozio_Array_bilatzailea(bilatzailea6.getText()),kolumna_Izenak_sozio);
             }
         });
 
         desegin6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sozioak_model.setDataVector(sozio_Array(), kolumna_Izenak_sozio);
+                sozioak_model.setDataVector(da.sozio_Array(), kolumna_Izenak_sozio);
             }
         });
 
         L_lupa_irudia7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                asoziazioak_model.setDataVector(sozietate_Arraya_bilatzailea(bilatzailea7.getText()),kolumna_Izenak_asoziazioak);
+                asoziazioak_model.setDataVector(da.sozietate_Arraya_bilatzailea(bilatzailea7.getText()),kolumna_Izenak_asoziazioak);
             }
         });
 
         desegin7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                asoziazioak_model.setDataVector(sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+                asoziazioak_model.setDataVector(da.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
             }
         });
 
         herriak.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                asoziazioak_model.setDataVector( sozietate_Arraya_herria((String) herriak.getSelectedItem()),kolumna_Izenak_asoziazioak);
+                asoziazioak_model.setDataVector( da.sozietate_Arraya_herria((String) herriak.getSelectedItem()),kolumna_Izenak_asoziazioak);
             }
         });
     }

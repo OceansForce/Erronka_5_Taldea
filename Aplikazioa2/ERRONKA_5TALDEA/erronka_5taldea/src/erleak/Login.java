@@ -11,9 +11,8 @@ import java.io.IOException;
 
 public class Login extends JFrame {
     private JFrame f_login= new JFrame();
-    private JPanel panel_1_4;
-    private CardLayout card1, card2;
-    private JButton erregistratu, login ,urrengoa, itzuli1,itzuli2;
+
+    private JButton erregistratu, login , itzuli1;
     private  JTextField txertatu_izen;
     private JPasswordField txertatupass;
     private JLabel mezua;
@@ -181,7 +180,7 @@ public class Login extends JFrame {
 
 
     public void south(){
-
+        Datuak da = new Datuak();
         JPanel panel3 = new JPanel();// panel3 sortu.
         panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panel3-ri box layout mota ezarri x ardatzean.
 
@@ -209,17 +208,17 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {// login botoiean click egiterakoan.
                 String pasahitza1= new String(txertatupass.getPassword());// sartutako pasahitza aldagaian gorde.
-                if (Datuak.identifikatzailea_ondo(txertatu_izen.getText().trim()) && Datuak.pazaitza_jarri(txertatu_izen.getText().trim()).equals(Datuak.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
+                if (da.identifikatzailea_ondo(txertatu_izen.getText().trim()) && da.pazaitza_jarri(txertatu_izen.getText().trim()).equals(da.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
 
-                        Datuak.izena_jarri(txertatu_izen.getText().trim());
+                        da.izena_jarri(txertatu_izen.getText().trim());
                         JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
                         logeatua_dago = true;// logetuta egon.
-                        if (Datuak.zuzendariak().contains(Datuak.id_atera_login())) {// logetutako sozioa zuzendariak taulan egon.
+                        if (da.zuzendariak().contains(da.id_atera_login())) {// logetutako sozioa zuzendariak taulan egon.
                             zuzendaria_da = true;// zuzendaria izan.
                         }
                         try {
                             FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");// fitxategian idazlea sortu.
-                            erabiltzaila.write(Integer.toString(Datuak.id_atera_login()));// sartutako sozioa
+                            erabiltzaila.write(Integer.toString(da.id_atera_login()));// sartutako sozioa
                             erabiltzaila.close();//idazlea itxi.
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);

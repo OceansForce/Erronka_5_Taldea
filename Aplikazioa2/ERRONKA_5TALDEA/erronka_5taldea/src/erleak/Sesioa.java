@@ -17,7 +17,8 @@ public class Sesioa {
     private JPanel panel1, panel2, panel3;
     private JButton itzuli1, itxi_sesioa, editatu, gorde;
     private JTextField email, izena, abizena, nan, telefonoa, jaio_eguna, erle_kantitatea, kolmena_kantitatea, pazaitza, pazaitza2;
-    public  void sortu_login(){//logina sortzeko funtzioei deitu.
+
+    public void sortu_login(){//logina sortzeko funtzioei deitu.
         north();
         center();
         south();
@@ -41,6 +42,7 @@ public class Sesioa {
         f_sesio.add(panel2, BorderLayout.NORTH);// panel2-a display nagusian txertatu.
     }
     public void center(){// sesioa hasteko display-eko textfiel eta labelak sortu, sozioaren datu bakoitzarentzako bana.
+        Datuak da = new Datuak();
         panel1= new JPanel();
         panel1.setLayout(new BoxLayout(panel1,BoxLayout.Y_AXIS));
         JLabel email_textua= new JLabel("Email:");
@@ -146,7 +148,7 @@ public class Sesioa {
                     if (pazaitza.getText().equals(pazaitza2.getText())) {// pasahitza bi textfield-etan berdina bada.
                         pazaitz_mezua.setText(" ");// errore mezurik ez.
 // sartutako datu berriak jaso textfiel bakoitzetik eta datuak klaseko funtzioari deia eginez, datu basean update bat egin eta datuak eguneratu.
-                        datuak_eguneratu(email.getText(), nan.getText(), Long.parseLong(telefonoa.getText()), izena.getText(), abizena.getText(), Long.parseLong(kolmena_kantitatea.getText()), Long.parseLong(erle_kantitatea.getText()), Date.valueOf(jaio_eguna.getText()), pazaitza2.getText());
+                        da.datuak_eguneratu(email.getText(), nan.getText(), Long.parseLong(telefonoa.getText()), izena.getText(), abizena.getText(), Long.parseLong(kolmena_kantitatea.getText()), Long.parseLong(erle_kantitatea.getText()), Date.valueOf(jaio_eguna.getText()), pazaitza2.getText());
 // datuak ez editagarriak egin.
                         email.setEnabled(false);
                         izena.setEnabled(false);

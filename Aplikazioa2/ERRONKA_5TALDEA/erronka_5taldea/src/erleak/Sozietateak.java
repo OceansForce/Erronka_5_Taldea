@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static erleak.Datuak.con;
-import static erleak.Datuak.konexioa;
+import static erleak.Datuak.*;
 
 public class Sozietateak {
     private int id_asoziazioa;

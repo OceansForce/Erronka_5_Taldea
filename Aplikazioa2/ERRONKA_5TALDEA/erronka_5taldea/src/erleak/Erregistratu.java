@@ -175,6 +175,7 @@ public class Erregistratu {
         });
     }
     public void south(){
+        Datuak da = new Datuak();
         panel3 = new JPanel();//panel3 sortu.
         panel3.setLayout(new BoxLayout(panel3,BoxLayout.X_AXIS));// panelari boxlayout mota ezarri x ardatzean.
 
@@ -209,7 +210,7 @@ public class Erregistratu {
                 Date jaio_eguna_date= Date.valueOf(jaio_eguna.getText());// jaitze eguna testutik date motara pasatu.
                 pazaitza_login= pasahitza2.getText();// sartutako pasahitza itzuli.
 
-                erregistratu(jaio_eguna_date);
+                da.erregistratu(jaio_eguna_date);
                 f_Erregistratu.dispose();// erregistratu display-a itxi.
                 new Index().sortu();// index display-a sortu eta ireki.
             }
