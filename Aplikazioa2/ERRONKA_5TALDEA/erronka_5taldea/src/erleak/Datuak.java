@@ -145,153 +145,106 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
+
     public void izena_jarri(String identifikatzailea){// identifikatzaile bakoitzarekin sozioaren datu guztiak emnago ditu.
-        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();// sozioen arraylista.
-        for (Sozioak s: sozio_lista) {// sozio bakoitzeko.
-            String izen_abizen = s.getSozio_izena()+" "+s.getSozio_abizena();// ArrayList-etik izena eta abizen artu eta batu, hau identifikatzaile bat da eta honekin konparatzeko.
-            if ((izen_abizen).equals(identifikatzailea)){// sortukako testuak datu baseko izen eta abizenekin koinziditzen badu.
+        try {
+            konexioa();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("Select ID_SOZIOA, EMAIL, JAIOTE_EGUNA, ERLE_KANTITATEA, KOLMENA_KANTITATEA, SOZIO_IZENA, SOZIO_ABIZENA, NAN, TELEFONOA, PASAHITZA From sozioak");
+            while (rs.next()) {
 
-                // sozioaren datu guztiak gorde.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=s.getPasahitza();
+                String izen_abizen = rs.getString("SOZIO_IZENA") + " " +rs.getString("SOZIO_ABIZENA");// ArrayList-etik izena eta abizen artu eta batu, hau identifikatzaile bat da eta honekin konparatzeko.
+                if ((izen_abizen).equals(identifikatzailea)) {// sortukako testuak datu baseko izen eta abizenekin koinziditzen badu.
+                    // sozioaren datu guztiak gorde.
+                    id_sozioa_login = rs.getString("ID_SOZIOA");
+                    email_login = rs.getString("EMAIL");
+                    izena_login = rs.getString("SOZIO_IZENA");
+                    abizena_login = rs.getString("SOZIO_ABIZENA");
+                    nan_login = rs.getString("NAN");
+                    telefonoa_login = rs.getString("TELEFONOA");
+                    String[] ju = rs.getString("JAIOTE_EGUNA").split(" ");
+                    jaio_eguna_login = ju[0];
+                    erle_kantitatea_login = rs.getString("ERLE_KANTITATEA");
+                    kolmena_kantitatea_login = rs.getString("KOLMENA_KANTITATEA");
+                    pazaitza_login = rs.getString("PASAHITZA");
 
-            } else if ((s.getNan()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
-                // sozioaren datu guztiak gorde.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=s.getPasahitza();
-            } else if ((s.getTelefonoa()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
-                // sozioaren balio guztiak gorde.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login= s.getPasahitza();
-            }else if ((s.getEmail()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=s.getPasahitza();
+                } else if (rs.getString("NAN").equals(identifikatzailea)){// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
+                    // sozioaren datu guztiak gorde.
+                    id_sozioa_login = rs.getString("ID_SOZIOA");
+                    email_login = rs.getString("EMAIL");
+                    izena_login = rs.getString("SOZIO_IZENA");
+                    abizena_login = rs.getString("SOZIO_ABIZENA");
+                    nan_login = rs.getString("NAN");
+                    telefonoa_login = rs.getString("TELEFONOA");
+                    String[] ju = rs.getString("JAIOTE_EGUNA").split(" ");
+                    jaio_eguna_login = ju[0];
+                    erle_kantitatea_login = rs.getString("ERLE_KANTITATEA");
+                    kolmena_kantitatea_login = rs.getString("KOLMENA_KANTITATEA");
+                    pazaitza_login = rs.getString("PASAHITZA");
+
+                } else if (rs.getString("TELEFONOA").equals(identifikatzailea)){// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
+                    // sozioaren balio guztiak gorde.
+                    id_sozioa_login = rs.getString("ID_SOZIOA");
+                    email_login = rs.getString("EMAIL");
+                    izena_login = rs.getString("SOZIO_IZENA");
+                    abizena_login = rs.getString("SOZIO_ABIZENA");
+                    nan_login = rs.getString("NAN");
+                    telefonoa_login = rs.getString("TELEFONOA");
+                    String[] ju = rs.getString("JAIOTE_EGUNA").split(" ");
+                    jaio_eguna_login = ju[0];
+                    erle_kantitatea_login = rs.getString("ERLE_KANTITATEA");
+                    kolmena_kantitatea_login = rs.getString("KOLMENA_KANTITATEA");
+                    pazaitza_login = rs.getString("PASAHITZA");
+                } else if (rs.getString("EMAIL").equals(identifikatzailea)){// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
+                    id_sozioa_login = rs.getString("ID_SOZIOA");
+                    email_login = rs.getString("EMAIL");
+                    izena_login = rs.getString("SOZIO_IZENA");
+                    abizena_login = rs.getString("SOZIO_ABIZENA");
+                    nan_login = rs.getString("NAN");
+                    telefonoa_login = rs.getString("TELEFONOA");
+                    String[] ju = rs.getString("JAIOTE_EGUNA").split(" ");
+                    jaio_eguna_login = ju[0];
+                    erle_kantitatea_login = rs.getString("ERLE_KANTITATEA");
+                    kolmena_kantitatea_login = rs.getString("KOLMENA_KANTITATEA");
+                    pazaitza_login = rs.getString("PASAHITZA");
+                }
             }
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void izena_jarri2(String identifikatzailea){// identifikatzaile bakoitzarekin sozioaren datu guztiak emnago ditu.
-        konexioa();
-        Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ResultSet rs= stmt.executeQuery("Select From");
-        for (Sozioak s: sozio_lista) {// sozio bakoitzeko.
-            String izen_abizen = s.getSozio_izena()+" "+s.getSozio_abizena();// ArrayList-etik izena eta abizen artu eta batu, hau identifikatzaile bat da eta honekin konparatzeko.
-            if ((izen_abizen).equals(identifikatzailea)){// sortukako testuak datu baseko izen eta abizenekin koinziditzen badu.
-
-                // sozioaren datu guztiak gorde.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=s.getPasahitza();
-
-            } else if ((s.getNan()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
-                // sozioaren datu guztiak gorde.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=s.getPasahitza();
-            } else if ((s.getTelefonoa()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
-                // sozioaren balio guztiak gorde.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login= s.getPasahitza();
-            }else if ((s.getEmail()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
-                id_sozioa_login= String.valueOf(s.getId_sozioa());
-                email_login=s.getEmail();
-                izena_login= s.getSozio_izena();
-                abizena_login= s.getSozio_abizena();
-                nan_login= s.getNan();
-                telefonoa_login=s.getTelefonoa();
-                String[] ju=s.getJaiote_eguna().split(" ");
-                jaio_eguna_login=ju[0];
-                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
-                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
-                pazaitza_login=s.getPasahitza();
-            }
-        }
-    }
-
-    public boolean identifikatzailea_ondo(String identifikatzailea){// identifikatzaile bakoitzarekin sozioaren datu guztiak emnago ditu.
-        ArrayList<Sozioak> sozio_lista= sozio_ArrayList();// sozioen arraylista.
-        for (Sozioak s: sozio_lista) {// sozio bakoitzeko.
-            String izen_abizen = s.getSozio_izena()+" "+s.getSozio_abizena();// ArrayList-etik izena eta abizen artu eta batu, hau identifikatzaile bat da eta honekin konparatzeko.
-            if ((izen_abizen).equals(identifikatzailea)){// sortukako testuak datu baseko izen eta abizenekin koinziditzen badu.
+    public boolean identifikatzailea_ondo(String identifikatzailea){// Sartu den identifikatzailea baimentzen du
+        try {
+            konexioa();
+            Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("Select EMAIL, SOZIO_IZENA, SOZIO_ABIZENA, NAN, TELEFONOA From sozioak");
+            while (rs.next()) {
+                String izen_abizen = rs.getString("SOZIO_IZENA") + " " +rs.getString("SOZIO_ABIZENA");// Select-etik izena eta abizen artu eta batu, hau identifikatzaile bat da eta honekin konparatzeko.
+                if ((izen_abizen).equals(identifikatzailea)) {// sortukako testuak datu baseko izen eta abizenekin koinziditzen badu.
 //identifikatzilea mot a1 izango da.
-                identifikatzaile_mota=1;
-                return true;
-            } else if ((s.getNan()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
+                    identifikatzaile_mota=1;
+                    return true;
+                } else if (rs.getString("NAN").equals(identifikatzailea)){// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
 // identifikatzaile mota 2 izango da.
-                identifikatzaile_mota=2;
-                return true;
-            } else if ((s.getTelefonoa()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
+                    identifikatzaile_mota=2;
+                    return true;
+                } else if (rs.getString("TELEFONOA").equals(identifikatzailea)){// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
 // identifikatzaile mota 3 izango da.
-                identifikatzaile_mota=3;
-                return true;
-            }else if ((s.getEmail()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
+                    identifikatzaile_mota=3;
+                    return true;
+                } else if (rs.getString("EMAIL").equals(identifikatzailea)){// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
 // identifikatzaile mota 4 izango da.
-                identifikatzaile_mota=4;
-                return true;
+                    identifikatzaile_mota=4;
+                    return true;
+                }
             }
+            con.close();
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return false;
     }
     public String pazaitza_jarri(String identifikatzaile){// identifikatzaile bakoitzeko pasahitza lortu.
         ArrayList<Sozioak> sozio_lista= sozio_ArrayList();// sozio gustien arraylist bat sortu.
