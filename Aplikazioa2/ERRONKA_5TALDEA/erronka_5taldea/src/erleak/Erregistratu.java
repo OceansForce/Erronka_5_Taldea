@@ -50,9 +50,10 @@ public class Erregistratu {
     }
 
     public void center(){
+        Datuak da = new Datuak();
         panel2= new JPanel(null);// panel bat sortu.
         email= new JTextField(17); // emailarentzako text field bat sortu eta honen tamaina definitu.
-        textuGrixa(email, "Emaila"); // textugrixa funtzioari deituz, emailaren textfiel-ean agertuko den testua ezarri
+        da.textuGrixa(email, "Emaila"); // textugrixa funtzioari deituz, emailaren textfiel-ean agertuko den testua ezarri
 
         String emailT= email.getText();// emailtextfield-etik sartutako textua jaso.
 
@@ -61,10 +62,10 @@ public class Erregistratu {
         }
 
         izena = new JTextField(); //izenarentzako text field bat sortu.
-        textuGrixa(izena, "Izena");// textugrixa funtzioari deituz, izenaren textfiel-ean agertuko den testua ezarri
+        da.textuGrixa(izena, "Izena");// textugrixa funtzioari deituz, izenaren textfiel-ean agertuko den testua ezarri
 
         abizena = new JTextField();//abizenarentzako text field bat sortu.
-        textuGrixa(abizena, "Abizena");// textugrixa funtzioari deituz, abizenaren textfiel-ean agertuko den testua ezarri
+        da.textuGrixa(abizena, "Abizena");// textugrixa funtzioari deituz, abizenaren textfiel-ean agertuko den testua ezarri
 
         pasahitza_textua = new JLabel("Pasahitza");// pasahitzarentzako label bat sortu.
         pasahitza = new JTextField();//pasahitzarentzako text field bat sortu.
@@ -123,57 +124,7 @@ public class Erregistratu {
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
 
-    public static void textuGrixa(JTextField kuadroa, String textua){
-        kuadroa.setEnabled(false);// text field bateko atzeko testua
-        kuadroa.addMouseListener(new MouseAdapter() { // text field en gainean entzule bat sortu click-ateko momenturako.
-            @Override
-            public void mouseClicked(MouseEvent e) {// click egitean.
-                kuadroa.setEnabled(true);// editagarria izango dean text field-eko tstu grixa.
-            }
 
-        });
-
-        kuadroa.setForeground(Color.GRAY);// text field-eko atzeko testuaren kolorea ezarri.
-        kuadroa.setText(textua);// text field-eko atzean agertuko den testua.
-        kuadroa.addFocusListener(new FocusListener() {// entzule bat sortu momentu guztian eremuak kontrolatzeko.
-            @Override
-            public void focusGained(FocusEvent e) {// entzulearen funtzio bat da, hau eremu batean click egiterakoan aktibaruko da.
-                SwingUtilities.invokeLater(() -> {
-                    if (kuadroa.getText().equals(textua)) { // eremuko testua eta eremua berdinak badira.
-                        kuadroa.setText(" ");// Testu grixa ezabatu egingo da.
-                        kuadroa.setForeground(Color.BLACK); // idazten den testuaren kolorea beltza ezango da.
-                    }
-                });
-            }
-            @Override
-            public void focusLost(FocusEvent e) {// eremutik kampo click egiten bada.
-                SwingUtilities.invokeLater(() -> {
-                    if (kuadroa.getText().equals(" ")) {// eremuan ezer idatzita ez badago.
-                        kuadroa.setText(textua); // Eremuko izena txertatuko du eremuan.
-                        kuadroa.setForeground(Color.GRAY);// eremuko testuaren kolorea grixa izango da.
-                    }
-                });
-            }
-        });
-
-        kuadroa.getDocument().addDocumentListener(new DocumentListener() {// eremuan egiten diren aldaketak kudeatuko dituen entzulea sortu.
-            @Override
-            public void insertUpdate(DocumentEvent e) {// txertatzerakoan.
-                SwingUtilities.invokeLater(() -> {
-                    if (kuadroa.getText().isEmpty()) {// eremua utsa badago.
-                        kuadroa.setText(textua);// eremuaren arabera testua agertu.
-                        kuadroa.setForeground(Color.GRAY);// testuaren kolorea grixa bihurtu.
-                    }
-                });
-            }
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-            }
-        });
-    }
     public void south(){
         Datuak da = new Datuak();
         panel3 = new JPanel();//panel3 sortu.
