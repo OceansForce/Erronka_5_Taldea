@@ -20,6 +20,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     private JMenuItem mj1, mj2, mj3;
     private JButton loginButton, erregistratzeko_Button, sesioButton;
     private CardLayout card1;
+    private DefaultTableModel eztia_model, besteak_model,material_model,sozioak_model,asoziazioak_model;
     private JFrame f_Index = new JFrame();
 
     /* Programa abiatzerakoan, sesio.txt-a irakurtzen du ea logeatuta gauden eta horrela bada honen id_sozioa artuko da sozioa logeatzen detean sesio.txt an gordetzen da informazioa eta.
@@ -62,7 +63,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     }
 
     public void north(){
-
+            Datuak da= new Datuak();
             panel1 = new JPanel(); // Definitutako aldagaia erabiliz jpanel bat sortu.
             panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS)); // Sartutako panelari BoxLayout mota ezarri X ardatzean.
 
@@ -88,6 +89,8 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     card1.show(centerPanela, "panel3");// Eztia aukeran click egiterakoan erdiko panela aldatu.
+                    String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"}; // String-en array bat hasieratu datu bateko taularen eremuen izenekin.
+                    eztia_model.setDataVector(da.center_3_txertatu(), kolumna_Izenak_eztia);
                 }
             });
             mj2 = new JMenuItem("Beste batzuk"); // Beste batzuk aukera sortu menuan.
@@ -95,6 +98,8 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                 @Override
                 public void actionPerformed(ActionEvent e) { // Click egiterakoan erdiko panelka aldatu.
                     card1.show(centerPanela, "panel4");
+                    String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};
+                    besteak_model.setDataVector(da.center_4_txertatu(), kolumna_Izenak_besteak);
                 }
             });
 
@@ -103,6 +108,8 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                 @Override
                 public void actionPerformed(ActionEvent e) {// Sortutako haukerari entzule bat sortu.
                     card1.show(centerPanela, "panel5");
+                    String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String-en array bat hasieratu datu baseko taularen eremuen izenekin.
+                    besteak_model.setDataVector(da.center_5_txertatu(),kolumna_Izenak_besteak);
                 }
             });
 
@@ -125,6 +132,8 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         card1.show(centerPanela, "panel6");// aukeran click egiterakoan erdiko panela aldatu.
+                        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
+                        sozioak_model.setDataVector(da.sozio_Array(), kolumna_Izenak_sozio);
                     }
                 });
                 JMenuItem mj5 = new JMenuItem("Asoziazioak"); // Beste aukera bat sortu.
@@ -132,6 +141,8 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         card1.show(centerPanela, "panel7");// Aukeran click egiterakoan erdiko panela aldatu CardLayout..
+                        String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
+                        asoziazioak_model.setDataVector(da.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
                     }
                 });
                 // Aukerak menuan txertatu.
@@ -216,7 +227,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea3 = new JTextField(15);
         JButton L_lupa_irudia3 = new JButton(lupa_irudia_aldatuta);
         JButton desegin3 = new JButton("Desegin");
-        Erregistratu.textuGrixa(bilatzailea3,"Eztia-ren Izena");
+        da.textuGrixa(bilatzailea3,"Eztia-ren Izena");
 
         panel3_1.add(bilatzailea3);
         layout3.putConstraint(SpringLayout.WEST, bilatzailea3,  10, SpringLayout.WEST, panel3);
@@ -230,7 +241,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel3.add(panel3_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_eztia= {"Izena", "Prezioa","Kantitatea", "Deskribapena"}; // String-en array bat hasieratu datu bateko taularen eremuen izenekin.
-        DefaultTableModel eztia_model = new DefaultTableModel(da.center_3_txertatu(),kolumna_Izenak_eztia);
+        eztia_model = new DefaultTableModel();
         JTable ezti_tabla= new JTable(eztia_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         ezti_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taulari tamaina ezarri.
         JScrollPane ezti_sp= new JScrollPane(ezti_tabla);//taulan scroll bat sortu.
@@ -249,7 +260,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea4 = new JTextField(15);
         JButton L_lupa_irudia4 = new JButton(lupa_irudia_aldatuta);
         JButton desegin4 = new JButton("Desegin");
-        Erregistratu.textuGrixa(bilatzailea4,"Produktua-ren Izena");
+        da.textuGrixa(bilatzailea4,"Produktua-ren Izena");
 
         panel4_1.add(bilatzailea4);
         layout4.putConstraint(SpringLayout.WEST, bilatzailea4,  10, SpringLayout.WEST, panel4);
@@ -263,7 +274,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel4.add(panel4_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_besteak= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String-en array bat hasieratu datu baseko taularen eremuen izenekin.
-        DefaultTableModel besteak_model = new DefaultTableModel(da.center_4_txertatu(),kolumna_Izenak_besteak);
+        besteak_model = new DefaultTableModel();
         JTable besteak_tabla= new JTable(besteak_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         besteak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));// taularen tamaina ezarri.
         JScrollPane bestak_sp= new JScrollPane(besteak_tabla);// taulari scroll bat sortu.
@@ -280,7 +291,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea5 = new JTextField(15);
         JButton L_lupa_irudia5 = new JButton(lupa_irudia_aldatuta);
         JButton desegin5 = new JButton("Desegin");
-        Erregistratu.textuGrixa(bilatzailea5,"Materiala-ren Izena");
+        da.textuGrixa(bilatzailea5,"Materiala-ren Izena");
 
         panel5_1.add(bilatzailea5);
         layout5.putConstraint(SpringLayout.WEST, bilatzailea5,  10, SpringLayout.WEST, panel5);
@@ -294,7 +305,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel5.add(panel5_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_material= {"Izena", "Prezioa","Kantitatea", "Deskribapena"};// String bat hasieratu datu baseko taularen eremuen izenekin.
-        DefaultTableModel material_model = new DefaultTableModel(da.center_5_txertatu(), kolumna_Izenak_material);
+        material_model = new DefaultTableModel(da.center_5_txertatu(), kolumna_Izenak_material);
         JTable material_tabla= new JTable(material_model);//aldatu ezin den taula bat sortu, array-eko zutabeekin.
         material_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane material_sp= new JScrollPane(material_tabla);//taulari scroll bat sortu.
@@ -313,7 +324,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea6 = new JTextField(15);
         JButton L_lupa_irudia6 = new JButton(lupa_irudia_aldatuta);
         JButton desegin6 = new JButton("Desegin");
-        Erregistratu.textuGrixa(bilatzailea6,"Sozio Izena");
+        da.textuGrixa(bilatzailea6,"Sozio Izena");
 
         panel6_1.add(bilatzailea6);
         layout6.putConstraint(SpringLayout.WEST, bilatzailea6,  10, SpringLayout.WEST, panel6);
@@ -327,7 +338,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         panel6.add(panel6_1, BorderLayout.CENTER);
 
         String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
-        DefaultTableModel sozioak_model = new DefaultTableModel(da.sozio_Array(), kolumna_Izenak_sozio);
+        sozioak_model = new DefaultTableModel();
         JTable sozio_tabla= new JTable(sozioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane sozio_sp= new JScrollPane(sozio_tabla);//taulari scroll bat sortu.
@@ -345,7 +356,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea7 = new JTextField(15);
         JButton L_lupa_irudia7 = new JButton(lupa_irudia_aldatuta);
         JButton desegin7 = new JButton("Desegin");
-        Erregistratu.textuGrixa(bilatzailea7,"Asoziazio Izena");
+        da.textuGrixa(bilatzailea7,"Asoziazio Izena");
 
         ArrayList<Sozietateak> sozietateak = da.sozietate_Arrayalist();
         String[] hirriak_lista = new String[sozietateak.size()];
@@ -373,7 +384,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
 
         String[] kolumna_Izenak_asoziazioak= {"ID", "Izena","Herrialdea"};// String bat hasieratu datu baseko  asoziazioak taularen eremuen izenekin.
-        DefaultTableModel asoziazioak_model = new DefaultTableModel(da.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
+        asoziazioak_model = new DefaultTableModel(da.sozietate_Arraya(), kolumna_Izenak_asoziazioak);
         JTable asoziazioak_tabla= new JTable(asoziazioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         asoziazioak_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
         JScrollPane asoziazioak_sp= new JScrollPane(asoziazioak_tabla);//taulari scroll bat sortu.
@@ -393,7 +404,6 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         L_lupa_irudia3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(Arrays.deepToString(da.ezti_bilatzailea(bilatzailea3.getText())));
                 eztia_model.setDataVector(da.ezti_bilatzailea(bilatzailea3.getText()),kolumna_Izenak_eztia);
             }
         });

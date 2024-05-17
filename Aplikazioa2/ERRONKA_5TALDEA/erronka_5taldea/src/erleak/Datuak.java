@@ -2,6 +2,11 @@ package erleak;
 
 import erleak.*;
 
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -11,6 +16,9 @@ import java.util.HashSet;
 import java.util.logging.Logger;
 import java.io.*;
 import java.util.logging.*;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.xml.bind.DatatypeConverter;
 
 
@@ -20,7 +28,7 @@ import static erleak.Login.zuzendaria_da;
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
 
-    static String ip_eta_portua= "192.168.8.106";//"10.14.4.124";
+    static String ip_eta_portua= "10.14.4.124"; //"192.168.8.106";
     static String erabiltzailea="T5_2";
     static String pazaitza="123";
     static String datu_base_IZENA="ORCLCDB";
@@ -197,6 +205,70 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             }
         }
     }
+
+    public void izena_jarri2(String identifikatzailea){// identifikatzaile bakoitzarekin sozioaren datu guztiak emnago ditu.
+        konexioa();
+        Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs= stmt.executeQuery("Select From");
+        for (Sozioak s: sozio_lista) {// sozio bakoitzeko.
+            String izen_abizen = s.getSozio_izena()+" "+s.getSozio_abizena();// ArrayList-etik izena eta abizen artu eta batu, hau identifikatzaile bat da eta honekin konparatzeko.
+            if ((izen_abizen).equals(identifikatzailea)){// sortukako testuak datu baseko izen eta abizenekin koinziditzen badu.
+
+                // sozioaren datu guztiak gorde.
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
+
+            } else if ((s.getNan()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko nan zenbakiarekin bat egiten badu.
+                // sozioaren datu guztiak gorde.
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
+            } else if ((s.getTelefonoa()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko telefono zenbakiarekin bat egiten badu.
+                // sozioaren balio guztiak gorde.
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login= s.getPasahitza();
+            }else if ((s.getEmail()).equals(identifikatzailea)) {// sartutako identifikatzailea datu baseko email-arekin bat egiten badu.
+                id_sozioa_login= String.valueOf(s.getId_sozioa());
+                email_login=s.getEmail();
+                izena_login= s.getSozio_izena();
+                abizena_login= s.getSozio_abizena();
+                nan_login= s.getNan();
+                telefonoa_login=s.getTelefonoa();
+                String[] ju=s.getJaiote_eguna().split(" ");
+                jaio_eguna_login=ju[0];
+                erle_kantitatea_login= String.valueOf(s.getErle_kantitatea());
+                kolmena_kantitatea_login= String.valueOf(s.getKolmena_kantitatea());
+                pazaitza_login=s.getPasahitza();
+            }
+        }
+    }
+
     public boolean identifikatzailea_ondo(String identifikatzailea){// identifikatzaile bakoitzarekin sozioaren datu guztiak emnago ditu.
         ArrayList<Sozioak> sozio_lista= sozio_ArrayList();// sozioen arraylista.
         for (Sozioak s: sozio_lista) {// sozio bakoitzeko.
@@ -560,8 +632,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         }
     }
     public String[][] sozietate_Arraya_herria(String izena){
-        Datuak da = new Datuak();
-        da.konexioa();
+        konexioa();
         try {
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak WHERE herrialdea like '"+izena+"'");
@@ -585,8 +656,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
     }
     public void datuak_eguneratu(String email, String nan, long telefonoa, String izena, String abizena, long kolmena_kantitatea, long erle_kantitatea, Date jaio_eguna, String pazaitza){// balioak emanda datu basean update bat egingo duen prozedura.
         try {
-            Datuak da = new Datuak();
-            da.konexioa();// datu basearekin konexioa egin.
+            konexioa();// datu basearekin konexioa egin.
             // kontsulta definitu.
             PreparedStatement update = con.prepareStatement("UPDATE sozioak SET email=?, nan=?, Telefonoa=?, sozio_izena=?, sozio_abizena=?, kolmena_kantitatea=?, erle_kantitatea=?, jaiote_eguna=?, pasahitza=? WHERE id_sozioa=?");
             // kontsultako updatean sartuko diren balioak jarri.
@@ -693,5 +763,58 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             System.err.println("Hash errorea");
         }
         return sha1;
+    }
+
+    public void textuGrixa(JTextField kuadroa, String textua){
+        kuadroa.setEnabled(false);// text field bateko atzeko testua
+        kuadroa.addMouseListener(new MouseAdapter() { // text field en gainean entzule bat sortu click-ateko momenturako.
+            @Override
+            public void mouseClicked(MouseEvent e) {// click egitean.
+                kuadroa.setEnabled(true);// editagarria izango dean text field-eko tstu grixa.
+            }
+
+        });
+
+        kuadroa.setForeground(Color.GRAY);// text field-eko atzeko testuaren kolorea ezarri.
+        kuadroa.setText(textua);// text field-eko atzean agertuko den testua.
+        kuadroa.addFocusListener(new FocusListener() {// entzule bat sortu momentu guztian eremuak kontrolatzeko.
+            @Override
+            public void focusGained(FocusEvent e) {// entzulearen funtzio bat da, hau eremu batean click egiterakoan aktibaruko da.
+                SwingUtilities.invokeLater(() -> {
+                    if (kuadroa.getText().equals(textua)) { // eremuko testua eta eremua berdinak badira.
+                        kuadroa.setText(" ");// Testu grixa ezabatu egingo da.
+                        kuadroa.setForeground(Color.BLACK); // idazten den testuaren kolorea beltza ezango da.
+                    }
+                });
+            }
+            @Override
+            public void focusLost(FocusEvent e) {// eremutik kampo click egiten bada.
+                SwingUtilities.invokeLater(() -> {
+                    if (kuadroa.getText().equals(" ")) {// eremuan ezer idatzita ez badago.
+                        kuadroa.setText(textua); // Eremuko izena txertatuko du eremuan.
+                        kuadroa.setForeground(Color.GRAY);// eremuko testuaren kolorea grixa izango da.
+                    }
+                });
+            }
+        });
+
+        kuadroa.getDocument().addDocumentListener(new DocumentListener() {// eremuan egiten diren aldaketak kudeatuko dituen entzulea sortu.
+            @Override
+            public void insertUpdate(DocumentEvent e) {// txertatzerakoan.
+                SwingUtilities.invokeLater(() -> {
+                    if (kuadroa.getText().isEmpty()) {// eremua utsa badago.
+                        kuadroa.setText(textua);// eremuaren arabera testua agertu.
+                        kuadroa.setForeground(Color.GRAY);// testuaren kolorea grixa bihurtu.
+                    }
+                });
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
+
     }
 }
