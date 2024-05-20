@@ -25,7 +25,7 @@ import static erleak.Login.zuzendaria_da;
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
 
-    static String ip_eta_portua= "10.14.4.124"; //"192.168.8.106";
+    static String ip_eta_portua= "192.168.8.110"; //"10.14.4.124";
     static String erabiltzailea="T5_2";
     static String pazaitza="123";
     static String datu_base_IZENA="ORCLCDB";

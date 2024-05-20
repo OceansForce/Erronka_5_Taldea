@@ -51,8 +51,9 @@ public class Erregistratu {
 
     public void center(){
         Datuak da = new Datuak();
-        panel2= new JPanel(null);// panel bat sortu.
-        email= new JTextField(17); // emailarentzako text field bat sortu eta honen tamaina definitu.
+        panel2= new JPanel();// panel bat sortu.
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        email= new JTextField(18); // emailarentzako text field bat sortu eta honen tamaina definitu.
         da.textuGrixa(email, "Emaila", Color.GRAY); // textugrixa funtzioari deituz, emailaren textfiel-ean agertuko den testua ezarri
 
         izena = new JTextField(); //izenarentzako text field bat sortu.
@@ -86,34 +87,55 @@ public class Erregistratu {
         }catch (ParseException e){// Aurreko eremuetan sartutako daturen bat formatu dezegokia izango balu.
             System.err.println("MaskFormatter-ekin errorea. Erregistratu.cente()");// Errore mezua pantailaratu.
         }
+        JLabel telefonoa_textua= new JLabel("Telefonoa:");
 
-        // Sortutako textfield guztiei tamaina eta kokalekua ezarri.
-        email.setBounds(90,10,210,20);
-        nan_textua.setBounds(90,38, 100, 10);
-        nan.setBounds(90,50,100,20);
-        telefonoa.setBounds(200, 50, 100, 20);
-        izena.setBounds(90,90,100,20);
-        abizena.setBounds(200,90,100,20);
-        jaio_eguna_Textua.setBounds(140, 116, 100, 15);
-        jaio_eguna.setBounds(140, 130, 100, 20);
-        pasahitza_textua.setBounds(135, 156, 200, 15);
-        pasahitza.setBounds(135, 170, 110, 20);
-        pasahitza2_textua.setBounds(135, 196, 200, 15);
-        pasahitza2.setBounds(135, 210, 110, 20);
 
-        // text field guztiak panelean txertatu.
-        panel2.add(email);
-        panel2.add(nan_textua);
-        panel2.add(nan);
-        panel2.add(telefonoa);
-        panel2.add(izena);
-        panel2.add(abizena);
-        panel2.add(jaio_eguna_Textua);
-        panel2.add(jaio_eguna);
-        panel2.add(pasahitza_textua);
-        panel2.add(pasahitza);
-        panel2.add(pasahitza2_textua);
-        panel2.add(pasahitza2);
+        // Sortutako textfield eta Jlabel guztien kokalekua ezartzen da, panelen bidez.
+
+        JLabel hutsunea1= new JLabel(" ");
+        JLabel hutsunea2= new JLabel(" ");
+
+        JPanel dena = new JPanel();
+        JPanel panel4= new JPanel();
+        panel4.setLayout(new BoxLayout(panel4, BoxLayout.Y_AXIS));
+
+        panel4.add(email);
+
+        JPanel panel6= new JPanel(new GridLayout(1,2));
+        JPanel panel7= new JPanel();
+        panel7.setLayout(new BoxLayout(panel7, BoxLayout.Y_AXIS));
+        JPanel panel8= new JPanel();
+        panel8.setLayout(new BoxLayout(panel8, BoxLayout.Y_AXIS));
+        JPanel panel9= new JPanel(new GridLayout(6,1));
+
+
+        panel7.add(nan_textua);
+        panel7.add(nan);
+        panel7.add(hutsunea1);
+        panel7.add(izena);
+
+        panel8.add(telefonoa_textua);
+        panel8.add(telefonoa);
+        panel8.add(hutsunea2);
+        panel8.add(abizena);
+
+        panel9.add(jaio_eguna_Textua);
+        panel9.add(jaio_eguna);
+        panel9.add(pasahitza_textua);
+        panel9.add(pasahitza);
+        panel9.add(pasahitza2_textua);
+        panel9.add(pasahitza2);
+
+        panel4.add(panel6);
+
+        panel6.add(panel7);
+        panel6.add(panel8);
+
+        panel4.add(panel9);
+
+        dena.add(panel4);
+        panel2.add(dena, BorderLayout.CENTER);
+
 // panela display nagusiaren erdiak txertatu.
         f_Erregistratu.add(panel2, BorderLayout.CENTER);
     }
