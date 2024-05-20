@@ -76,8 +76,16 @@ public class Sesioa {
         nan.setText(nan_login);
         telefonoa.setText(telefonoa_login);
         jaio_eguna.setText(jaio_eguna_login);
-        erle_kantitatea.setText(erle_kantitatea_login);
-        kolmena_kantitatea.setText(kolmena_kantitatea_login);
+        if(erle_kantitatea_login==null || kolmena_kantitatea_login==null){
+            if (erle_kantitatea_login==null){
+                erle_kantitatea.setText("0");
+            }if (kolmena_kantitatea_login==null){
+                kolmena_kantitatea.setText("0");
+            }
+        }else {
+            erle_kantitatea.setText(erle_kantitatea_login);
+            kolmena_kantitatea.setText(kolmena_kantitatea_login);
+        }
 
         // eremu guztiak ez editagarriak egin.
         email.setEnabled(false);

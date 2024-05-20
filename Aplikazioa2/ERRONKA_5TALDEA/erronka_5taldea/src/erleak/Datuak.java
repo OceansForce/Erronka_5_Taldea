@@ -13,9 +13,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.logging.Logger;
-import java.io.*;
-import java.util.logging.*;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -85,7 +82,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// kontsulta1 sortu.
             Statement stmt2= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);//Kontsult2sortu.
 
-            ResultSet rs = stmt.executeQuery("SELECT id_produktua, prezioa, kantitatea, deskribapena FROM Produktuak where Produktu_mota='eztia'");// kotsulta1 egin eta balioak gorde.
+            ResultSet rs = stmt.executeQuery("SELECT id_produktua, prezioa, kantitatea, deskribapena FROM Produktuak where Produktu_mota='eztia' order by id_produktua asc");// kotsulta1 egin eta balioak gorde.
             ResultSet rs2 = stmt2.executeQuery("SELECT EZTIA_MOTA FROM Eztia ORDER BY id_produktua");//Kontsulta2 egin eta balioak gorde.
             rs.last();// kontsulta1-eko azken balioan kokatu.
             rs2.last();//kontsulta2-ko azken balioan kokatu.
@@ -284,7 +281,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             da.konexioa();// datu basera konektatu.
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baserako kontsulta sortu.
             //Eskaera egin.
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
+            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK order by id_sozioa asc");
             ArrayList<Sozioak> sozio_Arraya= new ArrayList<>();//Eskaeran jasotako balioak gordetzeko arraylist-a sortu.
 
             while (rs.next()){// balio guztiak jasotzeko
@@ -304,7 +301,8 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             da.konexioa();// datu basearekin konexioa egin.
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baseko kontsulta sortu.
             // eskaera egin.
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK");
+            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza " +
+                    "FROM SOZIOAK order by id_sozioa asc");
 
             rs.last();//azken elementura joan.
             String[][] sozio_Arraya= new String[rs.getRow()][11];//arrat bat sortu
@@ -389,7 +387,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             da.konexioa();// datu basearekin konexioa egin.
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);// datu baseko kontsulta sortu.
             // eskaera egin.
-            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK WHERE sozio_izena like '"+izena.trim()+"%'");
+            ResultSet rs = stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza FROM SOZIOAK WHERE sozio_izena like '"+izena.trim()+"%' order by id_sozioa asc");
 
             rs.last();//azken elementura joan.
             String[][] sozio_Arraya= new String[rs.getRow()][11];//arrat bat sortu
@@ -447,7 +445,6 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 id_zuzendariak.add(rs.getInt("id_zuzendaria"));// id_zuzendariak HashSet-ean gorde.
             }
             con.close();// kontsulta desegin.
-            System.out.println(id_zuzendariak);// HashSet-eko id_zuzendariak pantailaratu.
             return id_zuzendariak;// zuzendarien HashSet-a bueltatu.
 
         } catch (SQLException e) {//Errorea kuedeatu
@@ -525,7 +522,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         da.konexioa();
         try {
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak");
+            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak order by id_asoziazioa asc");
             rs.last();
             String[][] sozietateak=  new String[rs.getRow()][3];
             rs.beforeFirst();
@@ -549,7 +546,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         try {
             ArrayList<Sozietateak> sozietateak= new ArrayList<>();
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("Select id_asoziazioa, asoziazio_izena, herrialdea From asoziazioak");
+            ResultSet rs= stmt.executeQuery("Select id_asoziazioa, asoziazio_izena, herrialdea From asoziazioak order by id_asoziazioa asc");
             while (rs.next()){
                 Sozietateak s= new Sozietateak(rs.getInt("id_asoziazioa"), rs.getString("asoziazio_izena"), rs.getString("herrialdea"));
                 sozietateak.add(s);
@@ -566,7 +563,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         da.konexioa();
         try {
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak WHERE asoziazio_izena like '"+izena.trim()+"%'");
+            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak WHERE asoziazio_izena like '"+izena.trim()+"%' order by id_asoziazioa asc");
             rs.last();
             String[][] sozietateak=  new String[rs.getRow()][3];
             rs.beforeFirst();
@@ -636,7 +633,8 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             da.konexioa();// datu basearekin konexioa egin.
             //eremu bakoitzean sartutako textua jasota  insert into bat sortu.
             PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
-                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+hash(pazaitza_login)+"')");
+                "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", " +
+                    "TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+hash(pazaitza_login)+"')");
             insert.executeUpdate(); // aurreko insert-a datu basean exekutatu.
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -718,7 +716,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         return sha1;
     }
 
-    public void textuGrixa(JTextField kuadroa, String textua){
+    public void textuGrixa(JTextField kuadroa, String textua, Color kolorea){
         kuadroa.setEnabled(false);// text field bateko atzeko testua
         kuadroa.addMouseListener(new MouseAdapter() { // text field en gainean entzule bat sortu click-ateko momenturako.
             @Override
@@ -728,7 +726,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
 
         });
 
-        kuadroa.setForeground(Color.GRAY);// text field-eko atzeko testuaren kolorea ezarri.
+        kuadroa.setForeground(kolorea);// text field-eko atzeko testuaren kolorea ezarri.
         kuadroa.setText(textua);// text field-eko atzean agertuko den testua.
         kuadroa.addFocusListener(new FocusListener() {// entzule bat sortu momentu guztian eremuak kontrolatzeko.
             @Override
@@ -745,7 +743,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 SwingUtilities.invokeLater(() -> {
                     if (kuadroa.getText().equals(" ")) {// eremuan ezer idatzita ez badago.
                         kuadroa.setText(textua); // Eremuko izena txertatuko du eremuan.
-                        kuadroa.setForeground(Color.GRAY);// eremuko testuaren kolorea grixa izango da.
+                        kuadroa.setForeground(kolorea);// eremuko testuaren kolorea grixa izango da.
                     }
                 });
             }
@@ -757,7 +755,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 SwingUtilities.invokeLater(() -> {
                     if (kuadroa.getText().isEmpty()) {// eremua utsa badago.
                         kuadroa.setText(textua);// eremuaren arabera testua agertu.
-                        kuadroa.setForeground(Color.GRAY);// testuaren kolorea grixa bihurtu.
+                        kuadroa.setForeground(kolorea);// testuaren kolorea grixa bihurtu.
                     }
                 });
             }

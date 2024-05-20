@@ -53,19 +53,13 @@ public class Erregistratu {
         Datuak da = new Datuak();
         panel2= new JPanel(null);// panel bat sortu.
         email= new JTextField(17); // emailarentzako text field bat sortu eta honen tamaina definitu.
-        da.textuGrixa(email, "Emaila"); // textugrixa funtzioari deituz, emailaren textfiel-ean agertuko den testua ezarri
-
-        String emailT= email.getText();// emailtextfield-etik sartutako textua jaso.
-
-        if (!emailT.matches(".+@.+..+")){// sartutako email-ak formatu egokia ez badu.
-            System.out.println("MAL"); // "MAl" mezua atera.
-        }
+        da.textuGrixa(email, "Emaila", Color.GRAY); // textugrixa funtzioari deituz, emailaren textfiel-ean agertuko den testua ezarri
 
         izena = new JTextField(); //izenarentzako text field bat sortu.
-        da.textuGrixa(izena, "Izena");// textugrixa funtzioari deituz, izenaren textfiel-ean agertuko den testua ezarri
+        da.textuGrixa(izena, "Izena",Color.GRAY);// textugrixa funtzioari deituz, izenaren textfiel-ean agertuko den testua ezarri
 
         abizena = new JTextField();//abizenarentzako text field bat sortu.
-        da.textuGrixa(abizena, "Abizena");// textugrixa funtzioari deituz, abizenaren textfiel-ean agertuko den testua ezarri
+        da.textuGrixa(abizena, "Abizena",Color.GRAY);// textugrixa funtzioari deituz, abizenaren textfiel-ean agertuko den testua ezarri
 
         pasahitza_textua = new JLabel("Pasahitza");// pasahitzarentzako label bat sortu.
         pasahitza = new JTextField();//pasahitzarentzako text field bat sortu.
@@ -152,18 +146,25 @@ public class Erregistratu {
         erregistratu.addActionListener(new ActionListener() {// erregistratu botoiaren gainean entzulea jarri.
             @Override
             public void actionPerformed(ActionEvent e) {// erregistratu botoian click egiterakoan.
-                email_login= email.getText();// sartutako emaila itzuli.
-                izena_login= izena.getText();// sartutako izena itzuli.
-                abizena_login= abizena.getText();// sartutako abizena itzuli.
-                nan_login= nan.getText();// sartutako nan-a itzuli.
-                telefonoa_login=  telefonoa.getText();// sartutako telefonoa itzuli.
-                jaio_eguna_login= jaio_eguna.getText();// sartutako jaiotze eguna itzuli.
-                Date jaio_eguna_date= Date.valueOf(jaio_eguna.getText());// jaitze eguna testutik date motara pasatu.
-                pazaitza_login= pasahitza2.getText();// sartutako pasahitza itzuli.
+                String emailT= email.getText();// emailtextfield-etik sartutako textua jaso.
+                if (!emailT.matches(".+@.+..+")){// sartutako email-ak formatu egokia ez badu, textua ezabatuko du eta "Email" gorris jarriko da.
+                    da.textuGrixa(email, "Email",Color.RED);
+                    email.setEnabled(true);
+                }else {
+                    email_login = email.getText();// sartutako emaila itzuli.
+                    izena_login = izena.getText();// sartutako izena itzuli.
+                    abizena_login = abizena.getText();// sartutako abizena itzuli.
+                    nan_login = nan.getText();// sartutako nan-a itzuli.
+                    telefonoa_login = telefonoa.getText();// sartutako telefonoa itzuli.
+                    jaio_eguna_login = jaio_eguna.getText();// sartutako jaiotze eguna itzuli.
+                    Date jaio_eguna_date = Date.valueOf(jaio_eguna.getText());// jaitze eguna testutik date motara pasatu.
+                    pazaitza_login = pasahitza2.getText();// sartutako pasahitza itzuli.
 
-                da.erregistratu(jaio_eguna_date);
-                f_Erregistratu.dispose();// erregistratu display-a itxi.
-                new Index().sortu();// index display-a sortu eta ireki.
+                    da.erregistratu(jaio_eguna_date);
+
+                    f_Erregistratu.dispose();// erregistratu display-a itxi.
+                    new Index().sortu();// index display-a sortu eta ireki.
+                }
             }
         });
 

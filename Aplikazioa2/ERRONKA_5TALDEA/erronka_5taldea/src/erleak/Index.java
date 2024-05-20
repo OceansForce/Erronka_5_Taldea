@@ -7,18 +7,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 
 import static erleak.Login.*;
-import static erleak.Datuak.*;
 
 public class Index extends JFrame implements ActionListener {// Erabiliko diren aldagai guztiak definitu.
-    private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7;
     private JPanel centerPanela;
-    private JMenu menu2, menu3;
-    private JMenuItem mj1, mj2, mj3;
-    private JButton loginButton, erregistratzeko_Button, sesioButton;
     private CardLayout card1;
     private DefaultTableModel eztia_model, besteak_model,material_model,sozioak_model,asoziazioak_model;
     private JFrame f_Index = new JFrame();
@@ -64,7 +58,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
     public void north(){
             Datuak da= new Datuak();
-            panel1 = new JPanel(); // Definitutako aldagaia erabiliz jpanel bat sortu.
+            JPanel panel1 = new JPanel(); // Definitutako aldagaia erabiliz jpanel bat sortu.
             panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS)); // Sartutako panelari BoxLayout mota ezarri X ardatzean.
 
             //Logoa
@@ -81,10 +75,10 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             panel1.add(logo_Irudia);// Irudia display nagusian txertatu.
             // Lehengo menua
             JMenuBar mb = new JMenuBar();// Menu barra sortu
-            menu2 = new JMenu("Produktuak"); // Produktuak menua sortu.
+            JMenu menu2 = new JMenu("Produktuak"); // Produktuak menua sortu.
             mb.add(menu2);// Menua menu barraran txertatu.
 
-            mj1 = new JMenuItem("Eztia"); // Eztia izeneko aukera sortu.
+            JMenuItem mj1 = new JMenuItem("Eztia"); // Eztia izeneko aukera sortu.
             mj1.addActionListener(new ActionListener() {// Sortutako aukeran eztzule bat sortu click egiterakoan zerbait egiteko.
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -93,7 +87,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                     eztia_model.setDataVector(da.center_3_txertatu(), kolumna_Izenak_eztia);
                 }
             });
-            mj2 = new JMenuItem("Beste batzuk"); // Beste batzuk aukera sortu menuan.
+            JMenuItem mj2 = new JMenuItem("Beste batzuk"); // Beste batzuk aukera sortu menuan.
             mj2.addActionListener(new ActionListener() { // Sortutako aukeran entzule bat gehitu.
                 @Override
                 public void actionPerformed(ActionEvent e) { // Click egiterakoan erdiko panelka aldatu.
@@ -103,7 +97,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                 }
             });
 
-            mj3 = new JMenuItem("Materiala"); // Materiala izeneko beste aukera bat sortu.
+            JMenuItem mj3 = new JMenuItem("Materiala"); // Materiala izeneko beste aukera bat sortu.
             mj3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {// Sortutako haukerari entzule bat sortu.
@@ -124,7 +118,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             boolean atera= true;
             if(zuzendaria_da) {// Zuzendaria dela zihurtatu.
                 JMenuBar mb2 = new JMenuBar();// Menu barra sortu.
-                menu3 = new JMenu("Sozioak eta Asoziazioak"); //Menu barran menua sortu.
+                JMenu menu3 = new JMenu("Sozioak eta Asoziazioak"); //Menu barran menua sortu.
                 mb2.add(menu3);// Menu barra lehioan txertatu.
 
                 JMenuItem mj4 = new JMenuItem("Sozioak"); // Menuko aukera sortu.
@@ -155,7 +149,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             }
             ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png"); // Profileko irudia aldagaian kargatu.
             ImageIcon pertsona_TamainaAldatuta = new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH));// Irudiaren tamaina ezarri.
-            sesioButton = new JButton(pertsona_TamainaAldatuta); // Prifilaren botoiari irudia txertatu.
+            JButton sesioButton = new JButton(pertsona_TamainaAldatuta); // Prifilaren botoiari irudia txertatu.
             sesioButton.addActionListener(new ActionListener() { // Sesio botoiari entzulea sortu.
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -174,7 +168,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             //login botoia
             ImageIcon pertsonaIrudia = new ImageIcon(".\\Irudiak\\pertsona_icon.png");// Irudia aldagaian kargatu.
             ImageIcon pertsona_TamainaAldatuta = new ImageIcon(pertsonaIrudia.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));// Irudiari tamaina eman.
-            loginButton = new JButton("Login", pertsona_TamainaAldatuta);// irudia login botoian txertatu.
+            JButton loginButton = new JButton("Login", pertsona_TamainaAldatuta);// irudia login botoian txertatu.
             loginButton.addActionListener(new ActionListener() { // botoiari entzulea sortu.
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -187,7 +181,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
             ImageIcon pertsonaIrudia2 = new ImageIcon(".\\Irudiak\\Erregistratu.png"); // irudia kargatu.
             ImageIcon pertsona2_TamainaAldatuta = new ImageIcon(pertsonaIrudia2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina eman.
-            erregistratzeko_Button = new JButton("Erregistratu", pertsona2_TamainaAldatuta); // Erregistratu botoia sortu eta honi irudia txertatu.
+            JButton erregistratzeko_Button = new JButton("Erregistratu", pertsona2_TamainaAldatuta); // Erregistratu botoia sortu eta honi irudia txertatu.
             erregistratzeko_Button.addActionListener(new ActionListener() { // botoiari entzulea gehitu.
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -210,12 +204,12 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         ImageIcon lupa_irudia = new ImageIcon(".\\Irudiak\\lupa.png");
         ImageIcon lupa_irudia_aldatuta = new ImageIcon(lupa_irudia.getImage().getScaledInstance(10,10, java.awt.Image.SCALE_SMOOTH));
 
-        panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));// panel bat sortu erdian kokatzen dena.
+        JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));// panel bat sortu erdian kokatzen dena.
         ImageIcon portada_irudia= new ImageIcon(".\\Irudiak\\abejas.jpg"); // irudia aldagaian kargatu.
         JLabel portada= new JLabel(portada_irudia);// irudia jlabel batean jarri.
         panel2.add(portada);// irudia erdian kokatutako panelean txertatu.
 
-        panel3 = new JPanel(new BorderLayout());// panel bat sortu borderlayout motakoa.
+        JPanel panel3 = new JPanel(new BorderLayout());// panel bat sortu borderlayout motakoa.
 
         ImageIcon eztia_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean txertatu.
         ImageIcon eztia_irudia_aldatuta= new ImageIcon(eztia_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina jarri.
@@ -227,7 +221,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea3 = new JTextField(15);
         JButton L_lupa_irudia3 = new JButton(lupa_irudia_aldatuta);
         JButton desegin3 = new JButton("Desegin");
-        da.textuGrixa(bilatzailea3,"Eztia-ren Izena");
+        da.textuGrixa(bilatzailea3,"Eztia-ren Izena",Color.GRAY);
 
         panel3_1.add(bilatzailea3);
         layout3.putConstraint(SpringLayout.WEST, bilatzailea3,  10, SpringLayout.WEST, panel3);
@@ -248,7 +242,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel3.add(ezti_sp, BorderLayout.SOUTH);// sortutako taula eta scroll-a panelaren erdian txertatu.
 
-        panel4= new JPanel(new BorderLayout());// Panel berri bat sortu.
+        JPanel panel4= new JPanel(new BorderLayout());// Panel berri bat sortu.
 
         ImageIcon besteak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irudia aldagai batean hasieratu.
         ImageIcon besteak_irudia_aldatuta= new ImageIcon(besteak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
@@ -260,7 +254,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea4 = new JTextField(15);
         JButton L_lupa_irudia4 = new JButton(lupa_irudia_aldatuta);
         JButton desegin4 = new JButton("Desegin");
-        da.textuGrixa(bilatzailea4,"Produktua-ren Izena");
+        da.textuGrixa(bilatzailea4,"Produktua-ren Izena",Color.GRAY);
 
         panel4_1.add(bilatzailea4);
         layout4.putConstraint(SpringLayout.WEST, bilatzailea4,  10, SpringLayout.WEST, panel4);
@@ -281,7 +275,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel4.add(bestak_sp, BorderLayout.SOUTH);// taula panelean txertatu.
 
-        panel5= new JPanel(new BorderLayout());// panel bat sortu.
+        JPanel panel5= new JPanel(new BorderLayout());// panel bat sortu.
 
         JLabel materiala_Lirudi2= new JLabel(besteak_irudia_aldatuta);// irudia jlabel batean jarri.
         panel5.add(materiala_Lirudi2, BorderLayout.NORTH);//jlabel-a irudiarekin panelaren goiko aldean jarri.
@@ -291,7 +285,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea5 = new JTextField(15);
         JButton L_lupa_irudia5 = new JButton(lupa_irudia_aldatuta);
         JButton desegin5 = new JButton("Desegin");
-        da.textuGrixa(bilatzailea5,"Materiala-ren Izena");
+        da.textuGrixa(bilatzailea5,"Materiala-ren Izena",Color.GRAY);
 
         panel5_1.add(bilatzailea5);
         layout5.putConstraint(SpringLayout.WEST, bilatzailea5,  10, SpringLayout.WEST, panel5);
@@ -312,7 +306,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel5.add(material_sp, BorderLayout.SOUTH);// taula panelean txertatu.
 
-        panel6 = new JPanel(new BorderLayout());// panel bat sortu.
+        JPanel panel6 = new JPanel(new BorderLayout());// panel bat sortu.
 
         ImageIcon sozio_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean hasieratu.
         ImageIcon sozio_irudia_aldatuta= new ImageIcon(sozio_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
@@ -324,7 +318,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea6 = new JTextField(15);
         JButton L_lupa_irudia6 = new JButton(lupa_irudia_aldatuta);
         JButton desegin6 = new JButton("Desegin");
-        da.textuGrixa(bilatzailea6,"Sozio Izena");
+        da.textuGrixa(bilatzailea6,"Sozio Izena",Color.GRAY);
 
         panel6_1.add(bilatzailea6);
         layout6.putConstraint(SpringLayout.WEST, bilatzailea6,  10, SpringLayout.WEST, panel6);
@@ -345,7 +339,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel6.add(sozio_sp, BorderLayout.SOUTH);// taula panelaren erdian txertatu.
 
-        panel7 = new JPanel(new BorderLayout());// panel bat sortu.
+        JPanel panel7 = new JPanel(new BorderLayout());// panel bat sortu.
         ImageIcon sozietateak_irudia = new ImageIcon(".\\Irudiak\\kuadroa_eztia.jpg");// irudia aldagai batean hasieratu.
         ImageIcon sozietateak_irudia_aldatuta= new ImageIcon(sozietateak_irudia.getImage().getScaledInstance(900, 100, java.awt.Image.SCALE_SMOOTH));// irudiari tamaina bat eman.
         JLabel sozietateak_Lirudi= new JLabel(sozietateak_irudia_aldatuta);// irudia jlabel batean jarri.
@@ -356,7 +350,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JTextField bilatzailea7 = new JTextField(15);
         JButton L_lupa_irudia7 = new JButton(lupa_irudia_aldatuta);
         JButton desegin7 = new JButton("Desegin");
-        da.textuGrixa(bilatzailea7,"Asoziazio Izena");
+        da.textuGrixa(bilatzailea7,"Asoziazio Izena",Color.GRAY);
 
         ArrayList<Sozietateak> sozietateak = da.sozietate_Arrayalist();
         String[] hirriak_lista = new String[sozietateak.size()];
