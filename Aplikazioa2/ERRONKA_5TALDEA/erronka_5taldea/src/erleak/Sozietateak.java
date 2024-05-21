@@ -1,12 +1,5 @@
 package erleak;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import static erleak.Datuak.con;
-import static erleak.Datuak.*;
-
 public class Sozietateak {
     private int id_asoziazioa;
     private String izena;
@@ -17,15 +10,6 @@ public class Sozietateak {
         this.izena = izena;
         this.herrialdea = herrialdea;
     }
-
-    public int getId_asoziazioa() {
-        return id_asoziazioa;
-    }
-
-    public String getIzena() {
-        return izena;
-    }
-
     public String getHerrialdea() {
         return herrialdea;
     }

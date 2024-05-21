@@ -208,8 +208,7 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {// login botoiean click egiterakoan.
                 String pasahitza1= new String(txertatupass.getPassword());// sartutako pasahitza aldagaian gorde.
-
-                if (da.identifikatzailea_ondo(txertatu_izen.getText().trim()) && da.hash(da.pazaitza_jarri(txertatu_izen.getText().trim())).equals(da.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
+                if (da.identifikatzailea_ondo(txertatu_izen.getText().trim()) && da.pazaitza_jarri(txertatu_izen.getText().trim()).equals(da.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
 
                         da.izena_jarri(txertatu_izen.getText().trim());
                         JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
@@ -219,7 +218,7 @@ public class Login extends JFrame {
                         }
                         try {
                             FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");// fitxategian idazlea sortu.
-                            erabiltzaila.write(Integer.toString(da.id_atera_login()));// sartutako sozioa
+                            erabiltzaila.write(da.hash(String.valueOf(da.id_atera_login())));// sartutako sozioa
                             erabiltzaila.close();//idazlea itxi.
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -228,7 +227,7 @@ public class Login extends JFrame {
                         f_login.dispose();
 
                 }else {
-                    mezua.setText("Identifikatzailea edo pasahitza");
+                    mezua.setText("Identifikatzailea edo pasahitza gaizki dago");
                     mezua.setForeground(Color.red);
                 }
             }
@@ -236,10 +235,4 @@ public class Login extends JFrame {
 
         f_login.add(panel3, BorderLayout.SOUTH);
     }
-
-    public static void main(String[] args){//logina sortu eta biztaratu.
-        new Login().sortu_login();
-    }
-
-
 }

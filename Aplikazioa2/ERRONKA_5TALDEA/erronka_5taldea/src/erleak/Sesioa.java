@@ -1,8 +1,6 @@
 package erleak;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,8 +74,16 @@ public class Sesioa {
         nan.setText(nan_login);
         telefonoa.setText(telefonoa_login);
         jaio_eguna.setText(jaio_eguna_login);
-        erle_kantitatea.setText(erle_kantitatea_login);
-        kolmena_kantitatea.setText(kolmena_kantitatea_login);
+        if(erle_kantitatea_login==null || kolmena_kantitatea_login==null){
+            if (erle_kantitatea_login==null){
+                erle_kantitatea.setText("0");
+            }if (kolmena_kantitatea_login==null){
+                kolmena_kantitatea.setText("0");
+            }
+        }else {
+            erle_kantitatea.setText(erle_kantitatea_login);
+            kolmena_kantitatea.setText(kolmena_kantitatea_login);
+        }
 
         // eremu guztiak ez editagarriak egin.
         email.setEnabled(false);
@@ -249,7 +255,5 @@ public class Sesioa {
         f_sesio.add(panel3, BorderLayout.SOUTH);//panel3 sesio displayko behealdean txertau.
 
     }
-    public static void main(String[] args){
-        new Sesioa().sortu_login();// logis display sortu eta pantailaratu.
-    }
+
 }
