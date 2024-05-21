@@ -1,4 +1,4 @@
-/*package Testak;
+package Testak;
 
 import erleak.*;
 import org.junit.jupiter.api.*;
@@ -33,20 +33,15 @@ public class Testak {
     @EnabledOnOs(OS.WINDOWS)
     @DisplayName("sozio_Array metodoa ez du itzuliko NULL")
     public void test1(){
-        Assertions.assertNotNull(sozio_Array());
-
-    }
-    @Test
-    @DisplayName("Izena_jarri true itzuliko du.")
-    public void test2(){
-        Assertions.assertTrue(izena_jarri("76390986Y"));
+        Datuak da= new Datuak();
+        Assertions.assertNotNull(da.sozio_Array());
 
     }
     @Test
     @DisplayName("id_atera metodoa 3 ida bueltatuko du.")
     public void test3(){
-        Assertions.assertEquals(3,id_atera("85844584D"));
-
+        Datuak da= new Datuak();
+        Assertions.assertEquals(3,da.id_atera("85844584D"));
     }
     @Nested
     class habiaratutakoa{
@@ -54,24 +49,25 @@ public class Testak {
         @Test
         @DisplayName("CRUD testa")
         void test4(){
-            Assertions.assertNotNull(center_4_txertatu());
+            Datuak da= new Datuak();
+            Assertions.assertNotNull(da.center_4_txertatu());
         }
     }
-    /*@Tag("3.Panelan")
+    @Tag("3.Panelan")
     @Test
     @RepeatedTest(value = 3)
     public void test5(){
-        Assertions.assertNotNull(center_3_txertatu());
-    }*/
+        Datuak da= new Datuak();
+        Assertions.assertNotNull(da.center_3_txertatu());
+    }
 
-   /* @DisplayName("CSV")
+    @DisplayName("CSV")
     @CsvFileSource(resources = ".././CSV.csv")
     @ParameterizedTest
-    void test6(int IDa){
-        Assertions.assertEquals("85844584D",nan_atera(IDa), "NANa aurkitu dut");
+    void test6(String IDa){
+        Datuak da= new Datuak();
+        Assertions.assertEquals("85844584D",da.nan_atera(IDa), "NANa aurkitu dut");
     }
 
 
 }
-
-*/

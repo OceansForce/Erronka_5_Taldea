@@ -1,16 +1,12 @@
 package erleak;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.text.ParseException;
 import static erleak.Datuak.*;
-import static erleak.Sozioak.*;
-import static erleak.Login.*;
 public class Erregistratu {
     private JFrame f_Erregistratu= new JFrame();
     private JPanel panel1, panel2, panel3;
@@ -18,10 +14,6 @@ public class Erregistratu {
     private JFormattedTextField nan, telefonoa,jaio_eguna;
     private JLabel nan_textua, jaio_eguna_Textua, pasahitza_textua, pasahitza2_textua;
     private JButton login, erregistratu, atzera;
-
-    public static void main(String[] args){
-        new Erregistratu().sortu_Erregistratu();
-    }
 
 
     public void sortu_Erregistratu() {// eregistratu display-a sortzeko funtzioei deitu.
