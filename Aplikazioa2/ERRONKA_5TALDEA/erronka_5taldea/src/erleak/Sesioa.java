@@ -1,8 +1,6 @@
 package erleak;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -257,7 +255,5 @@ public class Sesioa {
         f_sesio.add(panel3, BorderLayout.SOUTH);//panel3 sesio displayko behealdean txertau.
 
     }
-    public static void main(String[] args){
-        new Sesioa().sortu_login();// logis display sortu eta pantailaratu.
-    }
+
 }
