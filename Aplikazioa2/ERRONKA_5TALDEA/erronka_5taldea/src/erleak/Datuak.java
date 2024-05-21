@@ -5,6 +5,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +26,8 @@ import static erleak.Login.zuzendaria_da;
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
 
-    static final String ip_eta_portua= "10.14.4.124"; //"192.168.8.106";
+   // static final String ip_eta_portua="10.14.4.124";
+    static final String ip_eta_portua="192.168.8.110";
     static final String erabiltzailea="T5_2";
     static final String pazaitza="123";
     static final String datu_base_IZENA="ORCLCDB";
@@ -764,5 +768,43 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             }
         });
 
+    }
+
+    //sozioen csv bat sortzen du.
+    public void sozioak_csv(){
+        try {
+            konexioa();
+            BufferedWriter taula_sortu = new BufferedWriter(new FileWriter(".\\Deskargak\\Sozioak.csv"));
+            taula_sortu.write("ID,Zuzendaria,Erle KANT,Erlauntz,Izena,Abizena,NAN,Telefonoa,Jaiote Data,Email");
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email FROM SOZIOAK order by id_sozioa asc");
+            while (rs.next()){
+                taula_sortu.newLine();
+                taula_sortu.write(rs.getString("id_sozioa")+","+rs.getString("id_zuzendaria")+","+rs.getString("erle_kantitatea")+","+rs.getString("kolmena_kantitatea")+","+rs.getString("sozio_izena")+","+rs.getString("sozio_abizena")+","+rs.getString("nan")+","+rs.getString("telefonoa")+","+rs.getString("jaiote_eguna")+","+rs.getString("email"));
+            }
+            taula_sortu.close();
+            con.close();
+        } catch (IOException | SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    //sozietateen csv bat sortzen du
+    public void sozietateak_csv(){
+        try {
+            konexioa();
+            BufferedWriter taula_sortu = new BufferedWriter(new FileWriter(".\\Deskargak\\Asoziazioak.csv"));
+            taula_sortu.write("ID,Izena,Herrialdea");
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak order by id_asoziazioa asc");
+            while (rs.next()){
+                taula_sortu.newLine();
+                taula_sortu.write(rs.getString("id_asoziazioa")+","+rs.getString("asoziazio_izena")+","+rs.getString("herrialdea"));
+            }
+            taula_sortu.close();
+            con.close();
+        } catch (IOException | SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

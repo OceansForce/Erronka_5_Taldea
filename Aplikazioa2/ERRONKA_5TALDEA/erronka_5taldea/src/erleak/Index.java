@@ -3,9 +3,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -319,6 +320,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         JButton L_lupa_irudia6 = new JButton(lupa_irudia_aldatuta);
         JButton desegin6 = new JButton("Desegin");
         da.textuGrixa(bilatzailea6,"Sozio Izena",Color.GRAY);
+        JButton deskargatu1 = new JButton("Deskargatu");
 
         panel6_1.add(bilatzailea6);
         layout6.putConstraint(SpringLayout.WEST, bilatzailea6,  10, SpringLayout.WEST, panel6);
@@ -328,6 +330,9 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel6_1.add(desegin6);
         layout6.putConstraint(SpringLayout.WEST, desegin6, 80, SpringLayout.WEST, L_lupa_irudia6);
+
+        panel6_1.add(deskargatu1);
+        layout6.putConstraint(SpringLayout.WEST, deskargatu1, 100, SpringLayout.WEST, desegin6);
 
         panel6.add(panel6_1, BorderLayout.CENTER);
 
@@ -361,6 +366,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             x++;
         }
         JComboBox herriak = new JComboBox<>(hirriak_lista);
+        JButton deskargatu2= new JButton("Deskagatu");
 
         panel7_1.add(bilatzailea7);
         layout7.putConstraint(SpringLayout.WEST, bilatzailea7,  10, SpringLayout.WEST, panel7);
@@ -373,6 +379,9 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel7_1.add(desegin7);
         layout7.putConstraint(SpringLayout.WEST, desegin7, 80, SpringLayout.WEST, herriak);
+
+        panel7_1.add(deskargatu2);
+        layout7.putConstraint(SpringLayout.WEST, deskargatu2, 100, SpringLayout.WEST, desegin7);
 
         panel7.add(panel7_1, BorderLayout.CENTER);
 
@@ -395,6 +404,19 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         centerPanela.add(panel7, "panel7");
 
         f_Index.add(centerPanela,BorderLayout.CENTER);//panel nagusiko erdialdean gehitu card panela.
+
+        deskargatu1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                da.sozioak_csv();
+            }
+        });
+        deskargatu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                da.sozietateak_csv();
+            }
+        });
         L_lupa_irudia3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
