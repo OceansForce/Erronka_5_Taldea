@@ -1,7 +1,5 @@
 package erleak;
 
-import erleak.*;
-
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -25,10 +23,10 @@ import static erleak.Login.zuzendaria_da;
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
 
-    static String ip_eta_portua= "10.14.4.124"; //"192.168.8.106";
-    static String erabiltzailea="T5_2";
-    static String pazaitza="123";
-    static String datu_base_IZENA="ORCLCDB";
+    static final String ip_eta_portua= "10.14.4.124"; //"192.168.8.106";
+    static final String erabiltzailea="T5_2";
+    static final String pazaitza="123";
+    static final String datu_base_IZENA="ORCLCDB";
     static final String url= "jdbc:oracle:thin:@"+ip_eta_portua+":1521:"+datu_base_IZENA;
     static final String driver= "oracle.jdbc.driver.OracleDriver";
     public static Connection con;
@@ -415,16 +413,15 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
-    public HashSet<Integer> id_sozioak(){// HashSet bat bueltatzen duen funztioa.
+    public HashSet<String> id_sozioak(){// HashSet bat bueltatzen duen funztioa.
         try {
-            Datuak da = new Datuak();
-            da.konexioa();// datu basearekin konexioa sortu.
-            HashSet<Integer> id_sozioak= new HashSet<>();// HashSet bat sortu id_sozioarentzako.
+            konexioa();// datu basearekin konexioa sortu.
+            HashSet<String> id_sozioak= new HashSet<>();// HashSet bat sortu id_sozioarentzako.
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);// datu basean egiteko kontsulta sortu.
             ResultSet rs= stmt.executeQuery("SELECT id_sozioa FROM sozioak");// eskaera definitu eta erantzuna gorde.
 
             while (rs.next()){// erantzunak hurrengo balioa duen bitartean.
-                id_sozioak.add(rs.getInt("id_sozioa"));// HashSet-era bueltatutako id_sozioak gehitu.
+                id_sozioak.add(hash(String.valueOf(rs.getInt("id_sozioa"))));// HashSet-era bueltatutako id_sozioak gehitu.
             }
             con.close();// kontsulta desegin.
             return id_sozioak;// HashSet-a bueltatu.
@@ -433,16 +430,16 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
-    public HashSet<Integer> zuzendariak(){// zuzendarien HashSet bat bueltatzen duen funtzioa.
+    public HashSet<String> zuzendariak(){// zuzendarien HashSet bat bueltatzen duen funtzioa.
         try {
             Datuak da = new Datuak();
             da.konexioa();// datu basearekin konexioa egin
-            HashSet<Integer> id_zuzendariak= new HashSet<>();// HashSet-a sortu.
+            HashSet<String> id_zuzendariak= new HashSet<>();// HashSet-a sortu.
             Statement stmt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);// kontsulta sortu.
             ResultSet rs= stmt.executeQuery("SELECT id_zuzendaria FROM sozioak");// Eskaera definitu eta balioak jaso.
 
             while (rs.next()){// jasotako balioak hurrengo duen bitartean.
-                id_zuzendariak.add(rs.getInt("id_zuzendaria"));// id_zuzendariak HashSet-ean gorde.
+                id_zuzendariak.add(hash(String.valueOf(rs.getInt("id_zuzendaria"))));// id_zuzendariak HashSet-ean gorde.
             }
             con.close();// kontsulta desegin.
             return id_zuzendariak;// zuzendarien HashSet-a bueltatu.
@@ -507,11 +504,11 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         }
     }
 
-    public String nan_atera(int id){// soizoaren id-a jasota honen nan zenbakia bultatuko duen funtzioa.
+    public String nan_atera(String id){// soizoaren id-a jasota honen nan zenbakia bultatuko duen funtzioa.
         Datuak da = new Datuak();
         ArrayList<Sozioak> sozio_lista= da.sozio_ArrayList();// Arraylist-a sortu, haurreko funtzioan sortutako arraylist-arekin.
         for (Sozioak s: sozio_lista) {// Arraylist-eko
-            if (id == s.getId_sozioa()){// jasotako id_sozioa
+            if (id.equals(hash(String.valueOf(s.getId_sozioa())))){// jasotako id_sozioa
                 return s.getNan();// nan zenbakia itzuli.
             }
         }

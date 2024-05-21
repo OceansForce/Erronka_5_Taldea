@@ -23,9 +23,9 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     public static void main(String[] args){
         Datuak da = new Datuak();
         try {
-            int ida=0;
+            String ida= da.hash("0");
             BufferedReader irakurri = new BufferedReader(new FileReader(".\\sesio.txt"));
-            ida= Integer.parseInt(irakurri.readLine());// TXT irakurri eta id-a gorde.
+            ida= irakurri.readLine();// TXT irakurri eta id-a gorde.
             if (da.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
                 logeatua_dago=true;
                 if (da.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.

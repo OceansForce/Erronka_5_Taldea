@@ -1,13 +1,5 @@
 package erleak;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import static erleak.Datuak.*;
-
 public class Sozioak {// adagaiak definitu.
     private int id_sozioa;
     private int id_zuzendaria;
@@ -36,22 +28,6 @@ public class Sozioak {// adagaiak definitu.
         this.email = email;
         this.pasahitza = pasahitza;
     }
-
-    @Override
-    public String toString() {// Sozioaren balioak string motara pasatu.
-        return id_sozioa +
-                " || "+ id_zuzendaria +
-                " || "+ erle_kantitatea +
-                " || "+ kolmena_kantitatea +
-                " || "+ sozio_izena + '\'' +
-                " || "+ sozio_abizena + '\'' +
-                " || "+ nan + '\'' +
-                " || " + telefonoa + '\'' +
-                " || "+ jaiote_eguna +
-                " || "+ email + '\'' +
-                " || "+ pasahitza + '\'' + "\n";
-    }
-
     public int getId_sozioa() {// getterra datuk jasotzeko.
         return id_sozioa;
     }
