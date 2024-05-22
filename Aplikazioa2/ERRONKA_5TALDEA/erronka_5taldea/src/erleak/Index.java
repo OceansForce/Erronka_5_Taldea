@@ -4,9 +4,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -408,12 +408,18 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         deskargatu1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (Files.notExists(Path.of("./Deskargak"))){ //Deskargak karpeta ez bada existitzen, sortu egingo du.
+                    boolean a = new File("./Deskargak").mkdirs();
+                }
                 da.sozioak_csv();
             }
         });
         deskargatu2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //Deskargak karpeta ez bada existitzen, sortu egingo du.
+                if (Files.notExists(Path.of("./Deskargak"))){
+                    boolean a = new File("./Deskargak").mkdirs();
+                }
                 da.sozietateak_csv();
             }
         });
