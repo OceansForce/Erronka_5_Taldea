@@ -21,7 +21,10 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     /* Programa abiatzerakoan, sesio.txt-a irakurtzen du ea logeatuta gauden eta horrela bada honen id_sozioa artuko da sozioa logeatzen detean sesio.txt an gordetzen da informazioa eta.
     Ondoren datu basetik HashSet bat bueltauko da funtzioari deituz eta bertan gordetako id_sozioa dagoen jakingo da. Horrera bada onderen berriro HashSet bat bueltatuko du baina kasu honetan zuzendari guztiena eta ea sartutako id_langilea zuzendaria den jakingo da.
      Azkenik funtzo baten bidez sozioaren datu guztiak eskatuko dira txt an gordetako id_sozioaren bidez. */
-    public static void main(String[] args){
+
+    public Index() {}
+
+    public void piztu(){
         Datuak da = new Datuak();
         try {
             String ida= da.hash("0");
