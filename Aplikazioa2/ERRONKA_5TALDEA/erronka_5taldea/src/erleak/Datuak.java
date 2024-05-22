@@ -631,6 +631,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
         try {
             da.konexioa();// datu basearekin konexioa egin.
             //eremu bakoitzean sartutako textua jasota  insert into bat sortu.
+            id_sozioa_login= String.valueOf(id_hadiena());
             PreparedStatement insert = con.prepareStatement("INSERT INTO sozioak(id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email, pasahitza) \n" +
                 "VALUES ("+id_hadiena()+",3,NULL,NULL,'"+izena_login+"', '"+abizena_login+"', '"+nan_login+"', "+(Long.parseLong(telefonoa_login))+", " +
                     "TO_DATE('"+jaio_eguna_date+"', 'YYYY-MM-DD'), '"+email_login+"', '"+hash(pazaitza_login)+"')");

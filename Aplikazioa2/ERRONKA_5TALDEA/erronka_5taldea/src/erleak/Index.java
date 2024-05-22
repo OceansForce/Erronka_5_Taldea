@@ -1,4 +1,6 @@
 package erleak;
+import Objetuak.Encrypt;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -27,9 +29,16 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     public void piztu(){
         Datuak da = new Datuak();
         try {
+            if (Files.notExists(Path.of("./sesio.txt"))){ //sesioa fitxategia ez bada existitzen, sortu egingo du.
+                File a= new File("./sesio.txt");
+                BufferedWriter bw= new BufferedWriter(new FileWriter("./sesio.txt"));
+                bw.write(Encrypt.encript(da.hash("0")));
+                bw.close();
+
+            }
             String ida= da.hash("0");
             BufferedReader irakurri = new BufferedReader(new FileReader(".\\sesio.txt"));
-            ida= irakurri.readLine();// TXT irakurri eta id-a gorde.
+            ida= Encrypt.decrypt(irakurri.readLine());// TXT irakurri eta id-a gorde.
             if (da.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
                 logeatua_dago=true;
                 if (da.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.
@@ -38,7 +47,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
                 da.izena_jarri(da.nan_atera(ida)); // Izenak_jarri funtzioari deituz sozioaren datu guztiak jaso.
             }
             new Index().sortu();//Horria sortu.
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

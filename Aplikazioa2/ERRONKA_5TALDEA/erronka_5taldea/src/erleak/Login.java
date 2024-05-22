@@ -1,10 +1,12 @@
 package erleak;
+import Objetuak.Encrypt;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -217,10 +219,10 @@ public class Login extends JFrame {
                             zuzendaria_da = true;// zuzendaria izan.
                         }
                         try {
-                            FileWriter erabiltzaila = new FileWriter(".\\sesio.txt");// fitxategian idazlea sortu.
-                            erabiltzaila.write(da.hash(String.valueOf(da.id_atera_login())));// sartutako sozioa
+                            BufferedWriter erabiltzaila = new BufferedWriter(new FileWriter(".\\sesio.txt"));// fitxategian idazlea sortu.
+                            erabiltzaila.write(Encrypt.encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
                             erabiltzaila.close();//idazlea itxi.
-                        } catch (IOException ex) {
+                        } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
                         new Index().sortu();// index display-a sortu eta biztaratu
