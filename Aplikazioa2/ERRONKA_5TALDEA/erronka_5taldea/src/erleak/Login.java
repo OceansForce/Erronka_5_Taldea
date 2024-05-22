@@ -42,7 +42,7 @@ public class Login extends JFrame {
     public void north(){
         JPanel panel2 = new JPanel();// panel2 jpanela sortu.
         panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));// panel2 box layout mota x ardatzean bihurtu.
-        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irdudia aldagaian kargatu.
+        ImageIcon fondoa_irudia = new ImageIcon("./Irudiak/kuadroa_erdia.jpg");// irdudia aldagaian kargatu.
         ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina aldatu.
         JLabel irudia = new JLabel(fondo_aldatuta);// label bat sortu irudiarekin
         panel2.add(irudia); // sortutako label-a panel2-an gehitu.
@@ -219,7 +219,7 @@ public class Login extends JFrame {
                             zuzendaria_da = true;// zuzendaria izan.
                         }
                         try {
-                            BufferedWriter erabiltzaila = new BufferedWriter(new FileWriter(".\\sesio.txt"));// fitxategian idazlea sortu.
+                            BufferedWriter erabiltzaila = new BufferedWriter(new FileWriter("./sesio.txt"));// fitxategian idazlea sortu.
                             erabiltzaila.write(Encrypt.encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
                             erabiltzaila.close();//idazlea itxi.
                         } catch (Exception ex) {

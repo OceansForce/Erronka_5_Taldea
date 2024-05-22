@@ -33,7 +33,7 @@ public class Sesioa {
     public void north(){// display-ko gaiko panela sortu.
         panel2 = new JPanel();//panel2 sortu.
         panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS)); //panel2-ri box layout x ardatzean mota ezarri.
-        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg"); // irudia aldagaian kargatu.
+        ImageIcon fondoa_irudia = new ImageIcon("./Irudiak/kuadroa_erdia.jpg"); // irudia aldagaian kargatu.
         ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina aldatu.
         JLabel irudia = new JLabel(fondo_aldatuta);// irudia label batean bihurtu.
         panel2.add(irudia);// irudiaren label-a panel2-an txertatu.
@@ -241,7 +241,7 @@ public class Sesioa {
                     pazaitza_login=null;
 
 
-                    BufferedWriter fw= new BufferedWriter( new FileWriter(".\\sesio.txt"));// fitxategi gainean idazlea difinitu.
+                    BufferedWriter fw= new BufferedWriter( new FileWriter("./sesio.txt"));// fitxategi gainean idazlea difinitu.
                     fw.write(Encrypt.encript(da.hash(Integer.toString(0))));// fitxategian zenbakiak 0;
                     fw.close();//idazlea itxi.
                 } catch (Exception ex) {//Errorea arrapatu
