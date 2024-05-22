@@ -57,11 +57,11 @@ public class Sesioa {
         erle_kantitatea= new JTextField();
         JLabel kolmena_kantitatea_textua= new JLabel("Kolmena KANT");
         kolmena_kantitatea= new JTextField();
-        JLabel jaio_eguna_Textua= new JLabel("Jaio Eguna:");
+        JLabel jaio_eguna_Textua= new JLabel("Jaiotze Data:");
         jaio_eguna= new JTextField();
-        JLabel pazaitza_textua= new JLabel("Pazaitza");
+        JLabel pazaitza_textua= new JLabel("Pasahitza");
         pazaitza= new JTextField();
-        JLabel pazaitza2_textua= new JLabel("Pazaitza Egiaztatua");
+        JLabel pazaitza2_textua= new JLabel("Egiaztatu Pasahitza");
         pazaitza2= new JTextField();
         gorde= new JButton("Gorde Aldaketak");
         JLabel pazaitz_mezua= new JLabel("");

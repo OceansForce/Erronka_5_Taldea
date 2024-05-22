@@ -3,9 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/erronka_5taldea_jar</output-path>
     <root id="archive" name="erronka_5taldea.jar">
       <element id="module-output" name="erronka_5taldea" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/ojdbc11.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/4.13.1/junit-4.13.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar" path-in-jar="/" />
@@ -16,6 +13,9 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/javax.activation-api-1.2.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/jaxb-api-2.4.0-b180830.0359.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ojdbc11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/4.13.1/junit-4.13.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

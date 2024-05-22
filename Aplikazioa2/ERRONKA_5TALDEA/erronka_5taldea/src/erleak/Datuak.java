@@ -451,7 +451,6 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
-
     public int id_atera_login(){//logeatutako sozioaren id_sozioa bultatzen duen funtzioa.
         Datuak da = new Datuak();
         ArrayList<Sozioak> sozio_lista= da.sozio_ArrayList();//Sozioaen arraylist bat sortu, haurreko funtzioan sortutako sozioen arraylist-arekin.
@@ -640,7 +639,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
         logeatua_dago=true;// logeatuta egon.
-        if (da.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
+        if (da.zuzendariak().contains(hash(String.valueOf(id_atera(nan_login))))){// logeatutako sozioa zuzendaria den jakin.
             zuzendaria_da=true;// zuzendaria izan.
         }
     }

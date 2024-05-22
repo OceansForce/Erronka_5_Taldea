@@ -336,7 +336,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel6.add(panel6_1, BorderLayout.CENTER);
 
-        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
+        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntza KANT","Izena","Abizena","NAN","Telefonoa","Jaiotze Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
         sozioak_model = new DefaultTableModel();
         JTable sozio_tabla= new JTable(sozioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
