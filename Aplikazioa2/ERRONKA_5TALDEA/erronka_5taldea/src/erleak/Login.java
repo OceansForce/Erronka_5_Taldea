@@ -213,7 +213,7 @@ public class Login extends JFrame {
                         da.izena_jarri(txertatu_izen.getText().trim());
                         JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
                         logeatua_dago = true;// logetuta egon.
-                        if (da.zuzendariak().contains(da.id_atera_login())) {// logetutako sozioa zuzendariak taulan egon.
+                        if (da.zuzendariak().contains(da.hash(String.valueOf(da.id_atera_login())))) {// logetutako sozioa zuzendariak taulan egon.
                             zuzendaria_da = true;// zuzendaria izan.
                         }
                         try {

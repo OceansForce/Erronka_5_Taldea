@@ -4,9 +4,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +21,10 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
     /* Programa abiatzerakoan, sesio.txt-a irakurtzen du ea logeatuta gauden eta horrela bada honen id_sozioa artuko da sozioa logeatzen detean sesio.txt an gordetzen da informazioa eta.
     Ondoren datu basetik HashSet bat bueltauko da funtzioari deituz eta bertan gordetako id_sozioa dagoen jakingo da. Horrera bada onderen berriro HashSet bat bueltatuko du baina kasu honetan zuzendari guztiena eta ea sartutako id_langilea zuzendaria den jakingo da.
      Azkenik funtzo baten bidez sozioaren datu guztiak eskatuko dira txt an gordetako id_sozioaren bidez. */
-    public static void main(String[] args){
+
+    public Index() {}
+
+    public void piztu(){
         Datuak da = new Datuak();
         try {
             String ida= da.hash("0");
@@ -336,7 +339,7 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
 
         panel6.add(panel6_1, BorderLayout.CENTER);
 
-        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntz","Izena","Abizena","NAN","Telefonoa","Jaiote Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
+        String[] kolumna_Izenak_sozio= {"ID","Zuzendaria","Erle KANT", "Erlauntza KANT","Izena","Abizena","NAN","Telefonoa","Jaiotze Data","Email"};// String bat hasieratu datu baseko sozioak taularen eremuen izenekin.
         sozioak_model = new DefaultTableModel();
         JTable sozio_tabla= new JTable(sozioak_model);//aldatu ezin den taula bat sortu, array-eko eremuekin.
         sozio_tabla.setPreferredScrollableViewportSize(new Dimension(700, 225));//taulari tamaina ezarri.
@@ -408,12 +411,18 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         deskargatu1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (Files.notExists(Path.of("./Deskargak"))){ //Deskargak karpeta ez bada existitzen, sortu egingo du.
+                    boolean a = new File("./Deskargak").mkdirs();
+                }
                 da.sozioak_csv();
             }
         });
         deskargatu2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //Deskargak karpeta ez bada existitzen, sortu egingo du.
+                if (Files.notExists(Path.of("./Deskargak"))){
+                    boolean a = new File("./Deskargak").mkdirs();
+                }
                 da.sozietateak_csv();
             }
         });

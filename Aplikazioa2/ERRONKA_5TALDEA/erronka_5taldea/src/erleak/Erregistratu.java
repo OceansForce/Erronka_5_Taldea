@@ -71,7 +71,7 @@ public class Erregistratu {
             telefonoa = new JFormattedTextField(telefono_formatua);// terefonoari formatu ezarri.
             enable_false_true(telefonoa);// funtzioari deitu text field-eko testu grixa aktibatu, ondoren hau borratzeko.
 
-            jaio_eguna_Textua= new JLabel("Jaio Eguna:"); // jaiotze dataren label bat sortu.
+            jaio_eguna_Textua= new JLabel("Jaiotze Data:"); // jaiotze dataren label bat sortu.
             MaskFormatter jaio_eguna_Formatua = new MaskFormatter("####-##-##"); // jaiotze dataren formatua sortu.
             jaio_eguna = new JFormattedTextField(jaio_eguna_Formatua);// formatua jaiotze datari ezarri.
             enable_false_true(jaio_eguna);// funtzioari deitu text field-eko testu grixa aktibatu, ondoren hau borratzeko.

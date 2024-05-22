@@ -26,8 +26,7 @@ import static erleak.Login.zuzendaria_da;
 
 public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
 
-   // static final String ip_eta_portua="10.14.4.124";
-    static final String ip_eta_portua="192.168.8.110";
+    static final String ip_eta_portua="10.14.4.124";
     static final String erabiltzailea="T5_2";
     static final String pazaitza="123";
     static final String datu_base_IZENA="ORCLCDB";
@@ -452,7 +451,6 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
-
     public int id_atera_login(){//logeatutako sozioaren id_sozioa bultatzen duen funtzioa.
         Datuak da = new Datuak();
         ArrayList<Sozioak> sozio_lista= da.sozio_ArrayList();//Sozioaen arraylist bat sortu, haurreko funtzioan sortutako sozioen arraylist-arekin.
@@ -641,7 +639,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
         logeatua_dago=true;// logeatuta egon.
-        if (da.zuzendariak().contains(id_atera(nan_login))){// logeatutako sozioa zuzendaria den jakin.
+        if (da.zuzendariak().contains(hash(String.valueOf(id_atera(nan_login))))){// logeatutako sozioa zuzendaria den jakin.
             zuzendaria_da=true;// zuzendaria izan.
         }
     }
@@ -774,7 +772,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
     public void sozioak_csv(){
         try {
             konexioa();
-            BufferedWriter taula_sortu = new BufferedWriter(new FileWriter(".\\Deskargak\\Sozioak.csv"));
+            BufferedWriter taula_sortu = new BufferedWriter(new FileWriter(".\\Deskargak\\Sozioak.csv", false));
             taula_sortu.write("ID,Zuzendaria,Erle KANT,Erlauntz,Izena,Abizena,NAN,Telefonoa,Jaiote Data,Email");
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             ResultSet rs= stmt.executeQuery("SELECT id_sozioa, id_zuzendaria, erle_kantitatea, kolmena_kantitatea, sozio_izena, sozio_abizena, nan, telefonoa, jaiote_eguna, email FROM SOZIOAK order by id_sozioa asc");
@@ -793,7 +791,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
     public void sozietateak_csv(){
         try {
             konexioa();
-            BufferedWriter taula_sortu = new BufferedWriter(new FileWriter(".\\Deskargak\\Asoziazioak.csv"));
+            BufferedWriter taula_sortu = new BufferedWriter(new FileWriter(".\\Deskargak\\Asoziazioak.csv", false));
             taula_sortu.write("ID,Izena,Herrialdea");
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             ResultSet rs= stmt.executeQuery("SELECT id_asoziazioa, asoziazio_izena, herrialdea FROM asoziazioak order by id_asoziazioa asc");
