@@ -1,5 +1,5 @@
 package erleak;
-
+import Objetuak.Encrypt;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +33,7 @@ public class Sesioa {
     public void north(){// display-ko gaiko panela sortu.
         panel2 = new JPanel();//panel2 sortu.
         panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS)); //panel2-ri box layout x ardatzean mota ezarri.
-        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg"); // irudia aldagaian kargatu.
+        ImageIcon fondoa_irudia = new ImageIcon("./Irudiak/kuadroa_erdia.jpg"); // irudia aldagaian kargatu.
         ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina aldatu.
         JLabel irudia = new JLabel(fondo_aldatuta);// irudia label batean bihurtu.
         panel2.add(irudia);// irudiaren label-a panel2-an txertatu.
@@ -178,7 +178,7 @@ public class Sesioa {
 
     }
     public void south(){
-
+        Datuak da= new Datuak();
         panel3 = new JPanel();// panel3 sortu.
         panel3.setLayout(new BoxLayout(panel3,BoxLayout.Y_AXIS));// panel3 boxlayaut erabili da Y ardatzean egoteko.
 
@@ -241,10 +241,10 @@ public class Sesioa {
                     pazaitza_login=null;
 
 
-                    FileWriter fw= new FileWriter(".\\sesio.txt");// fitxategi gainean idazlea difinitu.
-                    fw.write(Integer.toString(0));// fitxategian zenbakiak 0;
+                    BufferedWriter fw= new BufferedWriter( new FileWriter("./sesio.txt"));// fitxategi gainean idazlea difinitu.
+                    fw.write(Encrypt.encript(da.hash(Integer.toString(0))));// fitxategian zenbakiak 0;
                     fw.close();//idazlea itxi.
-                } catch (IOException ex) {//Errorea arrapatu
+                } catch (Exception ex) {//Errorea arrapatu
                     throw new RuntimeException(ex);//Errorea bota.
                 }
                 f_sesio.dispose();// sesio display-a itxi.

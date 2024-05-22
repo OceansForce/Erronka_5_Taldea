@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.sql.*;
 import java.text.ParseException;
 import static erleak.Datuak.*;
@@ -34,7 +36,7 @@ public class Erregistratu {
     public void north(){
         panel1 = new JPanel();// panel bat sortu.
         panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));// panela box layout batean bihurtu medu horizontalean.
-        ImageIcon fondoa_irudia = new ImageIcon(".\\Irudiak\\kuadroa_erdia.jpg");// irudia aldagaian kargatu,
+        ImageIcon fondoa_irudia = new ImageIcon("./Irudiak/kuadroa_erdia.jpg");// irudia aldagaian kargatu,
         ImageIcon fondo_aldatuta= new ImageIcon(fondoa_irudia.getImage().getScaledInstance(400, 80, java.awt.Image.SCALE_SMOOTH));// irudiaren tamaina ezarri.
         JLabel irudia = new JLabel(fondo_aldatuta); // irudia jlabel batean bihurtu.
         panel1.add(irudia); // irudiaren jlabel-a panelean gehitu.
@@ -175,6 +177,13 @@ public class Erregistratu {
                     pazaitza_login = pasahitza2.getText();// sartutako pasahitza itzuli.
 
                     da.erregistratu(jaio_eguna_date);
+                    try {
+                        BufferedWriter erabiltzaila = new BufferedWriter(new FileWriter("./sesio.txt"));// fitxategian idazlea sortu.
+                        erabiltzaila.write(Objetuak.Encrypt.encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
+                        erabiltzaila.close();//idazlea itxi.
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                     f_Erregistratu.dispose();// erregistratu display-a itxi.
                     new Index().sortu();// index display-a sortu eta ireki.
