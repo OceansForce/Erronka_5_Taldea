@@ -1,5 +1,4 @@
 package erleak;
-import Objetuak.Encrypt;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
+import static erleak.Encrypt.*;
 import static erleak.Login.*;
 
 public class Index extends JFrame implements ActionListener {// Erabiliko diren aldagai guztiak definitu.
@@ -32,13 +32,13 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
             if (Files.notExists(Path.of("./sesio.txt"))){ //sesioa fitxategia ez bada existitzen, sortu egingo du.
                 File a= new File("./sesio.txt");
                 BufferedWriter bw= new BufferedWriter(new FileWriter("./sesio.txt"));
-                bw.write(Encrypt.encript(da.hash("0")));
+                bw.write(encript(da.hash("0")));
                 bw.close();
 
             }
             String ida= da.hash("0");
             BufferedReader irakurri = new BufferedReader(new FileReader("./sesio.txt"));
-            ida= Encrypt.decrypt(irakurri.readLine());// TXT irakurri eta id-a gorde.
+            ida= decrypt(irakurri.readLine());// TXT irakurri eta id-a gorde.
             if (da.id_sozioak().contains(ida)){// Gordetako id-a datu baseko id guztiekin konparatu HashSet baten bidez.
                 logeatua_dago=true;
                 if (da.zuzendariak().contains(ida)){//Gordetako id-a datu baseko zuzendarien id-ekin guztiekin konparatu HashSet baten bidez.

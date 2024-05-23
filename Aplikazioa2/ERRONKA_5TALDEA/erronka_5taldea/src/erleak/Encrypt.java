@@ -1,4 +1,4 @@
-package Objetuak;
+package erleak;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -6,7 +6,7 @@ import java.security.Key;
 import java.util.*;
 
 public class Encrypt {
-    private static final String ENCRYPT_KEY = "yzz*ugP9PiVefs5saUVQ7=86H@y_tYrr";
+    private static final String ENCRYPT_KEY = "aB7d!8Yx@Jr4M$sKpQ3%LuNv2HwVzXoE";
 
     public Encrypt() {}
 

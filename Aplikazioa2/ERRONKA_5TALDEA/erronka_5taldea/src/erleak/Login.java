@@ -1,5 +1,4 @@
 package erleak;
-import Objetuak.Encrypt;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -8,7 +7,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
+
+import static erleak.Encrypt.*;
 
 
 public class Login extends JFrame {
@@ -220,7 +220,7 @@ public class Login extends JFrame {
                         }
                         try {
                             BufferedWriter erabiltzaila = new BufferedWriter(new FileWriter("./sesio.txt"));// fitxategian idazlea sortu.
-                            erabiltzaila.write(Encrypt.encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
+                            erabiltzaila.write(encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
                             erabiltzaila.close();//idazlea itxi.
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);

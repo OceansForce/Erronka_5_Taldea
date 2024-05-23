@@ -179,7 +179,7 @@ public class Erregistratu {
                     da.erregistratu(jaio_eguna_date);
                     try {
                         BufferedWriter erabiltzaila = new BufferedWriter(new FileWriter("./sesio.txt"));// fitxategian idazlea sortu.
-                        erabiltzaila.write(Objetuak.Encrypt.encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
+                        erabiltzaila.write(Encrypt.encript(da.hash(String.valueOf(da.id_atera_login()))));// sartutako sozioa
                         erabiltzaila.close();//idazlea itxi.
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);

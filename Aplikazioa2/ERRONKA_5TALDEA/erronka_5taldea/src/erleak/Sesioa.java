@@ -1,5 +1,4 @@
 package erleak;
-import Objetuak.Encrypt;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
