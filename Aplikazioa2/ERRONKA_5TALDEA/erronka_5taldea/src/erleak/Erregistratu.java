@@ -14,7 +14,7 @@ public class Erregistratu {
     private JPanel panel1, panel2, panel3;
     private JTextField email, izena, abizena, pasahitza, pasahitza2;
     private JFormattedTextField nan, telefonoa,jaio_eguna;
-    private JLabel nan_textua, jaio_eguna_Textua, pasahitza_textua, pasahitza2_textua;
+    private JLabel mezua, nan_textua, jaio_eguna_Textua, pasahitza_textua, pasahitza2_textua;
     private JButton login, erregistratu, atzera;
 
 
@@ -101,7 +101,8 @@ public class Erregistratu {
         JPanel panel8= new JPanel();
         panel8.setLayout(new BoxLayout(panel8, BoxLayout.Y_AXIS));
         JPanel panel9= new JPanel(new GridLayout(6,1));
-
+        JPanel panel10= new JPanel(new FlowLayout(FlowLayout.CENTER));
+        mezua = new JLabel("");
 
         panel7.add(nan_textua);
         panel7.add(nan);
@@ -120,12 +121,14 @@ public class Erregistratu {
         panel9.add(pasahitza2_textua);
         panel9.add(pasahitza2);
 
+        panel10.add(mezua);
         panel4.add(panel6);
 
         panel6.add(panel7);
         panel6.add(panel8);
 
         panel4.add(panel9);
+        panel4.add(panel10);
 
         dena.add(panel4);
         panel2.add(dena, BorderLayout.CENTER);
@@ -163,9 +166,15 @@ public class Erregistratu {
             @Override
             public void actionPerformed(ActionEvent e) {// erregistratu botoian click egiterakoan.
                 String emailT= email.getText();// emailtextfield-etik sartutako textua jaso.
-                if (!emailT.matches(".+@.+..+")){// sartutako email-ak formatu egokia ez badu, textua ezabatuko du eta "Email" gorris jarriko da.
-                    da.textuGrixa(email, "Email",Color.RED);
-                    email.setEnabled(true);
+
+                if (!emailT.matches(".+@.+..+") || !pasahitza.equals(pasahitza2)){// sartutako email-ak formatu egokia ez badu, textua ezabatuko du eta "Email" gorris jarriko da.
+                    if (!pasahitza.equals(pasahitza2)){
+                        mezua.setText("Pasahitzak ez dira berdinak");
+                        mezua.setForeground(Color.red);
+                    }else if (!emailT.matches(".+@.+..+") ){
+                        da.textuGrixa(email, "Email",Color.RED);
+                        email.setEnabled(true);
+                    }
                 }else {
                     email_login = email.getText();// sartutako emaila itzuli.
                     izena_login = izena.getText();// sartutako izena itzuli.
