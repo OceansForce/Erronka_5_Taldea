@@ -478,7 +478,9 @@ public class Index extends JFrame  {// Erabiliko diren aldagai guztiak definitu.
         L_lupa_irudia6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sozioak_model.setDataVector(da.sozio_Array_bilatzailea(bilatzailea6.getText()),kolumna_Izenak_sozio);
+                if(!bilatzailea6.getText().isEmpty() || !bilatzailea6.getText().equals("Sozio Izena")){
+                    sozioak_model.setDataVector(da.sozio_Array_bilatzailea(bilatzailea6.getText()),kolumna_Izenak_sozio);
+                }
             }
         });
 
