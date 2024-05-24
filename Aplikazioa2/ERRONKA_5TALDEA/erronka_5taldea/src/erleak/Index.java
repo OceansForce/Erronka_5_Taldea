@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import static erleak.Encrypt.*;
 import static erleak.Login.*;
 
-public class Index extends JFrame implements ActionListener {// Erabiliko diren aldagai guztiak definitu.
+public class Index extends JFrame  {// Erabiliko diren aldagai guztiak definitu.
     private JPanel centerPanela;
     private CardLayout card1;
     private DefaultTableModel eztia_model, besteak_model,material_model,sozioak_model,asoziazioak_model;
@@ -511,8 +511,5 @@ public class Index extends JFrame implements ActionListener {// Erabiliko diren 
         });
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-    }
 }

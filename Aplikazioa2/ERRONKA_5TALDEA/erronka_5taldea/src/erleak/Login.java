@@ -1,4 +1,8 @@
 package erleak;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
