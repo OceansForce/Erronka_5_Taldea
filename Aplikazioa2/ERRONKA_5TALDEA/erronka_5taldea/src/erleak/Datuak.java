@@ -244,7 +244,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
             throw new RuntimeException(e);
         }
     }
-    public String pazaitza_jarri(String identifikatzaile){// identifikatzaile bakoitzeko pasahitza lortu.
+    public String pasahitza_jarri(String identifikatzaile){// identifikatzaile bakoitzeko pasahitza lortu.
         ArrayList<Sozioak> sozio_lista= sozio_ArrayList();// sozio gustien arraylist bat sortu.
         if(identifikatzaile_mota==1){// identifikatzaile mota 1 bada.
             for (Sozioak s: sozio_lista) {// arraylisteko sozio bakoitzeko.
@@ -272,7 +272,7 @@ public class Datuak {// datu basearekin konexioa ahalbidetzeko datuak definitu.
                 }
             }
         }
-        return "ERROREA pazaitza_jarri";// identifikatzail mota okerrabaldin bada mezu itzuli.
+        return "ERROREA pasahitza_jarri";// identifikatzail mota okerrabaldin bada mezu itzuli.
     }
 
     public ArrayList<Sozioak> sozio_ArrayList(){// sozioen arraylist bat bueltatuko duen funtzioa.

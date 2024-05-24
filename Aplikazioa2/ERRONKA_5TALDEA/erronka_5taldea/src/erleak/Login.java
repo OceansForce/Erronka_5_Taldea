@@ -1,8 +1,4 @@
 package erleak;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -214,7 +210,7 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {// login botoiean click egiterakoan.
                 String pasahitza1= new String(txertatupass.getPassword());// sartutako pasahitza aldagaian gorde.
-                if (da.identifikatzailea_ondo(txertatu_izen.getText().trim()) && da.pazaitza_jarri(txertatu_izen.getText().trim()).equals(da.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
+                if (da.identifikatzailea_ondo(txertatu_izen.getText().trim()) && da.pasahitza_jarri(txertatu_izen.getText().trim()).equals(da.hash(pasahitza1))){// datu baseko pasahitza sartutako pasahitz berbera bada.
 
                         da.izena_jarri(txertatu_izen.getText().trim());
                         JOptionPane.showMessageDialog(null, "Logeatu egin zara");// mezua agertu logeatu zara testuarekin.
